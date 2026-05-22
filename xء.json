@@ -1,0 +1,217 @@
+{
+  "courseTitle": "Madinah Arabic Book 1",
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "inBookWords": [
+        { "arabic": "هَذَا", "english": "This"},
+        { "arabic": "بَيْتٌ", "english": "House"},
+        { "arabic": "مَسْجِدٌ", "english": "Mosque"},
+        { "arabic": "بَابٌ", "english": "Door"},
+        { "arabic": "كِتَابٌ", "english": "Book"},
+        { "arabic": "قَلَمٌ", "english": "Pen"},
+        { "arabic": "مِفْتَاحٌ", "english": "Key"},
+        { "arabic": "مَكْتَبٌ", "english": "Desk"},
+        { "arabic": "سَرِيرٌ", "english": "Bed"},
+        { "arabic": "كُرْسِيٌّ", "english": "Chair"},
+        { "arabic": "مَا", "english": "What?"},
+        { "arabic": "أَ", "english": "Turns statment into question"},
+        { "arabic": "نَعَمْ", "english": "Yes"},
+        { "arabic": "لَا", "english": "No"},
+        { "arabic": "قَمِيصٌ", "english": "Shirt"},
+        { "arabic": "نَجْمٌ", "english": "Star"},
+        { "arabic": "مَنْ", "english": "Who?"},
+        { "arabic": "طَبِيبٌ", "english": "Doctor"},
+        { "arabic": "وَلَدٌ", "english": "Boy"},
+        { "arabic": "طَالِبٌ", "english": "Student"},
+        { "arabic": "رَجُلٌ", "english": "Man" },
+        { "arabic": "تَاجِرٌ", "english": "Merchant"},
+        { "arabic": "كَلْبٌ", "english": "Dog"},
+        { "arabic": "قِطٌّ", "english": "Cat"},
+        { "arabic": "حِمَارٌ", "english": "Donkey"},
+        { "arabic": "حِصَانٌ", "english": "Horse"},
+        { "arabic": "خَمَلٌ", "english": "Camel"},
+        { "arabic": "دِيكٌ", "english": "Rooster"},
+        { "arabic": "مُدَرِّسٌ", "english": "Teacher"},
+        { "arabic": "مِنْدِيلٌ", "english": "Handkerchief"}],
+      "extraWords": [
+        { "arabic": "الدَّرْسُ", "english": "The Lesson"},
+        { "arabic": "الأَوَّلُ", "english": "The First"},
+        { "arabic": "كَلِمَةٌ", "english": "Word"},
+        { "arabic": "اسْمٌ", "english": "Noun"},
+        { "arabic": "فِعْلٌ", "english": "Verb"},
+        { "arabic": "حَرْفٌ", "english": "Particle"},
+        { "arabic": "مُذَكَّرٌ", "english": "Masculine"},
+        { "arabic": "مُؤَنَّثٌ", "english": "Feminine"},
+        { "arabic": "مُفْرَدٌ", "english": "Singular"},
+        { "arabic": "مُثَنَّى", "english": "Dual"},
+        { "arabic": "جَمْعٌ", "english": "Plural"},
+        { "arabic": "قَرِيبٌ", "english": "Close"},
+        { "arabic": "تَمْرِينٌ", "english": "Exercise"},
+        { "arabic": "اِقْرَأْ", "english": "Read"}]
+    },
+
+
+
+
+    {
+      "lessonNumber": 2,
+      "inBookWords": [
+        { "arabic": "ذَلِكَ", "english": "That"},
+        { "arabic": "إِمَامٌ", "english": "Leader"},
+        { "arabic": "حَخَرٌ", "english": "Rock"},
+        { "arabic": "سُكَّرٌ", "english": "Sugar"},
+        { "arabic": "لَبَنٌ", "english": "Milk"}
+    ],
+      "extraWords": [
+        { "arabic": "بَعِيدٌ", "english": "Far"},
+        { "arabic": "الثَّانِي", "english": "The Second"}
+      ]
+    },
+
+
+
+
+    {
+      "lessonNumber": 3,
+      "inBookWords": [
+        { "arabic": "مَكْسُورٌ", "english": "Broken"},
+        { "arabic": "مَفْتُوحٌ", "english": "Open"},
+        { "arabic": "جَالِسٌي", "english": "Sitting"},
+        { "arabic": "وَاقِفٌ", "english": "Standing"},  
+        { "arabic": "جَدِيدٌ", "english": "New"},
+        { "arabic": "قَدِيمٌ", "english": "Old"},
+        { "arabic": "صَغِيرٌ", "english": "Small"},
+        { "arabic": "كَبِيرٌ", "english": "Big"},
+        { "arabic": "وَسِجٌ", "english": "Dirty"},
+        { "arabic": "مَاءٌ", "english": "Water"},
+        { "arabic": "بَارِدٌ", "english": "Cold"},
+        { "arabic": "قَمَرٌ", "english": "Moon"},
+        { "arabic": "جَمِيلٌ", "english": "Beautiful"},
+        { "arabic": "قَرِيبٌ", "english": "Close"},
+        { "arabic": "بَعِيدٌ", "english": "Far"},
+        { "arabic": "ثَقِيلٌ", "english": "Heavy"},
+        { "arabic": "خَفِيفٌ", "english": "Light"},
+        { "arabic": "وَرَقٌ", "english": "Paper / Leaf"},
+        { "arabic": "حَارٌ", "english": "Hot"},
+        { "arabic": "نَظِيفٌ", "english": "Clean"}
+        
+      ],
+      "extraWords": [        
+        { "arabic": "الثَّالِثُ", "english": "The Third"},
+        { "arabic": "مَعْرِفَةٌ", "english": "Definite"},
+        { "arabic": "نَكِرَةٌ", "english": "Indefinite"}, 
+        { "arabic": "أَلْ", "english": "The"}]
+    },
+
+
+
+
+    {
+      "lessonNumber": 4,
+      "inBookWords": [],
+      "extraWords": [
+
+
+      ]
+    },
+
+
+
+
+    {
+      "lessonNumber": 5,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 6,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 7,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 8,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 9,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 10,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 11,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 12,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 13,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 14,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 15,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 16,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 17,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 18,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 19,
+      "inBookWords": []
+    },
+    {
+      "lessonNumber": 20,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 21,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 22,
+      "inBookWords": [],
+      "extraWords": []
+    },
+    {
+      "lessonNumber": 23,
+      "inBookWords": [],
+      "extraWords": []
+    }
+  ]
+}

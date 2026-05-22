@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Madinah Arabic — Book 1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Scheherazade+New:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:             #0a0a0a;
+      --surface:        rgba(255,255,255,0.04);
+      --surface-hover:  rgba(255,255,255,0.07);
+      --border:         rgba(255,255,255,0.08);
+      --border-glow:    rgba(160,220,255,0.18);
+      --accent:         #a0dcff;
+      --accent2:        #7ecfb3;
+      --accent-warn:    #ffb86c;
+      --accent-danger:  #ff6b6b;
+      --accent-success: #69db7c;
+      --text:           #e8e8e8;
+      --muted:          #6b6b6b;
+      --card-radius:    14px;
+      --transition:     0.22s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Syne', sans-serif;
+      min-height: 100vh; overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.5;
+    }
+    .ambient { position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0; }
+    .ambient-1 { width:500px;height:500px;background:radial-gradient(circle,rgba(100,190,255,0.06) 0%,transparent 70%);top:-150px;left:-100px; }
+    .ambient-2 { width:400px;height:400px;background:radial-gradient(circle,rgba(100,220,180,0.05) 0%,transparent 70%);bottom:-100px;right:-50px; }
+
+    /* ══════════════════════════════════════════
+       HEADER
+    ══════════════════════════════════════════ */
+    header {
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 40px;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      background: rgba(10,10,10,0.8);
+    }
+    .header-logo { display:flex;align-items:center;gap:12px;cursor:pointer; }
+    .logo-mark {
+      width:36px;height:36px;border:1.5px solid var(--border-glow);border-radius:8px;
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Scheherazade New',serif;font-size:18px;color:var(--accent);
+      background:rgba(160,220,255,0.05);
+    }
+    .logo-text { font-size:15px;font-weight:700;letter-spacing:0.04em;color:var(--text); }
+    .logo-sub  { font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;margin-top:1px; }
+
+    .app-nav {
+      display: flex; gap: 4px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 4px;
+    }
+    .app-nav-btn {
+      padding: 7px 20px; border-radius: 7px; border: none; background: none;
+      color: var(--muted); font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.08em; cursor: pointer;
+      transition: all var(--transition);
+    }
+    .app-nav-btn:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .app-nav-btn.active {
+      background: rgba(160,220,255,0.1);
+      color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(160,220,255,0.2);
+    }
+
+    .header-meta { font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.06em; }
+
+    /* ══════════════════════════════════════════
+       VIEW SYSTEM
+    ══════════════════════════════════════════ */
+    .view { position:relative;z-index:1; }
+    .view-hidden { display:none !important; }
+
+    /* ══════════════════════════════════════════
+       SHARED — ALL-LESSONS BANNER
+    ══════════════════════════════════════════ */
+    .all-lessons-banner {
+      position:relative; cursor:pointer;
+      background:linear-gradient(135deg,rgba(160,220,255,0.07) 0%,rgba(126,207,179,0.05) 100%);
+      border:1px solid rgba(160,220,255,0.2); border-radius:var(--card-radius);
+      padding:28px 32px; margin-bottom:28px;
+      display:flex; align-items:center; gap:24px;
+      transition:background var(--transition),border-color var(--transition),transform var(--transition),box-shadow var(--transition);
+      overflow:hidden;
+    }
+    .all-lessons-banner:hover {
+      background:linear-gradient(135deg,rgba(160,220,255,0.12) 0%,rgba(126,207,179,0.09) 100%);
+      border-color:rgba(160,220,255,0.38); transform:translateY(-2px);
+      box-shadow:0 12px 40px rgba(0,0,0,0.5),0 0 0 1px rgba(160,220,255,0.1);
+    }
+    .all-lessons-banner:active { transform:translateY(0); }
+    .all-lessons-banner::after {
+      content:''; position:absolute; top:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent,rgba(160,220,255,0.35),transparent);
+    }
+    .banner-icon {
+      width:52px;height:52px;flex-shrink:0;border:1.5px solid rgba(160,220,255,0.25);
+      border-radius:12px;background:rgba(160,220,255,0.07);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Scheherazade New',serif;font-size:26px;color:var(--accent);
+    }
+    .banner-info { flex:1; }
+    .banner-eyebrow { font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:5px; }
+    .banner-title { font-size:18px;font-weight:800;color:var(--text);letter-spacing:-0.01em;margin-bottom:4px; }
+    .banner-sub   { font-size:13px;color:var(--muted); }
+    .banner-arrow {
+      width:36px;height:36px;border-radius:50%;flex-shrink:0;
+      background:rgba(160,220,255,0.08);border:1px solid rgba(160,220,255,0.2);
+      display:flex;align-items:center;justify-content:center;
+      font-size:16px;color:var(--accent);
+      transition:transform var(--transition),background var(--transition);
+    }
+    .all-lessons-banner:hover .banner-arrow { transform:translateX(3px);background:rgba(160,220,255,0.15); }
+
+    /* ══════════════════════════════════════════
+       SHARED — LESSON GRID & CARDS
+    ══════════════════════════════════════════ */
+    .page-wrap { padding:48px 40px 80px;max-width:1100px;margin:0 auto; }
+    .gallery-header { margin-bottom:36px; }
+    .gallery-eyebrow { font-size:13px;font-family:'IBM Plex Mono',monospace;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px; }
+    .gallery-heading { font-size:32px;font-weight:800;color:var(--text);letter-spacing:-0.02em; }
+    .gallery-desc    { margin-top:8px;font-size:14px;color:var(--muted); }
+
+    .lesson-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:14px; }
+    .lesson-card {
+      position:relative;background:var(--surface);border:1px solid var(--border);
+      border-radius:var(--card-radius);padding:22px 20px 18px;cursor:pointer;
+      transition:background var(--transition),border-color var(--transition),transform var(--transition),box-shadow var(--transition);
+      overflow:hidden;opacity:0;transform:translateY(16px);animation:cardIn 0.4s ease forwards;
+    }
+    .lesson-card:hover { background:var(--surface-hover);border-color:var(--border-glow);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.4); }
+    .lesson-card:active { transform:translateY(0); }
+    .lesson-card.empty-lesson { opacity:0.45; }
+    @keyframes cardIn { to { opacity:1;transform:translateY(0); } }
+    .card-number { font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:rgba(160,220,255,0.35);margin-bottom:10px; }
+    .card-name   { font-size:13px;font-weight:600;color:var(--text);margin-bottom:14px; }
+    .card-stats  { display:flex;gap:10px;border-top:1px solid var(--border);padding-top:12px;flex-wrap:wrap; }
+    .stat-badge  { display:flex;align-items:center;gap:5px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.06em; }
+    .stat-dot    { width:5px;height:5px;border-radius:50%; }
+    .dot-inbook  { background:var(--accent); }
+    .dot-extra   { background:var(--accent2); }
+    .card-arrow  { position:absolute;top:18px;right:18px;width:28px;height:28px;border-radius:50%;background:rgba(160,220,255,0.07);border:1px solid rgba(160,220,255,0.15);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--transition);font-size:12px;color:var(--accent); }
+    .lesson-card:hover .card-arrow { opacity:1; }
+
+    /* ══════════════════════════════════════════
+       SHARED — TOPBAR
+    ══════════════════════════════════════════ */
+    .sub-topbar {
+      position:sticky;top:0;z-index:50;
+      display:flex;align-items:center;gap:16px;padding:16px 40px;
+      border-bottom:1px solid var(--border);backdrop-filter:blur(24px);
+      background:rgba(10,10,10,0.85);flex-wrap:wrap;
+    }
+    .back-btn {
+      display:flex;align-items:center;gap:7px;background:none;border:1px solid var(--border);
+      border-radius:8px;color:var(--muted);font-family:'IBM Plex Mono',monospace;
+      font-size:11px;letter-spacing:0.08em;padding:7px 14px;cursor:pointer;
+      transition:border-color var(--transition),color var(--transition),background var(--transition);white-space:nowrap;
+    }
+    .back-btn:hover { border-color:var(--border-glow);color:var(--accent);background:rgba(160,220,255,0.05); }
+    .back-btn svg { transition:transform var(--transition); }
+    .back-btn:hover svg { transform:translateX(-3px); }
+    .topbar-info { flex:1;min-width:120px; }
+    .topbar-label { font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--accent);text-transform:uppercase; }
+    .topbar-title { font-size:16px;font-weight:700;color:var(--text);margin-top:2px; }
+
+    /* ══════════════════════════════════════════
+       ① VOCAB BANK
+    ══════════════════════════════════════════ */
+    #vb-detail { opacity:0;transform:translateY(12px);transition:opacity 0.3s ease,transform 0.3s ease; }
+    #vb-detail.visible { opacity:1;transform:translateY(0); }
+
+    .vb-body { max-width:1100px;margin:0 auto;padding:40px 40px 80px; }
+    .vb-panel { display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+    .vb-panel.single-col { grid-template-columns:1fr; }
+
+    .vocab-column { background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);overflow:hidden; }
+    .col-header   { display:flex;align-items:center;gap:8px;padding:16px 22px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.02); }
+    .col-dot      { width:6px;height:6px;border-radius:50%; }
+    .col-inbook .col-dot { background:var(--accent); }
+    .col-extra  .col-dot { background:var(--accent2); }
+    .col-all    .col-dot { background:linear-gradient(135deg,var(--accent),var(--accent2)); }
+    .col-title  { font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase; }
+    .col-inbook .col-title { color:var(--accent); }
+    .col-extra  .col-title { color:var(--accent2); }
+    .col-all    .col-title { color:var(--accent); }
+    .col-count  { margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted); }
+
+    .vocab-list { list-style:none; }
+    .vocab-item {
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 22px;border-bottom:1px solid var(--border);
+      transition:background var(--transition);gap:16px;
+      opacity:0;animation:itemIn 0.35s ease forwards;
+    }
+    .vocab-item:last-child { border-bottom:none; }
+    .vocab-item:hover { background:rgba(255,255,255,0.03); }
+    @keyframes itemIn { from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);} }
+    .vocab-arabic  { font-family:'Scheherazade New',serif;font-size:28px;direction:rtl;color:#fff;line-height:1.4;text-align:right;flex:1; }
+    .vocab-divider { width:1px;height:28px;background:var(--border);flex-shrink:0; }
+    .vocab-english { font-size:13px;color:var(--muted);font-weight:400;text-align:left;flex:1;letter-spacing:0.01em; }
+    .vocab-lesson-tag {
+      font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--muted);
+      background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:4px;
+      padding:2px 7px;white-space:nowrap;flex-shrink:0;
+    }
+    .empty-state { text-align:center;padding:60px 20px;color:var(--muted);font-size:14px;font-family:'IBM Plex Mono',monospace; }
+
+    /* ══════════════════════════════════════════
+       ② STUDY MODE — mode tabs
+    ══════════════════════════════════════════ */
+    .mode-tabs { display:flex;gap:6px; }
+    .mode-tab {
+      padding:7px 18px;border-radius:8px;border:1px solid var(--border);background:none;
+      color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;
+      cursor:pointer;transition:all var(--transition);
+    }
+    .mode-tab:hover          { border-color:var(--border-glow);color:var(--accent);background:rgba(160,220,255,0.04); }
+    .mode-tab.active         { background:rgba(160,220,255,0.1);border-color:rgba(160,220,255,0.3);color:var(--accent); }
+    .mode-tab.inf-tab:hover  { color:var(--accent-warn)!important;border-color:rgba(255,184,108,0.25)!important;background:rgba(255,184,108,0.06)!important; }
+    .mode-tab.inf-tab.active { background:rgba(255,184,108,0.1);border-color:rgba(255,184,108,0.3);color:var(--accent-warn); }
+
+    #sm-detail { opacity:0;transform:translateY(12px);transition:opacity 0.3s ease,transform 0.3s ease; }
+    #sm-detail.visible { opacity:1;transform:translateY(0); }
+
+    .study-body { max-width:800px;margin:0 auto;padding:48px 40px 80px; }
+
+    /* PROGRESS BAR */
+    .prog-bar  { width:100%;height:2px;background:var(--border);border-radius:2px;margin-bottom:32px;overflow:hidden; }
+    .prog-fill { height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;transition:width 0.4s cubic-bezier(0.4,0,0.2,1); }
+
+    /* EMPTY PANEL */
+    .no-words-panel { background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);padding:60px 40px;text-align:center; }
+    .no-words-icon  { font-size:40px;margin-bottom:16px;opacity:0.4; }
+    .no-words-title { font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px; }
+    .no-words-sub   { font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:0.06em; }
+
+    /* FLASHCARD */
+    .fc-counter { font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:0.08em;text-align:center;margin-bottom:28px; }
+    .fc-counter span { color:var(--accent); }
+    .card-scene  { perspective:1000px;width:100%;height:280px;cursor:pointer;margin-bottom:32px; }
+    .card-inner  { position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);border-radius:var(--card-radius); }
+    .card-scene.flipped .card-inner { transform:rotateY(180deg); }
+    .card-face   { position:absolute;inset:0;border-radius:var(--card-radius);display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:40px;border:1px solid var(--border);user-select:none; }
+    .card-face-front { background:linear-gradient(135deg,rgba(160,220,255,0.05) 0%,rgba(255,255,255,0.03) 100%);border-color:rgba(160,220,255,0.15); }
+    .card-face-back  { background:linear-gradient(135deg,rgba(126,207,179,0.05) 0%,rgba(255,255,255,0.03) 100%);border-color:rgba(126,207,179,0.15);transform:rotateY(180deg); }
+    .card-label { font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:24px;padding:4px 12px;border-radius:20px;border:1px solid var(--border); }
+    .card-face-front .card-label { color:var(--accent);border-color:rgba(160,220,255,0.2); }
+    .card-face-back  .card-label { color:var(--accent2);border-color:rgba(126,207,179,0.2); }
+    .card-hint { position:absolute;bottom:16px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.08em; }
+    .fc-nav { display:flex;align-items:center;justify-content:center;gap:12px; }
+    .fc-btn { display:flex;align-items:center;gap:8px;padding:10px 24px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all var(--transition); }
+    .fc-btn:hover:not(:disabled) { border-color:var(--border-glow);color:var(--accent);background:rgba(160,220,255,0.06); }
+    .fc-btn:disabled { opacity:0.3;cursor:not-allowed; }
+    .fc-btn-flip { background:rgba(160,220,255,0.08);border-color:rgba(160,220,255,0.2);color:var(--accent); }
+    .fc-btn-flip:hover { background:rgba(160,220,255,0.14)!important;border-color:rgba(160,220,255,0.35)!important; }
+    .fc-kbd-hint { text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-top:20px;letter-spacing:0.06em; }
+    .fc-kbd-hint kbd { display:inline-block;padding:2px 7px;border-radius:4px;background:rgba(255,255,255,0.05);border:1px solid var(--border);font-family:inherit;font-size:10px;color:var(--muted);margin:0 2px; }
+
+    /* QUIZ */
+    .quiz-header-bar  { display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px; }
+    .quiz-score-strip { display:flex;gap:10px; }
+    .score-badge { display:flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.07em;padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:var(--surface); }
+    .badge-c  { color:var(--accent-success);border-color:rgba(105,219,124,0.2); }
+    .badge-w  { color:var(--accent-danger);border-color:rgba(255,107,107,0.2); }
+    .badge-s  { color:var(--accent-warn);border-color:rgba(255,184,108,0.2); }
+    .badge-t  { color:var(--muted); }
+    .q-counter { font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em; }
+    .quiz-prompt-card { background:var(--surface);border:1px solid rgba(160,220,255,0.1);border-radius:var(--card-radius);padding:36px 40px;text-align:center;margin-bottom:20px; }
+    .quiz-prompt-label { font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px; }
+    .quiz-answers { display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px; }
+    .ans-btn { padding:22px 20px;border-radius:var(--card-radius);border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:'Syne',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all var(--transition);text-align:center;line-height:1.4; }
+    .ans-btn:hover:not(:disabled) { border-color:var(--border-glow);background:var(--surface-hover);transform:translateY(-1px); }
+    .ans-btn:disabled { cursor:default; }
+    .ans-btn.correct { background:rgba(105,219,124,0.12)!important;border-color:rgba(105,219,124,0.4)!important;color:var(--accent-success)!important;transform:none; }
+    .ans-btn.wrong   { background:rgba(255,107,107,0.1)!important;border-color:rgba(255,107,107,0.35)!important;color:var(--accent-danger)!important;transform:none; }
+    .ans-btn.dim     { opacity:0.3;transform:none; }
+    .quiz-feedback-bar { display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-radius:var(--card-radius);border:1px solid var(--border);background:var(--surface);margin-bottom:12px;gap:12px;flex-wrap:wrap; }
+    .quiz-feedback-bar.fb-correct { background:rgba(105,219,124,0.06);border-color:rgba(105,219,124,0.25); }
+    .quiz-feedback-bar.fb-wrong   { background:rgba(255,107,107,0.06);border-color:rgba(255,107,107,0.25); }
+    .fb-text   { font-size:14px;font-weight:600; }
+    .fb-correct .fb-text { color:var(--accent-success); }
+    .fb-wrong   .fb-text { color:var(--accent-danger); }
+    .fb-answer  { font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.04em; }
+    .next-btn { width:100%;padding:14px;border-radius:10px;border:1px solid rgba(160,220,255,0.25);background:rgba(160,220,255,0.08);color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;cursor:pointer;transition:all var(--transition);text-transform:uppercase; }
+    .next-btn:hover { background:rgba(160,220,255,0.14);border-color:rgba(160,220,255,0.4); }
+
+    /* QUIZ SUMMARY */
+    .summary-panel  { background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);overflow:hidden; }
+    .summary-header { padding:32px 36px 24px;border-bottom:1px solid var(--border);text-align:center; }
+    .summary-emoji  { font-size:40px;margin-bottom:12px; }
+    .summary-title  { font-size:24px;font-weight:800;color:var(--text);letter-spacing:-0.02em;margin-bottom:6px; }
+    .summary-sub    { font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:0.06em; }
+    .summary-stats  { display:grid;grid-template-columns:repeat(4,1fr); }
+    .summary-stat   { padding:28px 20px;text-align:center;border-right:1px solid var(--border); }
+    .summary-stat:last-child { border-right:none; }
+    .summary-stat-value { font-size:32px;font-weight:800;letter-spacing:-0.03em;margin-bottom:6px; }
+    .summary-stat-label { font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase; }
+    .stat-c { color:var(--accent-success); } .stat-w { color:var(--accent-danger); }
+    .stat-t { color:var(--accent); }         .stat-a { color:var(--accent2); }
+    .summary-actions { padding:24px 36px;display:flex;gap:10px;border-top:1px solid var(--border); }
+    .summary-btn { flex:1;padding:13px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all var(--transition);text-transform:uppercase; }
+    .summary-btn:hover { border-color:var(--border-glow);color:var(--accent);background:rgba(160,220,255,0.06); }
+    .summary-btn.primary { background:rgba(160,220,255,0.08);border-color:rgba(160,220,255,0.25);color:var(--accent); }
+    .summary-btn.primary:hover { background:rgba(160,220,255,0.15);border-color:rgba(160,220,255,0.4); }
+
+    /* INFINITE — KNOW/DONT KNOW BUTTONS */
+    .inf-judge-row {
+      display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;
+    }
+    .inf-judge-btn {
+      padding:18px 20px;border-radius:var(--card-radius);border:1px solid var(--border);
+      background:var(--surface);color:var(--text);font-family:'Syne',sans-serif;
+      font-size:14px;font-weight:700;cursor:pointer;transition:all var(--transition);
+      text-align:center;letter-spacing:0.02em;
+    }
+    .inf-judge-btn:hover:not(:disabled) { transform:translateY(-2px); }
+    .inf-judge-btn:active { transform:translateY(0); }
+    .inf-judge-btn.know {
+      border-color:rgba(105,219,124,0.3);background:rgba(105,219,124,0.07);color:var(--accent-success);
+    }
+    .inf-judge-btn.know:hover { border-color:rgba(105,219,124,0.55);background:rgba(105,219,124,0.14); }
+    .inf-judge-btn.dontknow {
+      border-color:rgba(255,107,107,0.3);background:rgba(255,107,107,0.07);color:var(--accent-danger);
+    }
+    .inf-judge-btn.dontknow:hover { border-color:rgba(255,107,107,0.55);background:rgba(255,107,107,0.14); }
+
+    /* INFINITE PILL */
+    .inf-pill { display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;padding:4px 14px;border-radius:20px;border:1px solid var(--border);color:var(--muted);transition:all var(--transition); }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width:4px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.1);border-radius:4px; }
+    ::-webkit-scrollbar-thumb:hover { background:rgba(255,255,255,0.18); }
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .lesson-grid{grid-template-columns:repeat(2,1fr);}
+      header,.page-wrap,.sub-topbar,.vb-body,.study-body{padding-left:20px;padding-right:20px;}
+      .vb-panel{grid-template-columns:1fr;}
+      .summary-stats{grid-template-columns:repeat(2,1fr);}
+      .summary-stat:nth-child(2){border-right:none;}
+      .summary-stat:nth-child(3){border-right:1px solid var(--border);border-top:1px solid var(--border);}
+      .summary-stat:nth-child(4){border-top:1px solid var(--border);}
+      .app-nav-btn { padding:7px 12px; }
+    }
+    @media(max-width:600px){
+      .lesson-grid{grid-template-columns:1fr;}
+      .quiz-answers{grid-template-columns:1fr;}
+      .inf-judge-row{grid-template-columns:1fr;}
+      .card-scene{height:240px;}
+      .mode-tabs{gap:4px;}
+      .mode-tab{padding:6px 10px;font-size:10px;}
+      .sub-topbar{padding-left:16px;padding-right:16px;}
+      .study-body{padding:28px 16px 60px;}
+      header{padding:14px 16px;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="ambient ambient-1"></div>
+<div class="ambient ambient-2"></div>
+
+<!-- ══════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════ -->
+<header>
+  <div class="header-logo" id="header-logo">
+    <div class="logo-mark">م</div>
+    <div>
+      <div class="logo-text">Madinah Arabic</div>
+      <div class="logo-sub">BOOK ONE</div>
+    </div>
+  </div>
+
+  <nav class="app-nav">
+    <button class="app-nav-btn active" id="nav-vocab">📖 Vocab Bank</button>
+    <button class="app-nav-btn"        id="nav-study">⊞ Study Mode</button>
+  </nav>
+
+  <div class="header-meta" id="header-meta">Loading…</div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     ① VOCAB BANK
+══════════════════════════════════════════ -->
+
+<!-- VB: Lesson Menu -->
+<section id="vb-menu" class="view">
+  <div class="page-wrap">
+    <div class="gallery-header">
+      <div class="gallery-eyebrow">Course Lexicon</div>
+      <h1 class="gallery-heading">All Lessons</h1>
+      <p class="gallery-desc">Select a lesson to explore its vocabulary</p>
+    </div>
+    <div class="all-lessons-banner" id="vb-all-btn">
+      <div class="banner-icon">م</div>
+      <div class="banner-info">
+        <div class="banner-eyebrow">Full Course</div>
+        <div class="banner-title">Browse All Vocabulary</div>
+        <div class="banner-sub" id="vb-banner-sub">Loading…</div>
+      </div>
+      <div class="banner-arrow">→</div>
+    </div>
+    <div class="lesson-grid" id="vb-grid"></div>
+  </div>
+</section>
+
+<!-- VB: Lesson Detail -->
+<section id="vb-detail" class="view view-hidden">
+  <div class="sub-topbar">
+    <button class="back-btn" id="vb-back-btn">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M7.5 2L3.5 6L7.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Lessons
+    </button>
+    <div class="topbar-info">
+      <div class="topbar-label" id="vb-detail-label">Lesson</div>
+      <div class="topbar-title" id="vb-detail-title">—</div>
+    </div>
+  </div>
+  <div class="vb-body">
+    <div class="vb-panel" id="vb-panel">
+      <div class="vocab-column col-inbook" id="vb-col-inbook">
+        <div class="col-header">
+          <span class="col-dot"></span>
+          <span class="col-title">In-Book Words</span>
+          <span class="col-count" id="vb-inbook-count">—</span>
+        </div>
+        <ul class="vocab-list" id="vb-inbook-list"></ul>
+      </div>
+      <div class="vocab-column col-extra" id="vb-col-extra">
+        <div class="col-header">
+          <span class="col-dot"></span>
+          <span class="col-title">Extra Words</span>
+          <span class="col-count" id="vb-extra-count">—</span>
+        </div>
+        <ul class="vocab-list" id="vb-extra-list"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ② STUDY MODE
+══════════════════════════════════════════ -->
+
+<!-- SM: Lesson Menu -->
+<section id="sm-menu" class="view view-hidden">
+  <div class="page-wrap">
+    <div class="gallery-header">
+      <div class="gallery-eyebrow">Study Mode</div>
+      <h1 class="gallery-heading">Select a Lesson</h1>
+      <p class="gallery-desc">Study with Flashcards, Quiz, or Infinite mode</p>
+    </div>
+    <div class="all-lessons-banner" id="sm-all-btn">
+      <div class="banner-icon">∞</div>
+      <div class="banner-info">
+        <div class="banner-eyebrow">Full Course</div>
+        <div class="banner-title">Study All Lessons</div>
+        <div class="banner-sub" id="sm-banner-sub">Loading…</div>
+      </div>
+      <div class="banner-arrow">→</div>
+    </div>
+    <div class="lesson-grid" id="sm-grid"></div>
+  </div>
+</section>
+
+<!-- SM: Study Detail -->
+<section id="sm-detail" class="view view-hidden">
+  <div class="sub-topbar">
+    <button class="back-btn" id="sm-back-btn">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M7.5 2L3.5 6L7.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back
+    </button>
+    <div class="topbar-info">
+      <div class="topbar-label" id="sm-detail-label">LESSON</div>
+      <div class="topbar-title" id="sm-detail-title">—</div>
+    </div>
+    <div class="mode-tabs">
+      <button class="mode-tab active"  id="tab-fc">⊞ Flashcards</button>
+      <button class="mode-tab"         id="tab-qz">◈ Quiz</button>
+      <button class="mode-tab inf-tab" id="tab-inf">∞ Infinite</button>
+    </div>
+  </div>
+
+  <div class="study-body">
+
+    <!-- FLASHCARD MODE -->
+    <div id="fc-mode">
+      <div id="fc-empty" class="no-words-panel" style="display:none;">
+        <div class="no-words-icon">📭</div>
+        <div class="no-words-title">No words available</div>
+        <div class="no-words-sub">This lesson has no vocabulary yet.</div>
+      </div>
+      <div id="fc-active">
+        <div class="fc-counter">Card <span id="fc-cur">1</span> of <span id="fc-tot">0</span></div>
+        <div class="prog-bar"><div class="prog-fill" id="fc-prog" style="width:0%"></div></div>
+        <div class="card-scene" id="fc-scene">
+          <div class="card-inner" id="fc-inner">
+            <div class="card-face card-face-front">
+              <div class="card-label" id="fc-front-lbl">Arabic</div>
+              <div id="fc-front-txt" style="font-family:'Scheherazade New',serif;font-size:52px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+              <div class="card-hint">click to reveal • space</div>
+            </div>
+            <div class="card-face card-face-back">
+              <div class="card-label" id="fc-back-lbl">English</div>
+              <div id="fc-back-txt" style="font-size:22px;font-weight:600;color:var(--text);text-align:center;letter-spacing:-0.01em;">—</div>
+              <div class="card-hint">click to flip back • space</div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-nav">
+          <button class="fc-btn" id="fc-prev">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M7.5 2L3.5 6L7.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Prev
+          </button>
+          <button class="fc-btn fc-btn-flip" id="fc-flip">Flip</button>
+          <button class="fc-btn" id="fc-next">
+            Next
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2L8.5 6L4.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="fc-kbd-hint"><kbd>←</kbd> Prev &nbsp;·&nbsp; <kbd>Space</kbd> Flip &nbsp;·&nbsp; <kbd>→</kbd> Next</div>
+      </div>
+    </div>
+
+    <!-- QUIZ MODE -->
+    <div id="qz-mode" style="display:none;">
+      <div id="qz-empty" class="no-words-panel" style="display:none;">
+        <div class="no-words-icon">📭</div>
+        <div class="no-words-title">Not enough words</div>
+        <div class="no-words-sub">Need at least 4 words for the quiz.</div>
+      </div>
+      <div id="qz-active" style="display:none;">
+        <div class="quiz-header-bar">
+          <div class="quiz-score-strip">
+            <span class="score-badge badge-c">✓ <span id="qz-c">0</span></span>
+            <span class="score-badge badge-w">✗ <span id="qz-w">0</span></span>
+            <span class="score-badge badge-t">Σ <span id="qz-t">0</span></span>
+          </div>
+          <div class="q-counter">Q <span id="qz-num">1</span> of <span id="qz-of">?</span></div>
+        </div>
+        <div class="prog-bar"><div class="prog-fill" id="qz-prog" style="width:0%"></div></div>
+        <div class="quiz-prompt-card">
+          <div class="quiz-prompt-label" id="qz-prompt-lbl">What does this mean?</div>
+          <div id="qz-prompt" style="font-family:'Scheherazade New',serif;font-size:56px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+        </div>
+        <div class="quiz-answers" id="qz-answers">
+          <button class="ans-btn" data-idx="0"></button>
+          <button class="ans-btn" data-idx="1"></button>
+          <button class="ans-btn" data-idx="2"></button>
+          <button class="ans-btn" data-idx="3"></button>
+        </div>
+        <div id="qz-feedback" style="display:none;">
+          <div class="quiz-feedback-bar" id="qz-fb-bar">
+            <span class="fb-text"   id="qz-fb-text">—</span>
+            <span class="fb-answer" id="qz-fb-ans">—</span>
+          </div>
+          <button class="next-btn" id="qz-next-btn">Next Question →</button>
+        </div>
+      </div>
+      <div id="qz-summary" style="display:none;opacity:0;transform:translateY(12px);transition:opacity 0.35s ease,transform 0.35s ease;">
+        <div class="summary-panel">
+          <div class="summary-header">
+            <div class="summary-emoji" id="s-emoji">🎉</div>
+            <div class="summary-title" id="s-title">Quiz Complete!</div>
+            <div class="summary-sub"   id="s-sub">Here's how you did</div>
+          </div>
+          <div class="summary-stats">
+            <div class="summary-stat"><div class="summary-stat-value stat-c" id="s-c">0</div><div class="summary-stat-label">Correct</div></div>
+            <div class="summary-stat"><div class="summary-stat-value stat-w" id="s-w">0</div><div class="summary-stat-label">Wrong</div></div>
+            <div class="summary-stat"><div class="summary-stat-value stat-t" id="s-t">0</div><div class="summary-stat-label">Total</div></div>
+            <div class="summary-stat"><div class="summary-stat-value stat-a" id="s-a">0%</div><div class="summary-stat-label">Accuracy</div></div>
+          </div>
+          <div class="summary-actions">
+            <button class="summary-btn"        id="s-back">Back to Lessons</button>
+            <button class="summary-btn primary" id="s-retry">Retry Quiz</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INFINITE MODE -->
+    <div id="inf-mode" style="display:none;">
+      <div id="inf-empty" class="no-words-panel" style="display:none;">
+        <div class="no-words-icon">📭</div>
+        <div class="no-words-title">Not enough words</div>
+        <div class="no-words-sub">Need at least 4 words for Infinite mode.</div>
+      </div>
+      <div id="inf-toast" style="display:none;">
+        <div class="no-words-panel" style="border-color:rgba(255,184,108,0.2);background:rgba(255,184,108,0.04);">
+          <div class="no-words-icon" id="inf-toast-emoji">🔄</div>
+          <div class="no-words-title" id="inf-toast-title">Round Complete!</div>
+          <div class="no-words-sub"   id="inf-toast-sub">Reshuffling…</div>
+          <button class="next-btn" id="inf-continue" style="max-width:240px;margin:24px auto 0;">Continue →</button>
+        </div>
+      </div>
+      <div id="inf-active" style="display:none;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;">
+          <div class="quiz-score-strip">
+            <span class="score-badge badge-c">✓ <span id="inf-c">0</span></span>
+            <span class="score-badge badge-w">✗ <span id="inf-w">0</span></span>
+            <span class="score-badge badge-s">🔥 <span id="inf-streak">0</span></span>
+          </div>
+          <div class="q-counter">Round <span id="inf-round">1</span> · <span id="inf-pos">1</span>/<span id="inf-of">?</span></div>
+        </div>
+        <div class="prog-bar"><div class="prog-fill" id="inf-prog" style="width:0%"></div></div>
+        <div style="text-align:center;margin-bottom:18px;"><span class="inf-pill" id="inf-pill">—</span></div>
+
+        <!-- inf flashcard -->
+        <div id="inf-fc">
+          <div class="card-scene" id="inf-scene">
+            <div class="card-inner" id="inf-inner">
+              <div class="card-face card-face-front">
+                <div class="card-label" id="inf-front-lbl">Arabic</div>
+                <div id="inf-front-txt" style="font-family:'Scheherazade New',serif;font-size:52px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+                <div class="card-hint">click to reveal • space</div>
+              </div>
+              <div class="card-face card-face-back">
+                <div class="card-label" id="inf-back-lbl">English</div>
+                <div id="inf-back-txt" style="font-size:22px;font-weight:600;color:var(--text);text-align:center;">—</div>
+                <div class="card-hint">flip then judge yourself</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flip button (centered, always visible for fc cards) -->
+          <div style="display:flex;justify-content:center;margin-top:24px;">
+            <button class="fc-btn fc-btn-flip" id="inf-flip">Flip</button>
+          </div>
+
+          <!-- Know / Don't Know — hidden until flipped -->
+          <div class="inf-judge-row" id="inf-know-row" style="display:none;">
+            <button class="inf-judge-btn dontknow" id="inf-dontknow">✗ Don't know</button>
+            <button class="inf-judge-btn know"     id="inf-knowit">✓ Know it</button>
+          </div>
+
+          <div class="fc-kbd-hint" style="margin-top:14px;">
+            <kbd>Space</kbd> Flip &nbsp;·&nbsp; <kbd>1</kbd> Don't know &nbsp;·&nbsp; <kbd>2</kbd> Know it
+          </div>
+        </div>
+
+        <!-- inf quiz -->
+        <div id="inf-qz" style="display:none;">
+          <div class="quiz-prompt-card">
+            <div class="quiz-prompt-label" id="inf-qz-lbl">What does this mean?</div>
+            <div id="inf-qz-prompt" style="font-family:'Scheherazade New',serif;font-size:56px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+          </div>
+          <div class="quiz-answers" id="inf-answers">
+            <button class="ans-btn" data-idx="0"></button>
+            <button class="ans-btn" data-idx="1"></button>
+            <button class="ans-btn" data-idx="2"></button>
+            <button class="ans-btn" data-idx="3"></button>
+          </div>
+          <div id="inf-feedback" style="display:none;">
+            <div class="quiz-feedback-bar" id="inf-fb-bar">
+              <span class="fb-text"   id="inf-fb-text">—</span>
+              <span class="fb-answer" id="inf-fb-ans">—</span>
+            </div>
+            <button class="next-btn" id="inf-qz-next">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- study-body -->
+</section>
+
+<script>
+/* ════════════════════════════════════════════════
+   AUDIO
+════════════════════════════════════════════════ */
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let _actx;
+function getACtx() { if (!_actx) _actx = new AudioCtx(); return _actx; }
+function playSound(type) {
+  try {
+    const ctx = getACtx(), osc = ctx.createOscillator(), g = ctx.createGain();
+    osc.connect(g); g.connect(ctx.destination);
+    const t = ctx.currentTime;
+    switch(type) {
+      case 'click':
+        osc.type='sine'; osc.frequency.setValueAtTime(900,t); osc.frequency.exponentialRampToValueAtTime(500,t+0.07);
+        g.gain.setValueAtTime(0.05,t); g.gain.exponentialRampToValueAtTime(0.0001,t+0.1);
+        osc.start(t); osc.stop(t+0.1); break;
+      case 'flip':
+        osc.type='sine'; osc.frequency.setValueAtTime(600,t); osc.frequency.exponentialRampToValueAtTime(280,t+0.18);
+        g.gain.setValueAtTime(0.08,t); g.gain.exponentialRampToValueAtTime(0.0001,t+0.2);
+        osc.start(t); osc.stop(t+0.22); break;
+      case 'nav':
+        osc.type='triangle'; osc.frequency.setValueAtTime(700,t); osc.frequency.exponentialRampToValueAtTime(500,t+0.08);
+        g.gain.setValueAtTime(0.06,t); g.gain.exponentialRampToValueAtTime(0.0001,t+0.1);
+        osc.start(t); osc.stop(t+0.12); break;
+      case 'correct': {
+        const o2=ctx.createOscillator(), g2=ctx.createGain(); o2.connect(g2); g2.connect(ctx.destination);
+        osc.type='sine'; osc.frequency.setValueAtTime(523,t);
+        g.gain.setValueAtTime(0.1,t); g.gain.exponentialRampToValueAtTime(0.0001,t+0.25); osc.start(t); osc.stop(t+0.28);
+        o2.type='sine'; o2.frequency.setValueAtTime(659,t+0.12);
+        g2.gain.setValueAtTime(0.0001,t+0.1); g2.gain.linearRampToValueAtTime(0.1,t+0.14); g2.gain.exponentialRampToValueAtTime(0.0001,t+0.38);
+        o2.start(t+0.1); o2.stop(t+0.4); break;
+      }
+      case 'wrong':
+        osc.type='sawtooth'; osc.frequency.setValueAtTime(200,t); osc.frequency.exponentialRampToValueAtTime(100,t+0.2);
+        g.gain.setValueAtTime(0.06,t); g.gain.exponentialRampToValueAtTime(0.0001,t+0.22);
+        osc.start(t); osc.stop(t+0.25); break;
+    }
+  } catch(e) {}
+}
+
+/* ════════════════════════════════════════════════
+   UTILITY
+════════════════════════════════════════════════ */
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i=a.length-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+function show(el) { el.style.display = ''; }
+function hide(el) { el.style.display = 'none'; }
+function fadeIn(el) {
+  el.classList.remove('visible');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('visible')));
+}
+
+/* ════════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════════ */
+let allLessons   = [];
+let currentWords = [];
+let appTab       = 'vocab';
+let studyMode    = 'fc';
+
+const fc  = { index:0, flipped:false };
+const qz  = { questions:[], index:0, correct:0, wrong:0, answered:false };
+const inf = { deck:[], index:0, round:1, correct:0, wrong:0, streak:0, flipped:false, answered:false };
+
+/* ════════════════════════════════════════════════
+   DOM REFS
+════════════════════════════════════════════════ */
+const navVocab   = document.getElementById('nav-vocab');
+const navStudy   = document.getElementById('nav-study');
+const headerLogo = document.getElementById('header-logo');
+const headerMeta = document.getElementById('header-meta');
+
+const vbMenu   = document.getElementById('vb-menu');
+const vbDetail = document.getElementById('vb-detail');
+const vbGrid   = document.getElementById('vb-grid');
+const vbPanel  = document.getElementById('vb-panel');
+const vbColInbook = document.getElementById('vb-col-inbook');
+const vbColExtra  = document.getElementById('vb-col-extra');
+
+const smMenu   = document.getElementById('sm-menu');
+const smDetail = document.getElementById('sm-detail');
+const smGrid   = document.getElementById('sm-grid');
+
+const tabFc  = document.getElementById('tab-fc');
+const tabQz  = document.getElementById('tab-qz');
+const tabInf = document.getElementById('tab-inf');
+
+/* ════════════════════════════════════════════════
+   FETCH
+════════════════════════════════════════════════ */
+fetch('xء.json')
+  .then(r => { if(!r.ok) throw new Error('Failed to load xء.json'); return r.json(); })
+  .then(data => {
+    allLessons = data.lessons || [];
+    const total = allLessons.reduce((a,l)=>a+(l.inBookWords||[]).length+(l.extraWords||[]).length, 0);
+    headerMeta.textContent = `${allLessons.length} LESSONS · ${total} WORDS`;
+    const bannerSub = `${total} words across all ${allLessons.length} lessons`;
+    document.getElementById('vb-banner-sub').textContent = bannerSub;
+    document.getElementById('sm-banner-sub').textContent = bannerSub + ' · Flashcards, Quiz & Infinite';
+    renderVBGrid();
+    renderSMGrid();
+  })
+  .catch(err => {
+    vbGrid.innerHTML = smGrid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);">⚠ Could not load xء.json<br><small style="color:#444">${err.message}</small></div>`;
+    headerMeta.textContent = 'Error';
+  });
+
+/* ════════════════════════════════════════════════
+   APP-LEVEL NAVIGATION
+════════════════════════════════════════════════ */
+const allPages = [vbMenu, vbDetail, smMenu, smDetail];
+function showOnly(page) {
+  allPages.forEach(p => p.classList.add('view-hidden'));
+  page.classList.remove('view-hidden');
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+function switchAppTab(tab) {
+  appTab = tab;
+  navVocab.classList.toggle('active', tab==='vocab');
+  navStudy.classList.toggle('active', tab==='study');
+  if (tab==='vocab') showOnly(vbMenu);
+  else               showOnly(smMenu);
+}
+
+navVocab.addEventListener('click', () => { playSound('click'); switchAppTab('vocab'); });
+navStudy.addEventListener('click', () => { playSound('click'); switchAppTab('study'); });
+headerLogo.addEventListener('click', () => { playSound('click'); switchAppTab(appTab); });
+
+/* ════════════════════════════════════════════════
+   ① VOCAB BANK
+════════════════════════════════════════════════ */
+function renderVBGrid() {
+  vbGrid.innerHTML = '';
+  allLessons.forEach((lesson, i) => {
+    const inC = (lesson.inBookWords||[]).length;
+    const exC = (lesson.extraWords||[]).length;
+    const card = document.createElement('div');
+    card.className = 'lesson-card';
+    card.style.animationDelay = `${i*28}ms`;
+    card.innerHTML = `
+      <div class="card-number">${String(lesson.lessonNumber).padStart(3,'0')}</div>
+      <div class="card-name">Lesson ${lesson.lessonNumber}</div>
+      <div class="card-stats">
+        <span class="stat-badge"><span class="stat-dot dot-inbook"></span>${inC} in-book</span>
+        <span class="stat-badge"><span class="stat-dot dot-extra"></span>${exC} extra</span>
+      </div>
+      <div class="card-arrow">→</div>`;
+    card.addEventListener('click', () => { playSound('click'); vbOpenLesson(lesson); });
+    vbGrid.appendChild(card);
+  });
+}
+
+document.getElementById('vb-all-btn').addEventListener('click', () => {
+  playSound('click'); vbOpenAll();
+});
+
+function vbOpenAll() {
+  const allWords = [];
+  allLessons.forEach(l => {
+    (l.inBookWords||[]).forEach(w => allWords.push({...w, _lesson:l.lessonNumber}));
+    (l.extraWords||[]).forEach(w  => allWords.push({...w, _lesson:l.lessonNumber}));
+  });
+  document.getElementById('vb-detail-label').textContent = 'FULL COURSE';
+  document.getElementById('vb-detail-title').textContent = 'All Lessons — Complete Vocabulary';
+
+  vbPanel.classList.add('single-col');
+  hide(vbColExtra);
+  vbColInbook.className = 'vocab-column col-all';
+  vbColInbook.querySelector('.col-title').textContent = 'All Words';
+  document.getElementById('vb-inbook-count').textContent = `${allWords.length} words`;
+
+  const list = document.getElementById('vb-inbook-list');
+  list.innerHTML = '';
+  allWords.forEach((word, i) => {
+    const li = document.createElement('li');
+    li.className = 'vocab-item';
+    li.style.animationDelay = `${Math.min(i,60)*16}ms`;
+    li.innerHTML = `
+      <span class="vocab-arabic">${word.arabic||'—'}</span>
+      <span class="vocab-divider"></span>
+      <span class="vocab-english">${word.english||'—'}</span>
+      <span class="vocab-lesson-tag">L${String(word._lesson).padStart(2,'0')}</span>`;
+    list.appendChild(li);
+  });
+
+  showOnly(vbDetail);
+  fadeIn(vbDetail);
+}
+
+function vbOpenLesson(lesson) {
+  document.getElementById('vb-detail-label').textContent = `LESSON ${String(lesson.lessonNumber).padStart(3,'0')}`;
+  document.getElementById('vb-detail-title').textContent = `Lesson ${lesson.lessonNumber}`;
+
+  const inW = lesson.inBookWords||[];
+  const exW = lesson.extraWords||[];
+  document.getElementById('vb-inbook-count').textContent = `${inW.length} words`;
+  document.getElementById('vb-extra-count').textContent  = `${exW.length} words`;
+
+  vbPanel.classList.remove('single-col');
+  show(vbColExtra);
+  vbColInbook.className = 'vocab-column col-inbook';
+  vbColInbook.querySelector('.col-title').textContent = 'In-Book Words';
+
+  vbRenderList('vb-inbook-list', inW);
+  vbRenderList('vb-extra-list',  exW);
+
+  showOnly(vbDetail);
+  fadeIn(vbDetail);
+}
+
+function vbRenderList(listId, words) {
+  const list = document.getElementById(listId);
+  list.innerHTML = '';
+  if (!words.length) { list.innerHTML = '<div class="empty-state">No words available.</div>'; return; }
+  words.forEach((word, i) => {
+    const li = document.createElement('li');
+    li.className = 'vocab-item';
+    li.style.animationDelay = `${i*40}ms`;
+    li.innerHTML = `
+      <span class="vocab-arabic">${word.arabic||'—'}</span>
+      <span class="vocab-divider"></span>
+      <span class="vocab-english">${word.english||'—'}</span>`;
+    list.appendChild(li);
+  });
+}
+
+document.getElementById('vb-back-btn').addEventListener('click', () => {
+  playSound('click');
+  vbDetail.classList.remove('visible');
+  showOnly(vbMenu);
+});
+
+/* ════════════════════════════════════════════════
+   ② STUDY MODE — GRID
+════════════════════════════════════════════════ */
+function renderSMGrid() {
+  smGrid.innerHTML = '';
+  allLessons.forEach((lesson, i) => {
+    const inC = (lesson.inBookWords||[]).length;
+    const exC = (lesson.extraWords||[]).length;
+    const tot = inC + exC;
+    const empty = tot === 0;
+    const card = document.createElement('div');
+    card.className = 'lesson-card' + (empty ? ' empty-lesson' : '');
+    card.style.animationDelay = `${i*28}ms`;
+    card.innerHTML = empty
+      ? `<div class="card-number">${String(lesson.lessonNumber).padStart(3,'0')}</div>
+         <div class="card-name">Lesson ${lesson.lessonNumber}</div>
+         <div class="card-stats"><span class="stat-badge"><span class="stat-dot" style="background:var(--muted)"></span>No words yet</span></div>
+         <div class="card-arrow">→</div>`
+      : `<div class="card-number">${String(lesson.lessonNumber).padStart(3,'0')}</div>
+         <div class="card-name">Lesson ${lesson.lessonNumber}</div>
+         <div class="card-stats">
+           <span class="stat-badge"><span class="stat-dot dot-inbook"></span>${inC} in-book</span>
+           <span class="stat-badge"><span class="stat-dot dot-extra"></span>${exC} extra</span>
+           <span class="stat-badge"><span class="stat-dot" style="background:var(--muted)"></span>${tot} total</span>
+         </div>
+         <div class="card-arrow">→</div>`;
+    card.addEventListener('click', () => { playSound('click'); smOpenLesson(lesson); });
+    smGrid.appendChild(card);
+  });
+}
+
+document.getElementById('sm-all-btn').addEventListener('click', () => {
+  playSound('click');
+  const allWords = allLessons.flatMap(l=>[...(l.inBookWords||[]),...(l.extraWords||[])]);
+  smOpenSession('All Lessons', 'FULL COURSE', allWords);
+});
+
+function smOpenLesson(lesson) {
+  const words = [...(lesson.inBookWords||[]),...(lesson.extraWords||[])];
+  smOpenSession(`Lesson ${lesson.lessonNumber}`, `LESSON ${String(lesson.lessonNumber).padStart(3,'0')}`, words);
+}
+
+function smOpenSession(title, label, words) {
+  currentWords = shuffle([...words]);
+  document.getElementById('sm-detail-label').textContent = label;
+  document.getElementById('sm-detail-title').textContent = title;
+  showOnly(smDetail);
+  setStudyMode('fc');
+  fadeIn(smDetail);
+}
+
+document.getElementById('sm-back-btn').addEventListener('click', () => {
+  playSound('click');
+  smDetail.classList.remove('visible');
+  showOnly(smMenu);
+});
+
+/* ════════════════════════════════════════════════
+   STUDY MODE SWITCHING
+════════════════════════════════════════════════ */
+function setStudyMode(mode) {
+  studyMode = mode;
+  tabFc.classList.toggle('active',  mode==='fc');
+  tabQz.classList.toggle('active',  mode==='qz');
+  tabInf.classList.toggle('active', mode==='inf');
+  document.getElementById('fc-mode').style.display  = mode==='fc'  ? '' : 'none';
+  document.getElementById('qz-mode').style.display  = mode==='qz'  ? '' : 'none';
+  document.getElementById('inf-mode').style.display = mode==='inf' ? '' : 'none';
+  if (mode==='fc')       initFC();
+  else if (mode==='qz')  initQZ();
+  else                   initInf();
+}
+tabFc.addEventListener('click',  ()=>{ if(studyMode!=='fc')  { playSound('nav'); setStudyMode('fc');  } });
+tabQz.addEventListener('click',  ()=>{ if(studyMode!=='qz')  { playSound('nav'); setStudyMode('qz');  } });
+tabInf.addEventListener('click', ()=>{ if(studyMode!=='inf') { playSound('nav'); setStudyMode('inf'); } });
+
+/* ════════════════════════════════════════════════
+   FLASHCARDS (regular mode — unchanged)
+════════════════════════════════════════════════ */
+function initFC() {
+  fc.index=0; fc.flipped=false;
+  const fcEmpty  = document.getElementById('fc-empty');
+  const fcActive = document.getElementById('fc-active');
+  if (!currentWords.length) { show(fcEmpty); hide(fcActive); return; }
+  hide(fcEmpty); show(fcActive);
+  renderFC();
+}
+
+function renderFC() {
+  const word = currentWords[fc.index];
+  const inner = document.getElementById('fc-inner');
+  const scene = document.getElementById('fc-scene');
+  inner.style.transition = 'none';
+  scene.classList.remove('flipped');
+  fc.flipped = false;
+  void inner.offsetWidth;
+  inner.style.transition = '';
+
+  document.getElementById('fc-front-lbl').textContent = 'Arabic';
+  const ft = document.getElementById('fc-front-txt');
+  ft.style.fontFamily="'Scheherazade New',serif"; ft.style.fontSize='52px'; ft.style.direction='rtl';
+  ft.textContent = word.arabic||'—';
+  document.getElementById('fc-back-lbl').textContent = 'English';
+  const bt = document.getElementById('fc-back-txt');
+  bt.style.fontFamily="'Syne',sans-serif"; bt.style.fontSize='22px'; bt.style.direction='ltr';
+  bt.textContent = word.english||'—';
+
+  document.getElementById('fc-cur').textContent = fc.index+1;
+  document.getElementById('fc-tot').textContent = currentWords.length;
+  document.getElementById('fc-prog').style.width =
+    (currentWords.length>1 ? (fc.index/(currentWords.length-1))*100 : 100)+'%';
+  document.getElementById('fc-prev').disabled = fc.index===0;
+  document.getElementById('fc-next').disabled = fc.index===currentWords.length-1;
+}
+
+function flipFC() { playSound('flip'); fc.flipped=!fc.flipped; document.getElementById('fc-scene').classList.toggle('flipped',fc.flipped); }
+function fcGoNext() { if(fc.index<currentWords.length-1){ playSound('nav'); fc.index++; renderFC(); } }
+function fcGoPrev() { if(fc.index>0){ playSound('nav'); fc.index--; renderFC(); } }
+
+document.getElementById('fc-scene').addEventListener('click', flipFC);
+document.getElementById('fc-flip').addEventListener('click', e=>{ e.stopPropagation(); flipFC(); });
+document.getElementById('fc-next').addEventListener('click', fcGoNext);
+document.getElementById('fc-prev').addEventListener('click', fcGoPrev);
+
+/* ════════════════════════════════════════════════
+   QUIZ (regular mode — unchanged)
+════════════════════════════════════════════════ */
+function initQZ() {
+  document.getElementById('qz-summary').style.display = 'none';
+  const qzEmpty  = document.getElementById('qz-empty');
+  const qzActive = document.getElementById('qz-active');
+  if (currentWords.length<4) { show(qzEmpty); hide(qzActive); return; }
+  hide(qzEmpty); show(qzActive);
+  qz.questions = shuffle([...currentWords]).map(w=>{
+    const fl = Math.random()<0.5?'arabic':'english';
+    return { word:w, frontLang:fl, choices:buildQZChoices(w,fl) };
+  });
+  qz.index=0; qz.correct=0; qz.wrong=0; qz.answered=false;
+  document.getElementById('qz-of').textContent = qz.questions.length;
+  renderQZ();
+}
+
+function buildQZChoices(correctWord, frontLang) {
+  const pool = currentWords.filter(w=>w!==correctWord);
+  return shuffle([correctWord,...shuffle(pool).slice(0,3)]).map(w=>({word:w,isCorrect:w===correctWord}));
+}
+
+function renderQZ() {
+  const q = qz.questions[qz.index];
+  document.getElementById('qz-prog').style.width = (qz.index/qz.questions.length)*100+'%';
+  document.getElementById('qz-num').textContent = qz.index+1;
+  document.getElementById('qz-c').textContent   = qz.correct;
+  document.getElementById('qz-w').textContent   = qz.wrong;
+  document.getElementById('qz-t').textContent   = qz.index;
+
+  const prompt = document.getElementById('qz-prompt');
+  const lbl    = document.getElementById('qz-prompt-lbl');
+  if (q.frontLang==='arabic') {
+    lbl.textContent='What does this Arabic word mean?';
+    prompt.style.fontFamily="'Scheherazade New',serif"; prompt.style.fontSize='56px'; prompt.style.direction='rtl';
+    prompt.textContent=q.word.arabic||'—';
+  } else {
+    lbl.textContent='Which Arabic word means this?';
+    prompt.style.fontFamily="'Syne',sans-serif"; prompt.style.fontSize='28px'; prompt.style.direction='ltr';
+    prompt.textContent=q.word.english||'—';
+  }
+
+  document.querySelectorAll('#qz-answers .ans-btn').forEach((btn,i)=>{
+    const ch=q.choices[i];
+    if(q.frontLang==='arabic'){ btn.style.fontFamily="'Syne',sans-serif"; btn.style.fontSize='14px'; btn.style.direction='ltr'; btn.textContent=ch.word.english||'—'; }
+    else { btn.style.fontFamily="'Scheherazade New',serif"; btn.style.fontSize='26px'; btn.style.direction='rtl'; btn.textContent=ch.word.arabic||'—'; }
+    btn.className='ans-btn'; btn.disabled=false;
+  });
+  hide(document.getElementById('qz-feedback'));
+  qz.answered=false;
+}
+
+document.getElementById('qz-answers').addEventListener('click', e=>{
+  const btn=e.target.closest('.ans-btn');
+  if(!btn||qz.answered) return;
+  qz.answered=true; playSound('click');
+  const idx=parseInt(btn.dataset.idx), q=qz.questions[qz.index], correct=q.choices[idx].isCorrect;
+  document.querySelectorAll('#qz-answers .ans-btn').forEach((b,i)=>{
+    b.disabled=true;
+    if(q.choices[i].isCorrect) b.classList.add('correct');
+    else if(i===idx&&!correct) b.classList.add('wrong');
+    else b.classList.add('dim');
+  });
+  const fbBar=document.getElementById('qz-fb-bar');
+  if(correct){ qz.correct++; playSound('correct'); fbBar.className='quiz-feedback-bar fb-correct'; document.getElementById('qz-fb-text').textContent='✓ Correct!'; document.getElementById('qz-fb-ans').textContent=`"${q.word.arabic}" = ${q.word.english}`; }
+  else       { qz.wrong++;   playSound('wrong');   fbBar.className='quiz-feedback-bar fb-wrong';   document.getElementById('qz-fb-text').textContent='✗ Incorrect'; document.getElementById('qz-fb-ans').textContent=`Answer: "${q.word.arabic}" = ${q.word.english}`; }
+  document.getElementById('qz-t').textContent=qz.index+1;
+  document.getElementById('qz-c').textContent=qz.correct;
+  document.getElementById('qz-w').textContent=qz.wrong;
+  show(document.getElementById('qz-feedback'));
+});
+
+document.getElementById('qz-next-btn').addEventListener('click', ()=>{
+  playSound('nav'); qz.index++;
+  if(qz.index>=qz.questions.length) showQZSummary(); else renderQZ();
+});
+
+function showQZSummary() {
+  hide(document.getElementById('qz-active'));
+  const sumEl=document.getElementById('qz-summary'); show(sumEl);
+  const total=qz.correct+qz.wrong, acc=total>0?Math.round((qz.correct/total)*100):0;
+  document.getElementById('s-c').textContent=qz.correct; document.getElementById('s-w').textContent=qz.wrong;
+  document.getElementById('s-t').textContent=total;       document.getElementById('s-a').textContent=acc+'%';
+  const [emoji,title,sub] = acc===100?['🏆','Perfect Score!','Every single one correct!']:
+    acc>=80?['🎉','Great Job!','Almost perfect — keep it up!']:
+    acc>=60?['👍','Good Effort!','A bit more practice and you\'ll nail it.']:
+    acc>=40?['📚','Keep Studying!','Review flashcards then try again.']:
+            ['💪','Don\'t Give Up!','Try flashcards first to build memory.'];
+  document.getElementById('s-emoji').textContent=emoji; document.getElementById('s-title').textContent=title; document.getElementById('s-sub').textContent=sub;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ sumEl.style.opacity='1'; sumEl.style.transform='translateY(0)'; }));
+}
+
+document.getElementById('s-back').addEventListener('click', ()=>{ playSound('click'); smDetail.classList.remove('visible'); showOnly(smMenu); });
+document.getElementById('s-retry').addEventListener('click', ()=>{
+  playSound('click');
+  const sumEl=document.getElementById('qz-summary'); sumEl.style.opacity='0'; sumEl.style.transform='translateY(12px)';
+  setTimeout(()=>{ hide(sumEl); show(document.getElementById('qz-active')); initQZ(); }, 300);
+});
+
+/* ════════════════════════════════════════════════
+   INFINITE MODE
+════════════════════════════════════════════════ */
+function buildInfDeck() {
+  const doubled=[];
+  currentWords.forEach(w=>{ doubled.push({word:w,frontLang:'arabic'}); doubled.push({word:w,frontLang:'english'}); });
+  return shuffle(doubled).map(card=>{
+    const type=Math.random()<0.5?'fc':'qz';
+    return {...card,type,choices:type==='qz'?buildInfChoices(card.word,card.frontLang):[]};
+  });
+}
+function buildInfChoices(correctWord, frontLang) {
+  const pool=currentWords.filter(w=>w!==correctWord);
+  return shuffle([correctWord,...shuffle(pool).slice(0,3)]).map(w=>({word:w,isCorrect:w===correctWord}));
+}
+
+function initInf() {
+  const infEmpty=document.getElementById('inf-empty');
+  const infToast=document.getElementById('inf-toast');
+  const infActive=document.getElementById('inf-active');
+  if(currentWords.length<4){ show(infEmpty); hide(infActive); hide(infToast); return; }
+  hide(infEmpty); hide(infToast);
+  inf.deck=buildInfDeck(); inf.index=0; inf.round=1;
+  inf.correct=0; inf.wrong=0; inf.streak=0;
+  inf.flipped=false; inf.answered=false;
+  show(infActive);
+  renderInfCard();
+}
+
+function renderInfCard() {
+  const card=inf.deck[inf.index];
+  document.getElementById('inf-c').textContent=inf.correct;
+  document.getElementById('inf-w').textContent=inf.wrong;
+  document.getElementById('inf-streak').textContent=inf.streak;
+  document.getElementById('inf-round').textContent=inf.round;
+  document.getElementById('inf-pos').textContent=inf.index+1;
+  document.getElementById('inf-of').textContent=inf.deck.length;
+  document.getElementById('inf-prog').style.width=(inf.index/inf.deck.length)*100+'%';
+  const fcPanel=document.getElementById('inf-fc');
+  const qzPanel=document.getElementById('inf-qz');
+  if(card.type==='fc'){ show(fcPanel); hide(qzPanel); renderInfFC(card); }
+  else                { hide(fcPanel); show(qzPanel); renderInfQZ(card); }
+}
+
+function renderInfFC(card) {
+  const inner=document.getElementById('inf-inner');
+  const scene=document.getElementById('inf-scene');
+  inner.style.transition='none';
+  scene.classList.remove('flipped');
+  inf.flipped=false;
+  void inner.offsetWidth;
+  inner.style.transition='';
+
+  // Reset know/don't know row — hidden until flipped
+  document.getElementById('inf-know-row').style.display='none';
+
+  const pill=document.getElementById('inf-pill');
+  pill.textContent='⊞ Flashcard';
+  pill.style.color='var(--accent)';
+  pill.style.borderColor='rgba(160,220,255,0.2)';
+
+  const fl=document.getElementById('inf-front-lbl'), ft=document.getElementById('inf-front-txt');
+  const bl=document.getElementById('inf-back-lbl'),  bt=document.getElementById('inf-back-txt');
+  if(card.frontLang==='arabic'){
+    fl.textContent='Arabic';
+    ft.style.fontFamily="'Scheherazade New',serif"; ft.style.fontSize='52px'; ft.style.direction='rtl';
+    ft.textContent=card.word.arabic||'—';
+    bl.textContent='English';
+    bt.style.fontFamily="'Syne',sans-serif"; bt.style.fontSize='22px'; bt.style.direction='ltr';
+    bt.textContent=card.word.english||'—';
+  } else {
+    fl.textContent='English';
+    ft.style.fontFamily="'Syne',sans-serif"; ft.style.fontSize='26px'; ft.style.direction='ltr';
+    ft.textContent=card.word.english||'—';
+    bl.textContent='Arabic';
+    bt.style.fontFamily="'Scheherazade New',serif"; bt.style.fontSize='52px'; bt.style.direction='rtl';
+    bt.textContent=card.word.arabic||'—';
+  }
+}
+
+function renderInfQZ(card) {
+  inf.answered=false;
+  hide(document.getElementById('inf-feedback'));
+  const pill=document.getElementById('inf-pill');
+  pill.textContent='◈ Quiz';
+  pill.style.color='var(--accent2)';
+  pill.style.borderColor='rgba(126,207,179,0.2)';
+  const lbl=document.getElementById('inf-qz-lbl'), prompt=document.getElementById('inf-qz-prompt');
+  if(card.frontLang==='arabic'){
+    lbl.textContent='What does this Arabic word mean?';
+    prompt.style.fontFamily="'Scheherazade New',serif"; prompt.style.fontSize='56px'; prompt.style.direction='rtl';
+    prompt.textContent=card.word.arabic||'—';
+  } else {
+    lbl.textContent='Which Arabic word means this?';
+    prompt.style.fontFamily="'Syne',sans-serif"; prompt.style.fontSize='28px'; prompt.style.direction='ltr';
+    prompt.textContent=card.word.english||'—';
+  }
+  document.querySelectorAll('#inf-answers .ans-btn').forEach((btn,i)=>{
+    const ch=card.choices[i];
+    if(card.frontLang==='arabic'){
+      btn.style.fontFamily="'Syne',sans-serif"; btn.style.fontSize='14px'; btn.style.direction='ltr';
+      btn.textContent=ch.word.english||'—';
+    } else {
+      btn.style.fontFamily="'Scheherazade New',serif"; btn.style.fontSize='26px'; btn.style.direction='rtl';
+      btn.textContent=ch.word.arabic||'—';
+    }
+    btn.className='ans-btn'; btn.disabled=false;
+  });
+}
+
+/* ─── Infinite flip ─── */
+function infFlip() {
+  playSound('flip');
+  inf.flipped = !inf.flipped;
+  document.getElementById('inf-scene').classList.toggle('flipped', inf.flipped);
+  // Show Know/Don't Know only when showing the answer (back face)
+  const card = inf.deck[inf.index];
+  if (card && card.type === 'fc') {
+    document.getElementById('inf-know-row').style.display = inf.flipped ? 'grid' : 'none';
+  }
+}
+
+document.getElementById('inf-scene').addEventListener('click', infFlip);
+document.getElementById('inf-flip').addEventListener('click', e=>{ e.stopPropagation(); infFlip(); });
+
+/* ─── Know / Don't Know buttons ─── */
+document.getElementById('inf-knowit').addEventListener('click', () => {
+  playSound('correct');
+  inf.correct++;
+  inf.streak++;
+  document.getElementById('inf-c').textContent = inf.correct;
+  document.getElementById('inf-streak').textContent = inf.streak;
+  infAdvance();
+});
+
+document.getElementById('inf-dontknow').addEventListener('click', () => {
+  playSound('wrong');
+  inf.wrong++;
+  inf.streak = 0;
+  document.getElementById('inf-w').textContent = inf.wrong;
+  document.getElementById('inf-streak').textContent = inf.streak;
+  infAdvance();
+});
+
+/* ─── Infinite advance ─── */
+function infAdvance() {
+  inf.index++;
+  if(inf.index>=inf.deck.length) showInfToast(); else renderInfCard();
+}
+
+/* ─── Infinite quiz answers ─── */
+document.getElementById('inf-answers').addEventListener('click', e=>{
+  const btn=e.target.closest('.ans-btn');
+  if(!btn||inf.answered) return;
+  inf.answered=true; playSound('click');
+  const card=inf.deck[inf.index], idx=parseInt(btn.dataset.idx), correct=card.choices[idx].isCorrect;
+  document.querySelectorAll('#inf-answers .ans-btn').forEach((b,i)=>{
+    b.disabled=true;
+    if(card.choices[i].isCorrect) b.classList.add('correct');
+    else if(i===idx&&!correct) b.classList.add('wrong');
+    else b.classList.add('dim');
+  });
+  const fbBar=document.getElementById('inf-fb-bar');
+  if(correct){
+    inf.correct++; inf.streak++; playSound('correct');
+    fbBar.className='quiz-feedback-bar fb-correct';
+    document.getElementById('inf-fb-text').textContent='✓ Correct!';
+    document.getElementById('inf-fb-ans').textContent=`"${card.word.arabic}" = ${card.word.english}`;
+  } else {
+    inf.wrong++; inf.streak=0; playSound('wrong');
+    fbBar.className='quiz-feedback-bar fb-wrong';
+    document.getElementById('inf-fb-text').textContent='✗ Incorrect';
+    document.getElementById('inf-fb-ans').textContent=`Answer: "${card.word.arabic}" = ${card.word.english}`;
+  }
+  document.getElementById('inf-c').textContent=inf.correct;
+  document.getElementById('inf-w').textContent=inf.wrong;
+  document.getElementById('inf-streak').textContent=inf.streak;
+  show(document.getElementById('inf-feedback'));
+});
+
+document.getElementById('inf-qz-next').addEventListener('click', ()=>{ playSound('nav'); infAdvance(); });
+
+/* ─── Round toast ─── */
+function showInfToast() {
+  hide(document.getElementById('inf-active'));
+  show(document.getElementById('inf-toast'));
+  const total=inf.correct+inf.wrong, acc=total>0?Math.round((inf.correct/total)*100):0;
+  document.getElementById('inf-toast-emoji').textContent = acc===100?'🏆':acc>=75?'🎉':'🔄';
+  document.getElementById('inf-toast-title').textContent = acc===100?`Round ${inf.round} — Perfect!`:acc>=75?`Round ${inf.round} Complete!`:`Round ${inf.round} Done`;
+  document.getElementById('inf-toast-sub').textContent   = `${acc}% accuracy · ${inf.correct}✓ ${inf.wrong}✗`;
+}
+
+document.getElementById('inf-continue').addEventListener('click', ()=>{
+  playSound('nav');
+  inf.round++; inf.index=0; inf.flipped=false; inf.answered=false;
+  inf.deck=buildInfDeck();
+  hide(document.getElementById('inf-toast'));
+  show(document.getElementById('inf-active'));
+  renderInfCard();
+});
+
+/* ════════════════════════════════════════════════
+   KEYBOARD
+════════════════════════════════════════════════ */
+document.addEventListener('keydown', e=>{
+  if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) return;
+
+  // Regular flashcard keyboard nav
+  if(appTab==='study' && studyMode==='fc') {
+    if(e.key==='ArrowRight'){ e.preventDefault(); fcGoNext(); }
+    if(e.key==='ArrowLeft') { e.preventDefault(); fcGoPrev(); }
+    if(e.key===' ')         { e.preventDefault(); flipFC();   }
+  }
+
+  // Infinite mode keyboard
+  if(appTab==='study' && studyMode==='inf') {
+    const card = inf.deck[inf.index];
+    if(card && card.type==='fc') {
+      // Space always flips
+      if(e.key===' ') { e.preventDefault(); infFlip(); }
+      // 1 = Don't know, 2 = Know it — only when flipped (answer visible)
+      if(e.key==='1' && inf.flipped) { e.preventDefault(); document.getElementById('inf-dontknow').click(); }
+      if(e.key==='2' && inf.flipped) { e.preventDefault(); document.getElementById('inf-knowit').click(); }
+    }
+  }
+});
+</script>
+</body>
+</html>
