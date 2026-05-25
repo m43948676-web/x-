@@ -94,7 +94,38 @@
         { "arabic": "خَفِيفٌ", "english": "Light"},
         { "arabic": "وَرَقٌ", "english": "Paper / Leaf"},
         { "arabic": "حَارٌ", "english": "Hot"},
-        { "arabic": "نَظِيفٌ", "english": "Clean"}
+        { "arabic": "نَظِيفٌ", "english": "Clean"},
+
+       
+        { "arabic": "أَبٌ", "english": "Father"},
+        { "arabic": "جَنَّةٌ", "english": "Garden"},
+        { "arabic": "خُبْزٌ", "english": "Bread"},
+        { "arabic": "عَيْنٌ", "english": "Eye"},
+        { "arabic": "غَدَاءٌ", "english": "Lunch"},
+        { "arabic": "فَمٌ", "english": "Mouth"},
+        { "arabic": "هَوَاءٌ", "english": "Air"},
+        { "arabic": "يَدٌ", "english": "Hand"},
+        { "arabic": "ثَوْبٌ", "english": "Garment"},
+        { "arabic": "ذَهَبٌ", "english": "Gold"},
+        { "arabic": "زَهْرَهٌ", "english": "Flower"},
+        { "arabic": "سَمَكٌ", "english": "Fish"},
+        { "arabic": "شَمْسٌ", "english": "Sun"},
+        { "arabic": "صَدْرٌ", "english": "Chest"},
+        { "arabic": "ضَيْفٌ", "english": "Guest"},
+        { "arabic": "ظَهْرٌ", "english": "Back"},
+        { "arabic": "لَحْمٌ", "english": "Meat"},
+
+        { "arabic": "حُلْوٌ", "english": "Sweet"},
+        { "arabic": "مَرِيضٌ", "english": "Sick"},
+        { "arabic": "دُكَانٌ", "english": "Shop"},
+        { "arabic": "غَنِيٌّ", "english": "Rich"},
+        { "arabic": "طَوِيلٌ", "english": "Tall"},
+        { "arabic": "فَقِيرٌ", "english": "Poor"},
+        { "arabic": "قَصِيرٌ", "english": "Short"},
+        { "arabic": "تُفَّاحٌ", "english": "Apple"}
+        
+
+      
         
       ],
       "extraWords": [        
@@ -108,7 +139,7 @@
 
 
     {
-      "lessonNumber": 4,
+      "lessonNumber": 4, 
       "inBookWords": [],
       "extraWords": [
 
@@ -126,7 +157,7 @@
     },
     {
       "lessonNumber": 6,
-      "inBookWords": [],
+      "inBookWords": [], 
       "extraWords": []
     },
     {
