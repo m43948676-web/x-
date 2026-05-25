@@ -41,8 +41,10 @@
         { "arabic": "اسْمٌ", "english": "Noun"},
         { "arabic": "فِعْلٌ", "english": "Verb"},
         { "arabic": "حَرْفٌ", "english": "Particle"},
+        { "arabic": "جِنْسٌ", "english": "Gender"},
         { "arabic": "مُذَكَّرٌ", "english": "Masculine"},
         { "arabic": "مُؤَنَّثٌ", "english": "Feminine"},
+        { "arabic": "عَدَدٌ", "english": "Number"},
         { "arabic": "مُفْرَدٌ", "english": "Singular"},
         { "arabic": "مُثَنَّى", "english": "Dual"},
         { "arabic": "جَمْعٌ", "english": "Plural"},
@@ -57,12 +59,10 @@
         { "arabic": "إِمَامٌ", "english": "Leader"},
         { "arabic": "حَجَرٌ", "english": "Rock"},
         { "arabic": "سُكَّرٌ", "english": "Sugar"},
-        { "arabic": "لَبَنٌ", "english": "Milk"}
-    ],
+        { "arabic": "لَبَنٌ", "english": "Milk"}],
       "extraWords": [
         { "arabic": "بَعِيدٌ", "english": "Far"},
-        { "arabic": "الثَّانِي", "english": "The Second"}
-      ]
+        { "arabic": "الثَّانِي", "english": "The Second"}]
     },
     {
       "lessonNumber": 3,
@@ -118,6 +118,7 @@
         { "arabic": "رَسُولٌ", "english": "Messenger"},
         { "arabic": "وَجْهٌ", "english": "Face"},
         { "arabic": "قُرْآنٌ", "english": "Quran"},
+        { "arabic": "صَدِيقٌ", "english": "Friend"},
         { "arabic": "صَلَاةٌ", "english": "Prayer"},
         { "arabic": "كَعْبَةٌ", "english": "Kaaba"},
         { "arabic": "رَأْسٌ", "english": "Head"},
@@ -128,13 +129,17 @@
         { "arabic": "ظُهْرٌ", "english": "Noon Prayer"},
         { "arabic": "عَصْرٌ", "english": "Afternoon Prayer"},
         { "arabic": "مَغْرِبٌ", "english": "Sunset Prayer"},
-        { "arabic": "عِشَاءٌ", "english": "Night Prayer"}
-      ],
+        { "arabic": "عِشَاءٌ", "english": "Night Prayer"}],
       "extraWords": [        
         { "arabic": "الثَّالِثُ", "english": "The Third"},
         { "arabic": "مَعْرِفَةٌ", "english": "Definite"},
         { "arabic": "نَكِرَةٌ", "english": "Indefinite"}, 
-        { "arabic": "أَلْ", "english": "The"}]
+        { "arabic": "أَلْ", "english": "The"},
+        { "arabic": "جُمْلَةٌ", "english": "Sentence"},
+        { "arabic": "جُمْلَةٌ اسْمِيَّةٌ", "english": "Nominal Sentence (Sentence dealing with nouns)"},
+        { "arabic": "جُمْلَةٌ فِعْلِيَّةٌ", "english": "Verbal Sentence (Sentence dealing with verbs)"},    
+        { "arabic": "مُبْتَدَأٌ", "english": "Subject"},
+        { "arabic": "خَبَرٌ", "english": "Information / Predicate" }]
     },
 
 
@@ -142,11 +147,13 @@
 
     {
       "lessonNumber": 4, 
-      "inBookWords": [],
-      "extraWords": [
-
-
-      ]
+      "inBookWords": [
+        { "arabic": "جُمْلَةٌ", "english": "Sentence"},
+        { "arabic": "جُمْلَةٌ اسْمِيَّةٌ", "english": "Nominal Sentence (Sentence dealing with nouns)"},
+        { "arabic": "جُمْلَةٌ فِعْلِيَّةٌ", "english": "Verbal Sentence (Sentence dealing with verbs)"},    
+        { "arabic": "مُبْتَدَأٌ", "english": "Subject"},
+        { "arabic": "خَبَرٌ", "english": "Information / Predicate" }],
+      "extraWords": []
     },
 
 
@@ -224,7 +231,8 @@
     },
     {
       "lessonNumber": 19,
-      "inBookWords": []
+      "inBookWords": [],
+      "extraWords": []
     },
     {
       "lessonNumber": 20,
