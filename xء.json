@@ -15,7 +15,7 @@
         { "arabic": "سَرِيرٌ", "english": "Bed"},
         { "arabic": "كُرْسِيٌّ", "english": "Chair"},
         { "arabic": "مَا", "english": "What?"},
-        { "arabic": "أَ", "english": "Turns statment into question"},
+        { "arabic": "أَ", "english": "Turns statement into a question"},
         { "arabic": "نَعَمْ", "english": "Yes"},
         { "arabic": "لَا", "english": "No"},
         { "arabic": "قَمِيصٌ", "english": "Shirt"},
@@ -30,7 +30,7 @@
         { "arabic": "قِطٌّ", "english": "Cat"},
         { "arabic": "حِمَارٌ", "english": "Donkey"},
         { "arabic": "حِصَانٌ", "english": "Horse"},
-        { "arabic": "خَمَلٌ", "english": "Camel"},
+        { "arabic": "جَمَلٌ", "english": "Camel"},
         { "arabic": "دِيكٌ", "english": "Rooster"},
         { "arabic": "مُدَرِّسٌ", "english": "Teacher"},
         { "arabic": "مِنْدِيلٌ", "english": "Handkerchief"}],
@@ -50,16 +50,12 @@
         { "arabic": "تَمْرِينٌ", "english": "Exercise"},
         { "arabic": "اِقْرَأْ", "english": "Read"}]
     },
-
-
-
-
     {
       "lessonNumber": 2,
       "inBookWords": [
         { "arabic": "ذَلِكَ", "english": "That"},
         { "arabic": "إِمَامٌ", "english": "Leader"},
-        { "arabic": "حَخَرٌ", "english": "Rock"},
+        { "arabic": "حَجَرٌ", "english": "Rock"},
         { "arabic": "سُكَّرٌ", "english": "Sugar"},
         { "arabic": "لَبَنٌ", "english": "Milk"}
     ],
@@ -68,22 +64,18 @@
         { "arabic": "الثَّانِي", "english": "The Second"}
       ]
     },
-
-
-
-
     {
       "lessonNumber": 3,
       "inBookWords": [
         { "arabic": "مَكْسُورٌ", "english": "Broken"},
         { "arabic": "مَفْتُوحٌ", "english": "Open"},
-        { "arabic": "جَالِسٌي", "english": "Sitting"},
+        { "arabic": "جَالِسٌ", "english": "Sitting"},
         { "arabic": "وَاقِفٌ", "english": "Standing"},  
         { "arabic": "جَدِيدٌ", "english": "New"},
         { "arabic": "قَدِيمٌ", "english": "Old"},
         { "arabic": "صَغِيرٌ", "english": "Small"},
         { "arabic": "كَبِيرٌ", "english": "Big"},
-        { "arabic": "وَسِجٌ", "english": "Dirty"},
+        { "arabic": "وَسِخٌ", "english": "Dirty"},
         { "arabic": "مَاءٌ", "english": "Water"},
         { "arabic": "بَارِدٌ", "english": "Cold"},
         { "arabic": "قَمَرٌ", "english": "Moon"},
@@ -95,8 +87,6 @@
         { "arabic": "وَرَقٌ", "english": "Paper / Leaf"},
         { "arabic": "حَارٌ", "english": "Hot"},
         { "arabic": "نَظِيفٌ", "english": "Clean"},
-
-       
         { "arabic": "أَبٌ", "english": "Father"},
         { "arabic": "جَنَّةٌ", "english": "Garden"},
         { "arabic": "خُبْزٌ", "english": "Bread"},
@@ -107,14 +97,13 @@
         { "arabic": "يَدٌ", "english": "Hand"},
         { "arabic": "ثَوْبٌ", "english": "Garment"},
         { "arabic": "ذَهَبٌ", "english": "Gold"},
-        { "arabic": "زَهْرَهٌ", "english": "Flower"},
+        { "arabic": "زَهْرَةٌ", "english": "Flower"},
         { "arabic": "سَمَكٌ", "english": "Fish"},
         { "arabic": "شَمْسٌ", "english": "Sun"},
         { "arabic": "صَدْرٌ", "english": "Chest"},
         { "arabic": "ضَيْفٌ", "english": "Guest"},
         { "arabic": "ظَهْرٌ", "english": "Back"},
         { "arabic": "لَحْمٌ", "english": "Meat"},
-
         { "arabic": "حُلْوٌ", "english": "Sweet"},
         { "arabic": "مَرِيضٌ", "english": "Sick"},
         { "arabic": "دُكَانٌ", "english": "Shop"},
@@ -122,11 +111,24 @@
         { "arabic": "طَوِيلٌ", "english": "Tall"},
         { "arabic": "فَقِيرٌ", "english": "Poor"},
         { "arabic": "قَصِيرٌ", "english": "Short"},
-        { "arabic": "تُفَّاحٌ", "english": "Apple"}
-        
-
-      
-        
+        { "arabic": "تُفَّاحٌ", "english": "Apple"},
+        { "arabic": "دَفْتَرٌ", "english": "Notebook"},
+        { "arabic": "لَذِيذٌ", "english": "Tasty"},
+        { "arabic": "أَخٌ", "english": "Brother"},
+        { "arabic": "رَسُولٌ", "english": "Messenger"},
+        { "arabic": "وَجْهٌ", "english": "Face"},
+        { "arabic": "قُرْآنٌ", "english": "Quran"},
+        { "arabic": "صَلَاةٌ", "english": "Prayer"},
+        { "arabic": "كَعْبَةٌ", "english": "Kaaba"},
+        { "arabic": "رَأْسٌ", "english": "Head"},
+        { "arabic": "إِصْبَعٌ", "english": "Finger"},
+        { "arabic": "صَابُونٌ", "english": "Soap"},
+        { "arabic": "ظُفْرٌ", "english": "Fingernail"},
+        { "arabic": "فَجْرٌ", "english": "Dawn Prayer"},
+        { "arabic": "ظُهْرٌ", "english": "Noon Prayer"},
+        { "arabic": "عَصْرٌ", "english": "Afternoon Prayer"},
+        { "arabic": "مَغْرِبٌ", "english": "Sunset Prayer"},
+        { "arabic": "عِشَاءٌ", "english": "Night Prayer"}
       ],
       "extraWords": [        
         { "arabic": "الثَّالِثُ", "english": "The Third"},
