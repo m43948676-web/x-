@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Scheherazade+New:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -43,9 +42,6 @@
     .ambient-1 { width:500px;height:500px;background:radial-gradient(circle,rgba(100,190,255,0.06) 0%,transparent 70%);top:-150px;left:-100px; }
     .ambient-2 { width:400px;height:400px;background:radial-gradient(circle,rgba(100,220,180,0.05) 0%,transparent 70%);bottom:-100px;right:-50px; }
 
-    /* ══════════════════════════════════════════
-       HEADER
-    ══════════════════════════════════════════ */
     header {
       position: sticky; top: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
@@ -86,15 +82,9 @@
 
     .header-meta { font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.06em; }
 
-    /* ══════════════════════════════════════════
-       VIEW SYSTEM
-    ══════════════════════════════════════════ */
     .view { position:relative;z-index:1; }
     .view-hidden { display:none !important; }
 
-    /* ══════════════════════════════════════════
-       SHARED — ALL-LESSONS BANNER
-    ══════════════════════════════════════════ */
     .all-lessons-banner {
       position:relative; cursor:pointer;
       background:linear-gradient(135deg,rgba(160,220,255,0.07) 0%,rgba(126,207,179,0.05) 100%);
@@ -133,9 +123,6 @@
     }
     .all-lessons-banner:hover .banner-arrow { transform:translateX(3px);background:rgba(160,220,255,0.15); }
 
-    /* ══════════════════════════════════════════
-       SHARED — LESSON GRID & CARDS
-    ══════════════════════════════════════════ */
     .page-wrap { padding:48px 40px 80px;max-width:1100px;margin:0 auto; }
     .gallery-header { margin-bottom:36px; }
     .gallery-eyebrow { font-size:13px;font-family:'IBM Plex Mono',monospace;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px; }
@@ -163,9 +150,6 @@
     .card-arrow  { position:absolute;top:18px;right:18px;width:28px;height:28px;border-radius:50%;background:rgba(160,220,255,0.07);border:1px solid rgba(160,220,255,0.15);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--transition);font-size:12px;color:var(--accent); }
     .lesson-card:hover .card-arrow { opacity:1; }
 
-    /* ══════════════════════════════════════════
-       SHARED — TOPBAR
-    ══════════════════════════════════════════ */
     .sub-topbar {
       position:sticky;top:0;z-index:50;
       display:flex;align-items:center;gap:16px;padding:16px 40px;
@@ -185,9 +169,6 @@
     .topbar-label { font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--accent);text-transform:uppercase; }
     .topbar-title { font-size:16px;font-weight:700;color:var(--text);margin-top:2px; }
 
-    /* ══════════════════════════════════════════
-       ① VOCAB BANK
-    ══════════════════════════════════════════ */
     #vb-detail { opacity:0;transform:translateY(12px);transition:opacity 0.3s ease,transform 0.3s ease; }
     #vb-detail.visible { opacity:1;transform:translateY(0); }
 
@@ -227,9 +208,6 @@
     }
     .empty-state { text-align:center;padding:60px 20px;color:var(--muted);font-size:14px;font-family:'IBM Plex Mono',monospace; }
 
-    /* ══════════════════════════════════════════
-       ② STUDY MODE — mode tabs
-    ══════════════════════════════════════════ */
     .mode-tabs { display:flex;gap:6px; }
     .mode-tab {
       padding:7px 18px;border-radius:8px;border:1px solid var(--border);background:none;
@@ -238,25 +216,22 @@
     }
     .mode-tab:hover          { border-color:var(--border-glow);color:var(--accent);background:rgba(160,220,255,0.04); }
     .mode-tab.active         { background:rgba(160,220,255,0.1);border-color:rgba(160,220,255,0.3);color:var(--accent); }
-    .mode-tab.inf-tab:hover  { color:var(--accent-warn)!important;border-color:rgba(255,184,108,0.25)!important;background:rgba(255,184,108,0.06)!important; }
-    .mode-tab.inf-tab.active { background:rgba(255,184,108,0.1);border-color:rgba(255,184,108,0.3);color:var(--accent-warn); }
+    .mode-tab.prac-tab:hover  { color:var(--accent2)!important;border-color:rgba(126,207,179,0.25)!important;background:rgba(126,207,179,0.06)!important; }
+    .mode-tab.prac-tab.active { background:rgba(126,207,179,0.1);border-color:rgba(126,207,179,0.3);color:var(--accent2); }
 
     #sm-detail { opacity:0;transform:translateY(12px);transition:opacity 0.3s ease,transform 0.3s ease; }
     #sm-detail.visible { opacity:1;transform:translateY(0); }
 
-    .study-body { max-width:800px;margin:0 auto;padding:48px 40px 80px; }
+    .study-body { max-width:800px;margin:0 auto;padding:40px 40px 80px; }
 
-    /* PROGRESS BAR */
     .prog-bar  { width:100%;height:2px;background:var(--border);border-radius:2px;margin-bottom:32px;overflow:hidden; }
     .prog-fill { height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;transition:width 0.4s cubic-bezier(0.4,0,0.2,1); }
 
-    /* EMPTY PANEL */
     .no-words-panel { background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);padding:60px 40px;text-align:center; }
     .no-words-icon  { font-size:40px;margin-bottom:16px;opacity:0.4; }
     .no-words-title { font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px; }
     .no-words-sub   { font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:0.06em; }
 
-    /* FLASHCARD */
     .fc-counter { font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:0.08em;text-align:center;margin-bottom:28px; }
     .fc-counter span { color:var(--accent); }
     .card-scene  { perspective:1000px;width:100%;height:280px;cursor:pointer;margin-bottom:32px; }
@@ -278,13 +253,11 @@
     .fc-kbd-hint { text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-top:20px;letter-spacing:0.06em; }
     .fc-kbd-hint kbd { display:inline-block;padding:2px 7px;border-radius:4px;background:rgba(255,255,255,0.05);border:1px solid var(--border);font-family:inherit;font-size:10px;color:var(--muted);margin:0 2px; }
 
-    /* QUIZ */
     .quiz-header-bar  { display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px; }
     .quiz-score-strip { display:flex;gap:10px; }
     .score-badge { display:flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.07em;padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:var(--surface); }
     .badge-c  { color:var(--accent-success);border-color:rgba(105,219,124,0.2); }
     .badge-w  { color:var(--accent-danger);border-color:rgba(255,107,107,0.2); }
-    .badge-s  { color:var(--accent-warn);border-color:rgba(255,184,108,0.2); }
     .badge-t  { color:var(--muted); }
     .q-counter { font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em; }
     .quiz-prompt-card { background:var(--surface);border:1px solid rgba(160,220,255,0.1);border-radius:var(--card-radius);padding:36px 40px;text-align:center;margin-bottom:20px; }
@@ -306,7 +279,6 @@
     .next-btn { width:100%;padding:14px;border-radius:10px;border:1px solid rgba(160,220,255,0.25);background:rgba(160,220,255,0.08);color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;cursor:pointer;transition:all var(--transition);text-transform:uppercase; }
     .next-btn:hover { background:rgba(160,220,255,0.14);border-color:rgba(160,220,255,0.4); }
 
-    /* QUIZ SUMMARY */
     .summary-panel  { background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);overflow:hidden; }
     .summary-header { padding:32px 36px 24px;border-bottom:1px solid var(--border);text-align:center; }
     .summary-emoji  { font-size:40px;margin-bottom:12px; }
@@ -325,10 +297,70 @@
     .summary-btn.primary { background:rgba(160,220,255,0.08);border-color:rgba(160,220,255,0.25);color:var(--accent); }
     .summary-btn.primary:hover { background:rgba(160,220,255,0.15);border-color:rgba(160,220,255,0.4); }
 
-    /* INFINITE — KNOW/DONT KNOW BUTTONS */
-    .inf-judge-row {
-      display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;
+    /* PRACTICE SETTINGS */
+    .prac-settings-wrap {
+      margin-bottom: 24px;
     }
+    .prac-settings-toggle {
+      display:flex;align-items:center;justify-content:space-between;
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:10px;padding:12px 18px;cursor:pointer;
+      transition:border-color var(--transition),background var(--transition);
+      user-select:none;
+    }
+    .prac-settings-toggle:hover { border-color:var(--border-glow);background:var(--surface-hover); }
+    .prac-settings-toggle.open  { border-color:rgba(126,207,179,0.3);border-bottom-left-radius:0;border-bottom-right-radius:0; }
+    .pst-left  { display:flex;align-items:center;gap:10px; }
+    .pst-icon  { font-size:13px; }
+    .pst-label { font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--muted); }
+    .pst-summary { font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent2);letter-spacing:0.06em; }
+    .pst-chevron { font-size:12px;color:var(--muted);transition:transform 0.22s ease; }
+    .prac-settings-toggle.open .pst-chevron { transform:rotate(180deg); }
+
+    .prac-settings-body {
+      background:rgba(126,207,179,0.03);border:1px solid rgba(126,207,179,0.15);
+      border-top:none;border-bottom-left-radius:10px;border-bottom-right-radius:10px;
+      padding:20px 18px;display:none;
+    }
+    .prac-settings-body.open { display:block; }
+
+    .pset-row { display:flex;gap:10px;margin-bottom:16px; }
+    .pset-row:last-child { margin-bottom:0; }
+    .pset-label {
+      font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+      color:var(--muted);width:80px;flex-shrink:0;padding-top:9px;
+    }
+    .pset-chips { display:flex;gap:6px;flex-wrap:wrap; }
+    .pset-chip {
+      padding:7px 14px;border-radius:8px;border:1px solid var(--border);background:none;
+      color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.07em;
+      cursor:pointer;transition:all var(--transition);white-space:nowrap;
+    }
+    .pset-chip:hover { border-color:var(--border-glow);color:var(--text);background:rgba(255,255,255,0.04); }
+    .pset-chip.active-card  { background:rgba(160,220,255,0.1);border-color:rgba(160,220,255,0.3);color:var(--accent); }
+    .pset-chip.active-rep   { background:rgba(126,207,179,0.1);border-color:rgba(126,207,179,0.3);color:var(--accent2); }
+    .pset-chip.disabled-chip { opacity:0.28;cursor:not-allowed;pointer-events:none; }
+
+    .prac-wrong-banner {
+      background:rgba(255,107,107,0.07);border:1px solid rgba(255,107,107,0.2);
+      border-radius:var(--card-radius);padding:14px 20px;margin-bottom:20px;
+      display:flex;align-items:center;gap:12px;font-family:'IBM Plex Mono',monospace;
+      font-size:12px;color:var(--accent-danger);letter-spacing:0.06em;
+    }
+    .prac-round-badge {
+      display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;
+      letter-spacing:0.14em;text-transform:uppercase;padding:4px 14px;
+      border-radius:20px;border:1px solid rgba(126,207,179,0.25);
+      color:var(--accent2);background:rgba(126,207,179,0.08);
+    }
+    .prac-pill {
+      display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;
+      letter-spacing:0.14em;text-transform:uppercase;padding:4px 14px;
+      border-radius:20px;border:1px solid var(--border);color:var(--muted);
+      transition:all var(--transition);
+    }
+
+    .inf-judge-row { display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px; }
     .inf-judge-btn {
       padding:18px 20px;border-radius:var(--card-radius);border:1px solid var(--border);
       background:var(--surface);color:var(--text);font-family:'Syne',sans-serif;
@@ -337,25 +369,16 @@
     }
     .inf-judge-btn:hover:not(:disabled) { transform:translateY(-2px); }
     .inf-judge-btn:active { transform:translateY(0); }
-    .inf-judge-btn.know {
-      border-color:rgba(105,219,124,0.3);background:rgba(105,219,124,0.07);color:var(--accent-success);
-    }
+    .inf-judge-btn.know { border-color:rgba(105,219,124,0.3);background:rgba(105,219,124,0.07);color:var(--accent-success); }
     .inf-judge-btn.know:hover { border-color:rgba(105,219,124,0.55);background:rgba(105,219,124,0.14); }
-    .inf-judge-btn.dontknow {
-      border-color:rgba(255,107,107,0.3);background:rgba(255,107,107,0.07);color:var(--accent-danger);
-    }
+    .inf-judge-btn.dontknow { border-color:rgba(255,107,107,0.3);background:rgba(255,107,107,0.07);color:var(--accent-danger); }
     .inf-judge-btn.dontknow:hover { border-color:rgba(255,107,107,0.55);background:rgba(255,107,107,0.14); }
 
-    /* INFINITE PILL */
-    .inf-pill { display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;padding:4px 14px;border-radius:20px;border:1px solid var(--border);color:var(--muted);transition:all var(--transition); }
-
-    /* SCROLLBAR */
     ::-webkit-scrollbar { width:4px; }
     ::-webkit-scrollbar-track { background:transparent; }
     ::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.1);border-radius:4px; }
     ::-webkit-scrollbar-thumb:hover { background:rgba(255,255,255,0.18); }
 
-    /* RESPONSIVE */
     @media(max-width:900px){
       .lesson-grid{grid-template-columns:repeat(2,1fr);}
       header,.page-wrap,.sub-topbar,.vb-body,.study-body{padding-left:20px;padding-right:20px;}
@@ -376,6 +399,8 @@
       .sub-topbar{padding-left:16px;padding-right:16px;}
       .study-body{padding:28px 16px 60px;}
       header{padding:14px 16px;}
+      .pset-row{flex-direction:column;gap:6px;}
+      .pset-label{width:auto;padding-top:0;}
     }
   </style>
 </head>
@@ -384,9 +409,6 @@
 <div class="ambient ambient-1"></div>
 <div class="ambient ambient-2"></div>
 
-<!-- ══════════════════════════════════════════
-     HEADER
-══════════════════════════════════════════ -->
 <header>
   <div class="header-logo" id="header-logo">
     <div class="logo-mark">م</div>
@@ -397,30 +419,26 @@
   </div>
 
   <nav class="app-nav">
-    <button class="app-nav-btn active" id="nav-vocab">📖 Vocab Bank</button>
-    <button class="app-nav-btn"        id="nav-study">⊞ Study Mode</button>
+    <button class="app-nav-btn active" id="nav-vocab">📖 Word List</button>
+    <button class="app-nav-btn"        id="nav-study">✏️ Study</button>
   </nav>
 
   <div class="header-meta" id="header-meta">Loading…</div>
 </header>
 
-<!-- ══════════════════════════════════════════
-     ① VOCAB BANK
-══════════════════════════════════════════ -->
-
-<!-- VB: Lesson Menu -->
+<!-- WORD LIST -->
 <section id="vb-menu" class="view">
   <div class="page-wrap">
     <div class="gallery-header">
-      <div class="gallery-eyebrow">Course Lexicon</div>
-      <h1 class="gallery-heading">All Lessons</h1>
-      <p class="gallery-desc">Select a lesson to explore its vocabulary</p>
+      <div class="gallery-eyebrow">All Words</div>
+      <h1 class="gallery-heading">Word List</h1>
+      <p class="gallery-desc">Pick a lesson to see its words</p>
     </div>
     <div class="all-lessons-banner" id="vb-all-btn">
       <div class="banner-icon">م</div>
       <div class="banner-info">
-        <div class="banner-eyebrow">Full Course</div>
-        <div class="banner-title">Browse All Vocabulary</div>
+        <div class="banner-eyebrow">All Lessons</div>
+        <div class="banner-title">See Every Word</div>
         <div class="banner-sub" id="vb-banner-sub">Loading…</div>
       </div>
       <div class="banner-arrow">→</div>
@@ -429,14 +447,13 @@
   </div>
 </section>
 
-<!-- VB: Lesson Detail -->
 <section id="vb-detail" class="view view-hidden">
   <div class="sub-topbar">
     <button class="back-btn" id="vb-back-btn">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
         <path d="M7.5 2L3.5 6L7.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      Back to Lessons
+      Back
     </button>
     <div class="topbar-info">
       <div class="topbar-label" id="vb-detail-label">Lesson</div>
@@ -448,7 +465,7 @@
       <div class="vocab-column col-inbook" id="vb-col-inbook">
         <div class="col-header">
           <span class="col-dot"></span>
-          <span class="col-title">In-Book Words</span>
+          <span class="col-title">Book Words</span>
           <span class="col-count" id="vb-inbook-count">—</span>
         </div>
         <ul class="vocab-list" id="vb-inbook-list"></ul>
@@ -465,23 +482,19 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     ② STUDY MODE
-══════════════════════════════════════════ -->
-
-<!-- SM: Lesson Menu -->
+<!-- STUDY -->
 <section id="sm-menu" class="view view-hidden">
   <div class="page-wrap">
     <div class="gallery-header">
-      <div class="gallery-eyebrow">Study Mode</div>
-      <h1 class="gallery-heading">Select a Lesson</h1>
-      <p class="gallery-desc">Study with Flashcards, Quiz, or Infinite mode</p>
+      <div class="gallery-eyebrow">Study</div>
+      <h1 class="gallery-heading">Pick a Lesson</h1>
+      <p class="gallery-desc">Flashcards, Quiz & Practice</p>
     </div>
     <div class="all-lessons-banner" id="sm-all-btn">
       <div class="banner-icon">∞</div>
       <div class="banner-info">
-        <div class="banner-eyebrow">Full Course</div>
-        <div class="banner-title">Study All Lessons</div>
+        <div class="banner-eyebrow">All Lessons</div>
+        <div class="banner-title">Study Everything</div>
         <div class="banner-sub" id="sm-banner-sub">Loading…</div>
       </div>
       <div class="banner-arrow">→</div>
@@ -490,7 +503,6 @@
   </div>
 </section>
 
-<!-- SM: Study Detail -->
 <section id="sm-detail" class="view view-hidden">
   <div class="sub-topbar">
     <button class="back-btn" id="sm-back-btn">
@@ -504,9 +516,9 @@
       <div class="topbar-title" id="sm-detail-title">—</div>
     </div>
     <div class="mode-tabs">
-      <button class="mode-tab active"  id="tab-fc">⊞ Flashcards</button>
-      <button class="mode-tab"         id="tab-qz">◈ Quiz</button>
-      <button class="mode-tab inf-tab" id="tab-inf">∞ Infinite</button>
+      <button class="mode-tab active" id="tab-fc">⊞ Flashcards</button>
+      <button class="mode-tab"        id="tab-qz">◈ Quiz</button>
+      <button class="mode-tab prac-tab" id="tab-prac">✓ Practice</button>
     </div>
   </div>
 
@@ -516,7 +528,7 @@
     <div id="fc-mode">
       <div id="fc-empty" class="no-words-panel" style="display:none;">
         <div class="no-words-icon">📭</div>
-        <div class="no-words-title">No words available</div>
+        <div class="no-words-title">No words here yet</div>
         <div class="no-words-sub">This lesson has no vocabulary yet.</div>
       </div>
       <div id="fc-active">
@@ -527,7 +539,7 @@
             <div class="card-face card-face-front">
               <div class="card-label" id="fc-front-lbl">Arabic</div>
               <div id="fc-front-txt" style="font-family:'Scheherazade New',serif;font-size:52px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
-              <div class="card-hint">click to reveal • space</div>
+              <div class="card-hint">click to flip • space</div>
             </div>
             <div class="card-face card-face-back">
               <div class="card-label" id="fc-back-lbl">English</div>
@@ -590,113 +602,149 @@
         <div class="summary-panel">
           <div class="summary-header">
             <div class="summary-emoji" id="s-emoji">🎉</div>
-            <div class="summary-title" id="s-title">Quiz Complete!</div>
+            <div class="summary-title" id="s-title">Quiz Done!</div>
             <div class="summary-sub"   id="s-sub">Here's how you did</div>
           </div>
           <div class="summary-stats">
             <div class="summary-stat"><div class="summary-stat-value stat-c" id="s-c">0</div><div class="summary-stat-label">Correct</div></div>
             <div class="summary-stat"><div class="summary-stat-value stat-w" id="s-w">0</div><div class="summary-stat-label">Wrong</div></div>
             <div class="summary-stat"><div class="summary-stat-value stat-t" id="s-t">0</div><div class="summary-stat-label">Total</div></div>
-            <div class="summary-stat"><div class="summary-stat-value stat-a" id="s-a">0%</div><div class="summary-stat-label">Accuracy</div></div>
+            <div class="summary-stat"><div class="summary-stat-value stat-a" id="s-a">0%</div><div class="summary-stat-label">Score</div></div>
           </div>
           <div class="summary-actions">
             <button class="summary-btn"        id="s-back">Back to Lessons</button>
-            <button class="summary-btn primary" id="s-retry">Retry Quiz</button>
+            <button class="summary-btn primary" id="s-retry">Try Again</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- INFINITE MODE -->
-    <div id="inf-mode" style="display:none;">
-      <div id="inf-empty" class="no-words-panel" style="display:none;">
+    <!-- PRACTICE MODE -->
+    <div id="prac-mode" style="display:none;">
+
+      <!-- Settings panel -->
+      <div class="prac-settings-wrap" id="prac-settings-wrap">
+        <div class="prac-settings-toggle" id="prac-settings-toggle">
+          <div class="pst-left">
+            <span class="pst-icon">⚙</span>
+            <span class="pst-label">Practice Settings</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="pst-summary" id="pst-summary">4× · Both</span>
+            <span class="pst-chevron">▼</span>
+          </div>
+        </div>
+        <div class="prac-settings-body" id="prac-settings-body">
+          <div class="pset-row">
+            <div class="pset-label">Card type</div>
+            <div class="pset-chips" id="pset-type-chips">
+              <button class="pset-chip" data-type="fc">⊞ Flashcard only</button>
+              <button class="pset-chip" data-type="qz">◈ Quiz only</button>
+              <button class="pset-chip active-card" data-type="both">⊞ + ◈ Both</button>
+            </div>
+          </div>
+          <div class="pset-row">
+            <div class="pset-label">Reps / word</div>
+            <div class="pset-chips" id="pset-rep-chips">
+              <button class="pset-chip" data-rep="1">× 1</button>
+              <button class="pset-chip active-rep" data-rep="2">× 2</button>
+              <button class="pset-chip" data-rep="4">× 4 (both only)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="prac-empty" class="no-words-panel" style="display:none;">
         <div class="no-words-icon">📭</div>
         <div class="no-words-title">Not enough words</div>
-        <div class="no-words-sub">Need at least 4 words for Infinite mode.</div>
+        <div class="no-words-sub">Need at least 4 words for practice.</div>
       </div>
-      <div id="inf-toast" style="display:none;">
-        <div class="no-words-panel" style="border-color:rgba(255,184,108,0.2);background:rgba(255,184,108,0.04);">
-          <div class="no-words-icon" id="inf-toast-emoji">🔄</div>
-          <div class="no-words-title" id="inf-toast-title">Round Complete!</div>
-          <div class="no-words-sub"   id="inf-toast-sub">Reshuffling…</div>
-          <button class="next-btn" id="inf-continue" style="max-width:240px;margin:24px auto 0;">Continue →</button>
+      <div id="prac-done" class="summary-panel" style="display:none;opacity:0;transform:translateY(12px);transition:opacity 0.35s ease,transform 0.35s ease;">
+        <div class="summary-header">
+          <div class="summary-emoji">🏆</div>
+          <div class="summary-title">All Done!</div>
+          <div class="summary-sub" id="prac-done-sub">You got every card right.</div>
+        </div>
+        <div class="summary-stats">
+          <div class="summary-stat"><div class="summary-stat-value stat-c" id="prac-s-rounds">1</div><div class="summary-stat-label">Rounds</div></div>
+          <div class="summary-stat"><div class="summary-stat-value stat-t" id="prac-s-total">0</div><div class="summary-stat-label">Cards</div></div>
+        </div>
+        <div class="summary-actions">
+          <button class="summary-btn"        id="prac-done-back">Back to Lessons</button>
+          <button class="summary-btn primary" id="prac-done-retry">Go Again</button>
         </div>
       </div>
-      <div id="inf-active" style="display:none;">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;">
-          <div class="quiz-score-strip">
-            <span class="score-badge badge-c">✓ <span id="inf-c">0</span></span>
-            <span class="score-badge badge-w">✗ <span id="inf-w">0</span></span>
-            <span class="score-badge badge-s">🔥 <span id="inf-streak">0</span></span>
+      <div id="prac-active" style="display:none;">
+        <div class="quiz-header-bar">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="prac-round-badge" id="prac-round-badge">Round 1</span>
+            <span class="score-badge badge-w" id="prac-left-badge">? left</span>
           </div>
-          <div class="q-counter">Round <span id="inf-round">1</span> · <span id="inf-pos">1</span>/<span id="inf-of">?</span></div>
+          <div class="q-counter">Q <span id="prac-num">1</span> of <span id="prac-of">?</span></div>
         </div>
-        <div class="prog-bar"><div class="prog-fill" id="inf-prog" style="width:0%"></div></div>
-        <div style="text-align:center;margin-bottom:18px;"><span class="inf-pill" id="inf-pill">—</span></div>
+        <div id="prac-wrong-notice" class="prac-wrong-banner" style="display:none;">
+          ✗ &nbsp;Redoing the ones you got wrong
+        </div>
+        <div class="prog-bar"><div class="prog-fill" id="prac-prog" style="width:0%"></div></div>
 
-        <!-- inf flashcard -->
-        <div id="inf-fc">
-          <div class="card-scene" id="inf-scene">
-            <div class="card-inner" id="inf-inner">
+        <div style="text-align:center;margin-bottom:18px;"><span class="prac-pill" id="prac-pill">—</span></div>
+
+        <!-- prac flashcard sub-mode -->
+        <div id="prac-fc">
+          <div class="card-scene" id="prac-scene">
+            <div class="card-inner" id="prac-inner">
               <div class="card-face card-face-front">
-                <div class="card-label" id="inf-front-lbl">Arabic</div>
-                <div id="inf-front-txt" style="font-family:'Scheherazade New',serif;font-size:52px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
-                <div class="card-hint">click to reveal • space</div>
+                <div class="card-label" id="prac-front-lbl">Arabic</div>
+                <div id="prac-front-txt" style="font-family:'Scheherazade New',serif;font-size:52px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+                <div class="card-hint">click to flip • space</div>
               </div>
               <div class="card-face card-face-back">
-                <div class="card-label" id="inf-back-lbl">English</div>
-                <div id="inf-back-txt" style="font-size:22px;font-weight:600;color:var(--text);text-align:center;">—</div>
-                <div class="card-hint">flip then judge yourself</div>
+                <div class="card-label" id="prac-back-lbl">English</div>
+                <div id="prac-back-txt" style="font-size:22px;font-weight:600;color:var(--text);text-align:center;">—</div>
+                <div class="card-hint">flip then mark yourself</div>
               </div>
             </div>
           </div>
-
-          <!-- Flip button (centered, always visible for fc cards) -->
           <div style="display:flex;justify-content:center;margin-top:24px;">
-            <button class="fc-btn fc-btn-flip" id="inf-flip">Flip</button>
+            <button class="fc-btn fc-btn-flip" id="prac-flip">Flip</button>
           </div>
-
-          <!-- Know / Don't Know — hidden until flipped -->
-          <div class="inf-judge-row" id="inf-know-row" style="display:none;">
-            <button class="inf-judge-btn dontknow" id="inf-dontknow">✗ Don't know</button>
-            <button class="inf-judge-btn know"     id="inf-knowit">✓ Know it</button>
+          <div class="inf-judge-row" id="prac-know-row" style="display:none;">
+            <button class="inf-judge-btn dontknow" id="prac-dontknow">✗ Got it wrong</button>
+            <button class="inf-judge-btn know"     id="prac-knowit">✓ Got it right</button>
           </div>
-
           <div class="fc-kbd-hint" style="margin-top:14px;">
-            <kbd>Space</kbd> Flip &nbsp;·&nbsp; <kbd>1</kbd> Don't know &nbsp;·&nbsp; <kbd>2</kbd> Know it
+            <kbd>Space</kbd> Flip &nbsp;·&nbsp; <kbd>1</kbd> Wrong &nbsp;·&nbsp; <kbd>2</kbd> Right
           </div>
         </div>
 
-        <!-- inf quiz -->
-        <div id="inf-qz" style="display:none;">
+        <!-- prac quiz sub-mode -->
+        <div id="prac-qz" style="display:none;">
           <div class="quiz-prompt-card">
-            <div class="quiz-prompt-label" id="inf-qz-lbl">What does this mean?</div>
-            <div id="inf-qz-prompt" style="font-family:'Scheherazade New',serif;font-size:56px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+            <div class="quiz-prompt-label" id="prac-qz-lbl">What does this mean?</div>
+            <div id="prac-qz-prompt" style="font-family:'Scheherazade New',serif;font-size:56px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
           </div>
-          <div class="quiz-answers" id="inf-answers">
+          <div class="quiz-answers" id="prac-answers">
             <button class="ans-btn" data-idx="0"></button>
             <button class="ans-btn" data-idx="1"></button>
             <button class="ans-btn" data-idx="2"></button>
             <button class="ans-btn" data-idx="3"></button>
           </div>
-          <div id="inf-feedback" style="display:none;">
-            <div class="quiz-feedback-bar" id="inf-fb-bar">
-              <span class="fb-text"   id="inf-fb-text">—</span>
-              <span class="fb-answer" id="inf-fb-ans">—</span>
+          <div id="prac-feedback" style="display:none;">
+            <div class="quiz-feedback-bar" id="prac-fb-bar">
+              <span class="fb-text"   id="prac-fb-text">—</span>
+              <span class="fb-answer" id="prac-fb-ans">—</span>
             </div>
-            <button class="next-btn" id="inf-qz-next">Next →</button>
+            <button class="next-btn" id="prac-qz-next">Next →</button>
           </div>
         </div>
       </div>
     </div>
 
-  </div><!-- study-body -->
+  </div>
 </section>
 
 <script>
-/* ════════════════════════════════════════════════
-   AUDIO
-════════════════════════════════════════════════ */
+/* ── AUDIO ── */
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 let _actx;
 function getACtx() { if (!_actx) _actx = new AudioCtx(); return _actx; }
@@ -734,189 +782,224 @@ function playSound(type) {
   } catch(e) {}
 }
 
-/* ════════════════════════════════════════════════
-   UTILITY
-════════════════════════════════════════════════ */
+/* ── UTILS ── */
 function shuffle(arr) {
-  const a = [...arr];
-  for (let i=a.length-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
   return a;
 }
-function show(el) { el.style.display = ''; }
-function hide(el) { el.style.display = 'none'; }
-function fadeIn(el) {
+function show(el){el.style.display='';}
+function hide(el){el.style.display='none';}
+function fadeIn(el){
   el.classList.remove('visible');
   requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('visible')));
 }
 
-/* ════════════════════════════════════════════════
-   STATE
-════════════════════════════════════════════════ */
-let allLessons   = [];
-let currentWords = [];
-let appTab       = 'vocab';
-let studyMode    = 'fc';
+/* ── PRACTICE SETTINGS STATE ── */
+const pracSettings = { cardType: 'both', reps: 2 };
 
-const fc  = { index:0, flipped:false };
-const qz  = { questions:[], index:0, correct:0, wrong:0, answered:false };
-const inf = { deck:[], index:0, round:1, correct:0, wrong:0, streak:0, flipped:false, answered:false };
+function updateSettingsSummary() {
+  const typeLabel = pracSettings.cardType === 'fc' ? 'FC only' : pracSettings.cardType === 'qz' ? 'Quiz only' : 'Both';
+  document.getElementById('pst-summary').textContent = pracSettings.reps + '× · ' + typeLabel;
+}
 
-/* ════════════════════════════════════════════════
-   DOM REFS
-════════════════════════════════════════════════ */
-const navVocab   = document.getElementById('nav-vocab');
-const navStudy   = document.getElementById('nav-study');
-const headerLogo = document.getElementById('header-logo');
-const headerMeta = document.getElementById('header-meta');
+function syncRepChipState() {
+  const x4 = document.querySelector('#pset-rep-chips [data-rep="4"]');
+  const isDisabled = pracSettings.cardType !== 'both';
+  x4.classList.toggle('disabled-chip', isDisabled);
+  if (isDisabled && pracSettings.reps === 4) {
+    pracSettings.reps = 2;
+    document.querySelectorAll('#pset-rep-chips .pset-chip').forEach(c => c.classList.remove('active-rep'));
+    document.querySelector('#pset-rep-chips [data-rep="2"]').classList.add('active-rep');
+  }
+}
 
-const vbMenu   = document.getElementById('vb-menu');
-const vbDetail = document.getElementById('vb-detail');
-const vbGrid   = document.getElementById('vb-grid');
-const vbPanel  = document.getElementById('vb-panel');
-const vbColInbook = document.getElementById('vb-col-inbook');
-const vbColExtra  = document.getElementById('vb-col-extra');
+function refreshPracIfRunning() {
+  if (studyMode !== 'prac') return;
+  const pracDone = document.getElementById('prac-done');
+  if (pracDone.style.display !== '' && pracDone.style.opacity !== '0') return;
+  initPrac();
+}
 
-const smMenu   = document.getElementById('sm-menu');
-const smDetail = document.getElementById('sm-detail');
-const smGrid   = document.getElementById('sm-grid');
+/* Settings toggle */
+document.getElementById('prac-settings-toggle').addEventListener('click', () => {
+  const toggle = document.getElementById('prac-settings-toggle');
+  const body   = document.getElementById('prac-settings-body');
+  const open   = body.classList.contains('open');
+  toggle.classList.toggle('open', !open);
+  body.classList.toggle('open', !open);
+});
 
-const tabFc  = document.getElementById('tab-fc');
-const tabQz  = document.getElementById('tab-qz');
-const tabInf = document.getElementById('tab-inf');
+/* Card type chips */
+document.getElementById('pset-type-chips').addEventListener('click', e => {
+  const chip = e.target.closest('.pset-chip');
+  if (!chip || chip.classList.contains('disabled-chip')) return;
+  document.querySelectorAll('#pset-type-chips .pset-chip').forEach(c => c.classList.remove('active-card'));
+  chip.classList.add('active-card');
+  pracSettings.cardType = chip.dataset.type;
+  syncRepChipState();
+  updateSettingsSummary();
+  refreshPracIfRunning();
+});
 
-/* ════════════════════════════════════════════════
-   FETCH
-════════════════════════════════════════════════ */
+/* Reps chips */
+document.getElementById('pset-rep-chips').addEventListener('click', e => {
+  const chip = e.target.closest('.pset-chip');
+  if (!chip || chip.classList.contains('disabled-chip')) return;
+  document.querySelectorAll('#pset-rep-chips .pset-chip').forEach(c => c.classList.remove('active-rep'));
+  chip.classList.add('active-rep');
+  pracSettings.reps = parseInt(chip.dataset.rep);
+  updateSettingsSummary();
+  refreshPracIfRunning();
+});
+
+syncRepChipState();
+updateSettingsSummary();
+
+/* ── STATE ── */
+let allLessons=[], currentWords=[], appTab='vocab', studyMode='fc';
+const fc={index:0,flipped:false};
+const qz={questions:[],index:0,correct:0,wrong:0,answered:false};
+
+const prac={
+  queue:[],
+  wrongCards:[],   // stores the exact card objects that were answered wrong
+  roundNum:1,
+  totalCards:0,
+  index:0,
+  flipped:false,
+  answered:false
+};
+
+/* ── DOM ── */
+const navVocab=document.getElementById('nav-vocab');
+const navStudy=document.getElementById('nav-study');
+const headerLogo=document.getElementById('header-logo');
+const headerMeta=document.getElementById('header-meta');
+const vbMenu=document.getElementById('vb-menu');
+const vbDetail=document.getElementById('vb-detail');
+const vbGrid=document.getElementById('vb-grid');
+const vbPanel=document.getElementById('vb-panel');
+const vbColInbook=document.getElementById('vb-col-inbook');
+const vbColExtra=document.getElementById('vb-col-extra');
+const smMenu=document.getElementById('sm-menu');
+const smDetail=document.getElementById('sm-detail');
+const smGrid=document.getElementById('sm-grid');
+const tabFc=document.getElementById('tab-fc');
+const tabQz=document.getElementById('tab-qz');
+const tabPrac=document.getElementById('tab-prac');
+
+/* ── FETCH ── */
 fetch('xء.json')
-  .then(r => { if(!r.ok) throw new Error('Failed to load xء.json'); return r.json(); })
-  .then(data => {
-    allLessons = data.lessons || [];
-    const total = allLessons.reduce((a,l)=>a+(l.inBookWords||[]).length+(l.extraWords||[]).length, 0);
-    headerMeta.textContent = `${allLessons.length} LESSONS · ${total} WORDS`;
-    const bannerSub = `${total} words across all ${allLessons.length} lessons`;
-    document.getElementById('vb-banner-sub').textContent = bannerSub;
-    document.getElementById('sm-banner-sub').textContent = bannerSub + ' · Flashcards, Quiz & Infinite';
+  .then(r=>{if(!r.ok)throw new Error('Failed to load xء.json');return r.json();})
+  .then(data=>{
+    allLessons=data.lessons||[];
+    const total=allLessons.reduce((a,l)=>a+(l.inBookWords||[]).length+(l.extraWords||[]).length,0);
+    headerMeta.textContent=`${allLessons.length} LESSONS · ${total} WORDS`;
+    const bs=`${total} words across all ${allLessons.length} lessons`;
+    document.getElementById('vb-banner-sub').textContent=bs;
+    document.getElementById('sm-banner-sub').textContent=bs+' · Flashcards, Quiz & Practice';
     renderVBGrid();
     renderSMGrid();
   })
-  .catch(err => {
-    vbGrid.innerHTML = smGrid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);">⚠ Could not load xء.json<br><small style="color:#444">${err.message}</small></div>`;
-    headerMeta.textContent = 'Error';
+  .catch(err=>{
+    vbGrid.innerHTML=smGrid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);">⚠ Could not load xء.json<br><small style="color:#444">${err.message}</small></div>`;
+    headerMeta.textContent='Error';
   });
 
-/* ════════════════════════════════════════════════
-   APP-LEVEL NAVIGATION
-════════════════════════════════════════════════ */
-const allPages = [vbMenu, vbDetail, smMenu, smDetail];
-function showOnly(page) {
-  allPages.forEach(p => p.classList.add('view-hidden'));
-  page.classList.remove('view-hidden');
-  window.scrollTo({ top:0, behavior:'smooth' });
+/* ── APP NAV ── */
+const allPages=[vbMenu,vbDetail,smMenu,smDetail];
+function showOnly(page){allPages.forEach(p=>p.classList.add('view-hidden'));page.classList.remove('view-hidden');window.scrollTo({top:0,behavior:'smooth'});}
+
+function switchAppTab(tab){
+  appTab=tab;
+  navVocab.classList.toggle('active',tab==='vocab');
+  navStudy.classList.toggle('active',tab==='study');
+  if(tab==='vocab') showOnly(vbMenu);
+  else showOnly(smMenu);
 }
+navVocab.addEventListener('click',()=>{playSound('click');switchAppTab('vocab');});
+navStudy.addEventListener('click',()=>{playSound('click');switchAppTab('study');});
+headerLogo.addEventListener('click',()=>{playSound('click');switchAppTab(appTab);});
 
-function switchAppTab(tab) {
-  appTab = tab;
-  navVocab.classList.toggle('active', tab==='vocab');
-  navStudy.classList.toggle('active', tab==='study');
-  if (tab==='vocab') showOnly(vbMenu);
-  else               showOnly(smMenu);
-}
-
-navVocab.addEventListener('click', () => { playSound('click'); switchAppTab('vocab'); });
-navStudy.addEventListener('click', () => { playSound('click'); switchAppTab('study'); });
-headerLogo.addEventListener('click', () => { playSound('click'); switchAppTab(appTab); });
-
-/* ════════════════════════════════════════════════
-   ① VOCAB BANK
-════════════════════════════════════════════════ */
-function renderVBGrid() {
-  vbGrid.innerHTML = '';
-  allLessons.forEach((lesson, i) => {
-    const inC = (lesson.inBookWords||[]).length;
-    const exC = (lesson.extraWords||[]).length;
-    const card = document.createElement('div');
-    card.className = 'lesson-card';
-    card.style.animationDelay = `${i*28}ms`;
-    card.innerHTML = `
+/* ── WORD LIST ── */
+function renderVBGrid(){
+  vbGrid.innerHTML='';
+  allLessons.forEach((lesson,i)=>{
+    const inC=(lesson.inBookWords||[]).length, exC=(lesson.extraWords||[]).length;
+    const card=document.createElement('div');
+    card.className='lesson-card';
+    card.style.animationDelay=`${i*28}ms`;
+    card.innerHTML=`
       <div class="card-number">${String(lesson.lessonNumber).padStart(3,'0')}</div>
       <div class="card-name">Lesson ${lesson.lessonNumber}</div>
       <div class="card-stats">
-        <span class="stat-badge"><span class="stat-dot dot-inbook"></span>${inC} in-book</span>
+        <span class="stat-badge"><span class="stat-dot dot-inbook"></span>${inC} book</span>
         <span class="stat-badge"><span class="stat-dot dot-extra"></span>${exC} extra</span>
       </div>
       <div class="card-arrow">→</div>`;
-    card.addEventListener('click', () => { playSound('click'); vbOpenLesson(lesson); });
+    card.addEventListener('click',()=>{playSound('click');vbOpenLesson(lesson);});
     vbGrid.appendChild(card);
   });
 }
 
-document.getElementById('vb-all-btn').addEventListener('click', () => {
-  playSound('click'); vbOpenAll();
-});
+document.getElementById('vb-all-btn').addEventListener('click',()=>{playSound('click');vbOpenAll();});
 
-function vbOpenAll() {
-  const allWords = [];
-  allLessons.forEach(l => {
-    (l.inBookWords||[]).forEach(w => allWords.push({...w, _lesson:l.lessonNumber}));
-    (l.extraWords||[]).forEach(w  => allWords.push({...w, _lesson:l.lessonNumber}));
+function vbOpenAll(){
+  const allWords=[];
+  allLessons.forEach(l=>{
+    (l.inBookWords||[]).forEach(w=>allWords.push({...w,_lesson:l.lessonNumber}));
+    (l.extraWords||[]).forEach(w=>allWords.push({...w,_lesson:l.lessonNumber}));
   });
-  document.getElementById('vb-detail-label').textContent = 'FULL COURSE';
-  document.getElementById('vb-detail-title').textContent = 'All Lessons — Complete Vocabulary';
-
+  document.getElementById('vb-detail-label').textContent='ALL LESSONS';
+  document.getElementById('vb-detail-title').textContent='Every Word';
   vbPanel.classList.add('single-col');
   hide(vbColExtra);
-  vbColInbook.className = 'vocab-column col-all';
-  vbColInbook.querySelector('.col-title').textContent = 'All Words';
-  document.getElementById('vb-inbook-count').textContent = `${allWords.length} words`;
-
-  const list = document.getElementById('vb-inbook-list');
-  list.innerHTML = '';
-  allWords.forEach((word, i) => {
-    const li = document.createElement('li');
-    li.className = 'vocab-item';
-    li.style.animationDelay = `${Math.min(i,60)*16}ms`;
-    li.innerHTML = `
+  vbColInbook.className='vocab-column col-all';
+  vbColInbook.querySelector('.col-title').textContent='All Words';
+  document.getElementById('vb-inbook-count').textContent=`${allWords.length} words`;
+  const list=document.getElementById('vb-inbook-list');
+  list.innerHTML='';
+  allWords.forEach((word,i)=>{
+    const li=document.createElement('li');
+    li.className='vocab-item';
+    li.style.animationDelay=`${Math.min(i,60)*16}ms`;
+    li.innerHTML=`
       <span class="vocab-arabic">${word.arabic||'—'}</span>
       <span class="vocab-divider"></span>
       <span class="vocab-english">${word.english||'—'}</span>
       <span class="vocab-lesson-tag">L${String(word._lesson).padStart(2,'0')}</span>`;
     list.appendChild(li);
   });
-
   showOnly(vbDetail);
   fadeIn(vbDetail);
 }
 
-function vbOpenLesson(lesson) {
-  document.getElementById('vb-detail-label').textContent = `LESSON ${String(lesson.lessonNumber).padStart(3,'0')}`;
-  document.getElementById('vb-detail-title').textContent = `Lesson ${lesson.lessonNumber}`;
-
-  const inW = lesson.inBookWords||[];
-  const exW = lesson.extraWords||[];
-  document.getElementById('vb-inbook-count').textContent = `${inW.length} words`;
-  document.getElementById('vb-extra-count').textContent  = `${exW.length} words`;
-
+function vbOpenLesson(lesson){
+  document.getElementById('vb-detail-label').textContent=`LESSON ${String(lesson.lessonNumber).padStart(3,'0')}`;
+  document.getElementById('vb-detail-title').textContent=`Lesson ${lesson.lessonNumber}`;
+  const inW=lesson.inBookWords||[], exW=lesson.extraWords||[];
+  document.getElementById('vb-inbook-count').textContent=`${inW.length} words`;
+  document.getElementById('vb-extra-count').textContent=`${exW.length} words`;
   vbPanel.classList.remove('single-col');
   show(vbColExtra);
-  vbColInbook.className = 'vocab-column col-inbook';
-  vbColInbook.querySelector('.col-title').textContent = 'In-Book Words';
-
-  vbRenderList('vb-inbook-list', inW);
-  vbRenderList('vb-extra-list',  exW);
-
+  vbColInbook.className='vocab-column col-inbook';
+  vbColInbook.querySelector('.col-title').textContent='Book Words';
+  vbRenderList('vb-inbook-list',inW);
+  vbRenderList('vb-extra-list',exW);
   showOnly(vbDetail);
   fadeIn(vbDetail);
 }
 
-function vbRenderList(listId, words) {
-  const list = document.getElementById(listId);
-  list.innerHTML = '';
-  if (!words.length) { list.innerHTML = '<div class="empty-state">No words available.</div>'; return; }
-  words.forEach((word, i) => {
-    const li = document.createElement('li');
-    li.className = 'vocab-item';
-    li.style.animationDelay = `${i*40}ms`;
-    li.innerHTML = `
+function vbRenderList(listId,words){
+  const list=document.getElementById(listId);
+  list.innerHTML='';
+  if(!words.length){list.innerHTML='<div class="empty-state">No words yet.</div>';return;}
+  words.forEach((word,i)=>{
+    const li=document.createElement('li');
+    li.className='vocab-item';
+    li.style.animationDelay=`${i*40}ms`;
+    li.innerHTML=`
       <span class="vocab-arabic">${word.arabic||'—'}</span>
       <span class="vocab-divider"></span>
       <span class="vocab-english">${word.english||'—'}</span>`;
@@ -924,459 +1007,533 @@ function vbRenderList(listId, words) {
   });
 }
 
-document.getElementById('vb-back-btn').addEventListener('click', () => {
+document.getElementById('vb-back-btn').addEventListener('click',()=>{
   playSound('click');
   vbDetail.classList.remove('visible');
   showOnly(vbMenu);
 });
 
-/* ════════════════════════════════════════════════
-   ② STUDY MODE — GRID
-════════════════════════════════════════════════ */
-function renderSMGrid() {
-  smGrid.innerHTML = '';
-  allLessons.forEach((lesson, i) => {
-    const inC = (lesson.inBookWords||[]).length;
-    const exC = (lesson.extraWords||[]).length;
-    const tot = inC + exC;
-    const empty = tot === 0;
-    const card = document.createElement('div');
-    card.className = 'lesson-card' + (empty ? ' empty-lesson' : '');
-    card.style.animationDelay = `${i*28}ms`;
-    card.innerHTML = empty
-      ? `<div class="card-number">${String(lesson.lessonNumber).padStart(3,'0')}</div>
-         <div class="card-name">Lesson ${lesson.lessonNumber}</div>
-         <div class="card-stats"><span class="stat-badge"><span class="stat-dot" style="background:var(--muted)"></span>No words yet</span></div>
-         <div class="card-arrow">→</div>`
-      : `<div class="card-number">${String(lesson.lessonNumber).padStart(3,'0')}</div>
-         <div class="card-name">Lesson ${lesson.lessonNumber}</div>
-         <div class="card-stats">
-           <span class="stat-badge"><span class="stat-dot dot-inbook"></span>${inC} in-book</span>
-           <span class="stat-badge"><span class="stat-dot dot-extra"></span>${exC} extra</span>
-           <span class="stat-badge"><span class="stat-dot" style="background:var(--muted)"></span>${tot} total</span>
-         </div>
-         <div class="card-arrow">→</div>`;
-    card.addEventListener('click', () => { playSound('click'); smOpenLesson(lesson); });
+/* ── STUDY GRID ── */
+function renderSMGrid(){
+  smGrid.innerHTML='';
+  allLessons.forEach((lesson,i)=>{
+    const inC=(lesson.inBookWords||[]).length, exC=(lesson.extraWords||[]).length, tot=inC+exC;
+    const empty=tot===0;
+    const card=document.createElement('div');
+    card.className='lesson-card'+(empty?' empty-lesson':'');
+    card.style.animationDelay=`${i*28}ms`;
+    card.innerHTML=empty
+      ?`<div class="card-number">${String(lesson.lessonNumber).padStart(3,'0')}</div>
+        <div class="card-name">Lesson ${lesson.lessonNumber}</div>
+        <div class="card-stats"><span class="stat-badge"><span class="stat-dot" style="background:var(--muted)"></span>No words yet</span></div>
+        <div class="card-arrow">→</div>`
+      :`<div class="card-number">${String(lesson.lessonNumber).padStart(3,'0')}</div>
+        <div class="card-name">Lesson ${lesson.lessonNumber}</div>
+        <div class="card-stats">
+          <span class="stat-badge"><span class="stat-dot dot-inbook"></span>${inC} book</span>
+          <span class="stat-badge"><span class="stat-dot dot-extra"></span>${exC} extra</span>
+          <span class="stat-badge"><span class="stat-dot" style="background:var(--muted)"></span>${tot} total</span>
+        </div>
+        <div class="card-arrow">→</div>`;
+    card.addEventListener('click',()=>{playSound('click');smOpenLesson(lesson);});
     smGrid.appendChild(card);
   });
 }
 
-document.getElementById('sm-all-btn').addEventListener('click', () => {
+document.getElementById('sm-all-btn').addEventListener('click',()=>{
   playSound('click');
-  const allWords = allLessons.flatMap(l=>[...(l.inBookWords||[]),...(l.extraWords||[])]);
-  smOpenSession('All Lessons', 'FULL COURSE', allWords);
+  const allWords=allLessons.flatMap(l=>[...(l.inBookWords||[]),...(l.extraWords||[])]);
+  smOpenSession('All Lessons','ALL LESSONS',allWords);
 });
 
-function smOpenLesson(lesson) {
-  const words = [...(lesson.inBookWords||[]),...(lesson.extraWords||[])];
-  smOpenSession(`Lesson ${lesson.lessonNumber}`, `LESSON ${String(lesson.lessonNumber).padStart(3,'0')}`, words);
+function smOpenLesson(lesson){
+  const words=[...(lesson.inBookWords||[]),...(lesson.extraWords||[])];
+  smOpenSession(`Lesson ${lesson.lessonNumber}`,`LESSON ${String(lesson.lessonNumber).padStart(3,'0')}`,words);
 }
 
-function smOpenSession(title, label, words) {
-  currentWords = shuffle([...words]);
-  document.getElementById('sm-detail-label').textContent = label;
-  document.getElementById('sm-detail-title').textContent = title;
+function smOpenSession(title,label,words){
+  currentWords=shuffle([...words]);
+  document.getElementById('sm-detail-label').textContent=label;
+  document.getElementById('sm-detail-title').textContent=title;
   showOnly(smDetail);
   setStudyMode('fc');
   fadeIn(smDetail);
 }
 
-document.getElementById('sm-back-btn').addEventListener('click', () => {
+document.getElementById('sm-back-btn').addEventListener('click',()=>{
   playSound('click');
   smDetail.classList.remove('visible');
   showOnly(smMenu);
 });
 
-/* ════════════════════════════════════════════════
-   STUDY MODE SWITCHING
-════════════════════════════════════════════════ */
-function setStudyMode(mode) {
-  studyMode = mode;
-  tabFc.classList.toggle('active',  mode==='fc');
-  tabQz.classList.toggle('active',  mode==='qz');
-  tabInf.classList.toggle('active', mode==='inf');
-  document.getElementById('fc-mode').style.display  = mode==='fc'  ? '' : 'none';
-  document.getElementById('qz-mode').style.display  = mode==='qz'  ? '' : 'none';
-  document.getElementById('inf-mode').style.display = mode==='inf' ? '' : 'none';
-  if (mode==='fc')       initFC();
-  else if (mode==='qz')  initQZ();
-  else                   initInf();
+/* ── MODE SWITCHING ── */
+function setStudyMode(mode){
+  studyMode=mode;
+  tabFc.classList.toggle('active',   mode==='fc');
+  tabQz.classList.toggle('active',   mode==='qz');
+  tabPrac.classList.toggle('active', mode==='prac');
+  document.getElementById('fc-mode').style.display  =mode==='fc'  ?'':'none';
+  document.getElementById('qz-mode').style.display  =mode==='qz'  ?'':'none';
+  document.getElementById('prac-mode').style.display=mode==='prac'?'':'none';
+  if(mode==='fc')        initFC();
+  else if(mode==='qz')   initQZ();
+  else                   initPrac();
 }
-tabFc.addEventListener('click',  ()=>{ if(studyMode!=='fc')  { playSound('nav'); setStudyMode('fc');  } });
-tabQz.addEventListener('click',  ()=>{ if(studyMode!=='qz')  { playSound('nav'); setStudyMode('qz');  } });
-tabInf.addEventListener('click', ()=>{ if(studyMode!=='inf') { playSound('nav'); setStudyMode('inf'); } });
+tabFc.addEventListener('click',  ()=>{if(studyMode!=='fc')  {playSound('nav');setStudyMode('fc');}});
+tabQz.addEventListener('click',  ()=>{if(studyMode!=='qz')  {playSound('nav');setStudyMode('qz');}});
+tabPrac.addEventListener('click',()=>{if(studyMode!=='prac'){playSound('nav');setStudyMode('prac');}});
 
-/* ════════════════════════════════════════════════
-   FLASHCARDS (regular mode — unchanged)
-════════════════════════════════════════════════ */
-function initFC() {
-  fc.index=0; fc.flipped=false;
-  const fcEmpty  = document.getElementById('fc-empty');
-  const fcActive = document.getElementById('fc-active');
-  if (!currentWords.length) { show(fcEmpty); hide(fcActive); return; }
-  hide(fcEmpty); show(fcActive);
+/* ── FLASHCARDS ── */
+function initFC(){
+  fc.index=0;fc.flipped=false;
+  const fcEmpty=document.getElementById('fc-empty'), fcActive=document.getElementById('fc-active');
+  if(!currentWords.length){show(fcEmpty);hide(fcActive);return;}
+  hide(fcEmpty);show(fcActive);
   renderFC();
 }
 
-function renderFC() {
-  const word = currentWords[fc.index];
-  const inner = document.getElementById('fc-inner');
-  const scene = document.getElementById('fc-scene');
-  inner.style.transition = 'none';
-  scene.classList.remove('flipped');
-  fc.flipped = false;
-  void inner.offsetWidth;
-  inner.style.transition = '';
-
-  document.getElementById('fc-front-lbl').textContent = 'Arabic';
-  const ft = document.getElementById('fc-front-txt');
-  ft.style.fontFamily="'Scheherazade New',serif"; ft.style.fontSize='52px'; ft.style.direction='rtl';
-  ft.textContent = word.arabic||'—';
-  document.getElementById('fc-back-lbl').textContent = 'English';
-  const bt = document.getElementById('fc-back-txt');
-  bt.style.fontFamily="'Syne',sans-serif"; bt.style.fontSize='22px'; bt.style.direction='ltr';
-  bt.textContent = word.english||'—';
-
-  document.getElementById('fc-cur').textContent = fc.index+1;
-  document.getElementById('fc-tot').textContent = currentWords.length;
-  document.getElementById('fc-prog').style.width =
-    (currentWords.length>1 ? (fc.index/(currentWords.length-1))*100 : 100)+'%';
-  document.getElementById('fc-prev').disabled = fc.index===0;
-  document.getElementById('fc-next').disabled = fc.index===currentWords.length-1;
+function renderFC(){
+  const word=currentWords[fc.index];
+  const inner=document.getElementById('fc-inner'), scene=document.getElementById('fc-scene');
+  inner.style.transition='none';scene.classList.remove('flipped');fc.flipped=false;
+  void inner.offsetWidth;inner.style.transition='';
+  document.getElementById('fc-front-lbl').textContent='Arabic';
+  const ft=document.getElementById('fc-front-txt');
+  ft.style.fontFamily="'Scheherazade New',serif";ft.style.fontSize='52px';ft.style.direction='rtl';
+  ft.textContent=word.arabic||'—';
+  document.getElementById('fc-back-lbl').textContent='English';
+  const bt=document.getElementById('fc-back-txt');
+  bt.style.fontFamily="'Syne',sans-serif";bt.style.fontSize='22px';bt.style.direction='ltr';
+  bt.textContent=word.english||'—';
+  document.getElementById('fc-cur').textContent=fc.index+1;
+  document.getElementById('fc-tot').textContent=currentWords.length;
+  document.getElementById('fc-prog').style.width=(currentWords.length>1?(fc.index/(currentWords.length-1))*100:100)+'%';
+  document.getElementById('fc-prev').disabled=fc.index===0;
+  document.getElementById('fc-next').disabled=fc.index===currentWords.length-1;
 }
 
-function flipFC() { playSound('flip'); fc.flipped=!fc.flipped; document.getElementById('fc-scene').classList.toggle('flipped',fc.flipped); }
-function fcGoNext() { if(fc.index<currentWords.length-1){ playSound('nav'); fc.index++; renderFC(); } }
-function fcGoPrev() { if(fc.index>0){ playSound('nav'); fc.index--; renderFC(); } }
+function flipFC(){playSound('flip');fc.flipped=!fc.flipped;document.getElementById('fc-scene').classList.toggle('flipped',fc.flipped);}
+function fcGoNext(){if(fc.index<currentWords.length-1){playSound('nav');fc.index++;renderFC();}}
+function fcGoPrev(){if(fc.index>0){playSound('nav');fc.index--;renderFC();}}
 
-document.getElementById('fc-scene').addEventListener('click', flipFC);
-document.getElementById('fc-flip').addEventListener('click', e=>{ e.stopPropagation(); flipFC(); });
-document.getElementById('fc-next').addEventListener('click', fcGoNext);
-document.getElementById('fc-prev').addEventListener('click', fcGoPrev);
+document.getElementById('fc-scene').addEventListener('click',flipFC);
+document.getElementById('fc-flip').addEventListener('click',e=>{e.stopPropagation();flipFC();});
+document.getElementById('fc-next').addEventListener('click',fcGoNext);
+document.getElementById('fc-prev').addEventListener('click',fcGoPrev);
 
-/* ════════════════════════════════════════════════
-   QUIZ (regular mode — unchanged)
-════════════════════════════════════════════════ */
-function initQZ() {
-  document.getElementById('qz-summary').style.display = 'none';
-  const qzEmpty  = document.getElementById('qz-empty');
-  const qzActive = document.getElementById('qz-active');
-  if (currentWords.length<4) { show(qzEmpty); hide(qzActive); return; }
-  hide(qzEmpty); show(qzActive);
-  qz.questions = shuffle([...currentWords]).map(w=>{
-    const fl = Math.random()<0.5?'arabic':'english';
-    return { word:w, frontLang:fl, choices:buildQZChoices(w,fl) };
+/* ── QUIZ ── */
+function initQZ(){
+  document.getElementById('qz-summary').style.display='none';
+  const qzEmpty=document.getElementById('qz-empty'), qzActive=document.getElementById('qz-active');
+  if(currentWords.length<4){show(qzEmpty);hide(qzActive);return;}
+  hide(qzEmpty);show(qzActive);
+  qz.questions=shuffle([...currentWords]).map(w=>{
+    const fl=Math.random()<0.5?'arabic':'english';
+    return{word:w,frontLang:fl,choices:buildQZChoices(w,fl)};
   });
-  qz.index=0; qz.correct=0; qz.wrong=0; qz.answered=false;
-  document.getElementById('qz-of').textContent = qz.questions.length;
+  qz.index=0;qz.correct=0;qz.wrong=0;qz.answered=false;
+  document.getElementById('qz-of').textContent=qz.questions.length;
   renderQZ();
 }
 
-function buildQZChoices(correctWord, frontLang) {
-  const pool = currentWords.filter(w=>w!==correctWord);
+function buildQZChoices(correctWord){
+  const pool=currentWords.filter(w=>w!==correctWord);
   return shuffle([correctWord,...shuffle(pool).slice(0,3)]).map(w=>({word:w,isCorrect:w===correctWord}));
 }
 
-function renderQZ() {
-  const q = qz.questions[qz.index];
-  document.getElementById('qz-prog').style.width = (qz.index/qz.questions.length)*100+'%';
-  document.getElementById('qz-num').textContent = qz.index+1;
-  document.getElementById('qz-c').textContent   = qz.correct;
-  document.getElementById('qz-w').textContent   = qz.wrong;
-  document.getElementById('qz-t').textContent   = qz.index;
-
-  const prompt = document.getElementById('qz-prompt');
-  const lbl    = document.getElementById('qz-prompt-lbl');
-  if (q.frontLang==='arabic') {
+function renderQZ(){
+  const q=qz.questions[qz.index];
+  document.getElementById('qz-prog').style.width=(qz.index/qz.questions.length)*100+'%';
+  document.getElementById('qz-num').textContent=qz.index+1;
+  document.getElementById('qz-c').textContent=qz.correct;
+  document.getElementById('qz-w').textContent=qz.wrong;
+  document.getElementById('qz-t').textContent=qz.index;
+  const prompt=document.getElementById('qz-prompt'), lbl=document.getElementById('qz-prompt-lbl');
+  if(q.frontLang==='arabic'){
     lbl.textContent='What does this Arabic word mean?';
-    prompt.style.fontFamily="'Scheherazade New',serif"; prompt.style.fontSize='56px'; prompt.style.direction='rtl';
+    prompt.style.fontFamily="'Scheherazade New',serif";prompt.style.fontSize='56px';prompt.style.direction='rtl';
     prompt.textContent=q.word.arabic||'—';
   } else {
     lbl.textContent='Which Arabic word means this?';
-    prompt.style.fontFamily="'Syne',sans-serif"; prompt.style.fontSize='28px'; prompt.style.direction='ltr';
+    prompt.style.fontFamily="'Syne',sans-serif";prompt.style.fontSize='28px';prompt.style.direction='ltr';
     prompt.textContent=q.word.english||'—';
   }
-
   document.querySelectorAll('#qz-answers .ans-btn').forEach((btn,i)=>{
     const ch=q.choices[i];
-    if(q.frontLang==='arabic'){ btn.style.fontFamily="'Syne',sans-serif"; btn.style.fontSize='14px'; btn.style.direction='ltr'; btn.textContent=ch.word.english||'—'; }
-    else { btn.style.fontFamily="'Scheherazade New',serif"; btn.style.fontSize='26px'; btn.style.direction='rtl'; btn.textContent=ch.word.arabic||'—'; }
-    btn.className='ans-btn'; btn.disabled=false;
+    if(q.frontLang==='arabic'){btn.style.fontFamily="'Syne',sans-serif";btn.style.fontSize='14px';btn.style.direction='ltr';btn.textContent=ch.word.english||'—';}
+    else{btn.style.fontFamily="'Scheherazade New',serif";btn.style.fontSize='26px';btn.style.direction='rtl';btn.textContent=ch.word.arabic||'—';}
+    btn.className='ans-btn';btn.disabled=false;
   });
   hide(document.getElementById('qz-feedback'));
   qz.answered=false;
 }
 
-document.getElementById('qz-answers').addEventListener('click', e=>{
+document.getElementById('qz-answers').addEventListener('click',e=>{
   const btn=e.target.closest('.ans-btn');
-  if(!btn||qz.answered) return;
-  qz.answered=true; playSound('click');
-  const idx=parseInt(btn.dataset.idx), q=qz.questions[qz.index], correct=q.choices[idx].isCorrect;
+  if(!btn||qz.answered)return;
+  qz.answered=true;playSound('click');
+  const idx=parseInt(btn.dataset.idx),q=qz.questions[qz.index],correct=q.choices[idx].isCorrect;
   document.querySelectorAll('#qz-answers .ans-btn').forEach((b,i)=>{
     b.disabled=true;
-    if(q.choices[i].isCorrect) b.classList.add('correct');
-    else if(i===idx&&!correct) b.classList.add('wrong');
+    if(q.choices[i].isCorrect)b.classList.add('correct');
+    else if(i===idx&&!correct)b.classList.add('wrong');
     else b.classList.add('dim');
   });
   const fbBar=document.getElementById('qz-fb-bar');
-  if(correct){ qz.correct++; playSound('correct'); fbBar.className='quiz-feedback-bar fb-correct'; document.getElementById('qz-fb-text').textContent='✓ Correct!'; document.getElementById('qz-fb-ans').textContent=`"${q.word.arabic}" = ${q.word.english}`; }
-  else       { qz.wrong++;   playSound('wrong');   fbBar.className='quiz-feedback-bar fb-wrong';   document.getElementById('qz-fb-text').textContent='✗ Incorrect'; document.getElementById('qz-fb-ans').textContent=`Answer: "${q.word.arabic}" = ${q.word.english}`; }
+  if(correct){qz.correct++;playSound('correct');fbBar.className='quiz-feedback-bar fb-correct';document.getElementById('qz-fb-text').textContent='✓ Correct!';document.getElementById('qz-fb-ans').textContent=`"${q.word.arabic}" = ${q.word.english}`;}
+  else{qz.wrong++;playSound('wrong');fbBar.className='quiz-feedback-bar fb-wrong';document.getElementById('qz-fb-text').textContent='✗ Wrong';document.getElementById('qz-fb-ans').textContent=`Answer: "${q.word.arabic}" = ${q.word.english}`;}
   document.getElementById('qz-t').textContent=qz.index+1;
   document.getElementById('qz-c').textContent=qz.correct;
   document.getElementById('qz-w').textContent=qz.wrong;
   show(document.getElementById('qz-feedback'));
 });
 
-document.getElementById('qz-next-btn').addEventListener('click', ()=>{
-  playSound('nav'); qz.index++;
-  if(qz.index>=qz.questions.length) showQZSummary(); else renderQZ();
+document.getElementById('qz-next-btn').addEventListener('click',()=>{
+  playSound('nav');qz.index++;
+  if(qz.index>=qz.questions.length)showQZSummary();else renderQZ();
 });
 
-function showQZSummary() {
+function showQZSummary(){
   hide(document.getElementById('qz-active'));
-  const sumEl=document.getElementById('qz-summary'); show(sumEl);
-  const total=qz.correct+qz.wrong, acc=total>0?Math.round((qz.correct/total)*100):0;
-  document.getElementById('s-c').textContent=qz.correct; document.getElementById('s-w').textContent=qz.wrong;
-  document.getElementById('s-t').textContent=total;       document.getElementById('s-a').textContent=acc+'%';
-  const [emoji,title,sub] = acc===100?['🏆','Perfect Score!','Every single one correct!']:
-    acc>=80?['🎉','Great Job!','Almost perfect — keep it up!']:
-    acc>=60?['👍','Good Effort!','A bit more practice and you\'ll nail it.']:
-    acc>=40?['📚','Keep Studying!','Review flashcards then try again.']:
-            ['💪','Don\'t Give Up!','Try flashcards first to build memory.'];
-  document.getElementById('s-emoji').textContent=emoji; document.getElementById('s-title').textContent=title; document.getElementById('s-sub').textContent=sub;
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{ sumEl.style.opacity='1'; sumEl.style.transform='translateY(0)'; }));
+  const sumEl=document.getElementById('qz-summary');show(sumEl);
+  const total=qz.correct+qz.wrong,acc=total>0?Math.round((qz.correct/total)*100):0;
+  document.getElementById('s-c').textContent=qz.correct;document.getElementById('s-w').textContent=qz.wrong;
+  document.getElementById('s-t').textContent=total;document.getElementById('s-a').textContent=acc+'%';
+  const[emoji,title,sub]=acc===100?['🏆','Perfect!','Every single one right!']:
+    acc>=80?['🎉','Great job!','Almost perfect — keep it up!']:
+    acc>=60?['👍','Good effort!','A bit more practice and you\'ll nail it.']:
+    acc>=40?['📚','Keep going!','Try flashcards first then come back.']:
+            ['💪','Don\'t give up!','Try flashcards to build memory first.'];
+  document.getElementById('s-emoji').textContent=emoji;document.getElementById('s-title').textContent=title;document.getElementById('s-sub').textContent=sub;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{sumEl.style.opacity='1';sumEl.style.transform='translateY(0)';}));
 }
 
-document.getElementById('s-back').addEventListener('click', ()=>{ playSound('click'); smDetail.classList.remove('visible'); showOnly(smMenu); });
-document.getElementById('s-retry').addEventListener('click', ()=>{
+document.getElementById('s-back').addEventListener('click',()=>{playSound('click');smDetail.classList.remove('visible');showOnly(smMenu);});
+document.getElementById('s-retry').addEventListener('click',()=>{
   playSound('click');
-  const sumEl=document.getElementById('qz-summary'); sumEl.style.opacity='0'; sumEl.style.transform='translateY(12px)';
-  setTimeout(()=>{ hide(sumEl); show(document.getElementById('qz-active')); initQZ(); }, 300);
+  const sumEl=document.getElementById('qz-summary');sumEl.style.opacity='0';sumEl.style.transform='translateY(12px)';
+  setTimeout(()=>{hide(sumEl);show(document.getElementById('qz-active'));initQZ();},300);
 });
 
-/* ════════════════════════════════════════════════
-   INFINITE MODE
-════════════════════════════════════════════════ */
-function buildInfDeck() {
-  const doubled=[];
-  currentWords.forEach(w=>{ doubled.push({word:w,frontLang:'arabic'}); doubled.push({word:w,frontLang:'english'}); });
-  return shuffle(doubled).map(card=>{
-    const type=Math.random()<0.5?'fc':'qz';
-    return {...card,type,choices:type==='qz'?buildInfChoices(card.word,card.frontLang):[]};
-  });
-}
-function buildInfChoices(correctWord, frontLang) {
-  const pool=currentWords.filter(w=>w!==correctWord);
-  return shuffle([correctWord,...shuffle(pool).slice(0,3)]).map(w=>({word:w,isCorrect:w===correctWord}));
-}
+/* ══════════════════════════════════════════
+   PRACTICE MODE
+   wrongCards stores the EXACT card objects that were answered wrong,
+   so the next round replays the same frontLang + type — no re-randomisation.
+══════════════════════════════════════════ */
 
-function initInf() {
-  const infEmpty=document.getElementById('inf-empty');
-  const infToast=document.getElementById('inf-toast');
-  const infActive=document.getElementById('inf-active');
-  if(currentWords.length<4){ show(infEmpty); hide(infActive); hide(infToast); return; }
-  hide(infEmpty); hide(infToast);
-  inf.deck=buildInfDeck(); inf.index=0; inf.round=1;
-  inf.correct=0; inf.wrong=0; inf.streak=0;
-  inf.flipped=false; inf.answered=false;
-  show(infActive);
-  renderInfCard();
-}
+function buildPracQueue(words) {
+  const { cardType, reps } = pracSettings;
+  const cards = [];
 
-function renderInfCard() {
-  const card=inf.deck[inf.index];
-  document.getElementById('inf-c').textContent=inf.correct;
-  document.getElementById('inf-w').textContent=inf.wrong;
-  document.getElementById('inf-streak').textContent=inf.streak;
-  document.getElementById('inf-round').textContent=inf.round;
-  document.getElementById('inf-pos').textContent=inf.index+1;
-  document.getElementById('inf-of').textContent=inf.deck.length;
-  document.getElementById('inf-prog').style.width=(inf.index/inf.deck.length)*100+'%';
-  const fcPanel=document.getElementById('inf-fc');
-  const qzPanel=document.getElementById('inf-qz');
-  if(card.type==='fc'){ show(fcPanel); hide(qzPanel); renderInfFC(card); }
-  else                { hide(fcPanel); show(qzPanel); renderInfQZ(card); }
-}
+  words.forEach(word => {
 
-function renderInfFC(card) {
-  const inner=document.getElementById('inf-inner');
-  const scene=document.getElementById('inf-scene');
-  inner.style.transition='none';
-  scene.classList.remove('flipped');
-  inf.flipped=false;
-  void inner.offsetWidth;
-  inner.style.transition='';
+    if (reps === 1) {
+      const frontLang = Math.random() < 0.5 ? 'arabic' : 'english';
+      const type = cardType === 'both' ? (Math.random() < 0.5 ? 'fc' : 'qz') : cardType;
+      cards.push({ word, frontLang, type, choices: type === 'qz' ? buildPracChoices(word, frontLang, words) : [] });
 
-  // Reset know/don't know row — hidden until flipped
-  document.getElementById('inf-know-row').style.display='none';
+    } else if (reps === 2) {
+      const langs = shuffle(['arabic', 'english']);
+      if (cardType === 'both') {
+        const types = shuffle(['fc', 'qz']);
+        langs.forEach((frontLang, i) => {
+          const type = types[i];
+          cards.push({ word, frontLang, type, choices: type === 'qz' ? buildPracChoices(word, frontLang, words) : [] });
+        });
+      } else {
+        langs.forEach(frontLang => {
+          cards.push({ word, frontLang, type: cardType, choices: cardType === 'qz' ? buildPracChoices(word, frontLang, words) : [] });
+        });
+      }
 
-  const pill=document.getElementById('inf-pill');
-  pill.textContent='⊞ Flashcard';
-  pill.style.color='var(--accent)';
-  pill.style.borderColor='rgba(160,220,255,0.2)';
-
-  const fl=document.getElementById('inf-front-lbl'), ft=document.getElementById('inf-front-txt');
-  const bl=document.getElementById('inf-back-lbl'),  bt=document.getElementById('inf-back-txt');
-  if(card.frontLang==='arabic'){
-    fl.textContent='Arabic';
-    ft.style.fontFamily="'Scheherazade New',serif"; ft.style.fontSize='52px'; ft.style.direction='rtl';
-    ft.textContent=card.word.arabic||'—';
-    bl.textContent='English';
-    bt.style.fontFamily="'Syne',sans-serif"; bt.style.fontSize='22px'; bt.style.direction='ltr';
-    bt.textContent=card.word.english||'—';
-  } else {
-    fl.textContent='English';
-    ft.style.fontFamily="'Syne',sans-serif"; ft.style.fontSize='26px'; ft.style.direction='ltr';
-    ft.textContent=card.word.english||'—';
-    bl.textContent='Arabic';
-    bt.style.fontFamily="'Scheherazade New',serif"; bt.style.fontSize='52px'; bt.style.direction='rtl';
-    bt.textContent=card.word.arabic||'—';
-  }
-}
-
-function renderInfQZ(card) {
-  inf.answered=false;
-  hide(document.getElementById('inf-feedback'));
-  const pill=document.getElementById('inf-pill');
-  pill.textContent='◈ Quiz';
-  pill.style.color='var(--accent2)';
-  pill.style.borderColor='rgba(126,207,179,0.2)';
-  const lbl=document.getElementById('inf-qz-lbl'), prompt=document.getElementById('inf-qz-prompt');
-  if(card.frontLang==='arabic'){
-    lbl.textContent='What does this Arabic word mean?';
-    prompt.style.fontFamily="'Scheherazade New',serif"; prompt.style.fontSize='56px'; prompt.style.direction='rtl';
-    prompt.textContent=card.word.arabic||'—';
-  } else {
-    lbl.textContent='Which Arabic word means this?';
-    prompt.style.fontFamily="'Syne',sans-serif"; prompt.style.fontSize='28px'; prompt.style.direction='ltr';
-    prompt.textContent=card.word.english||'—';
-  }
-  document.querySelectorAll('#inf-answers .ans-btn').forEach((btn,i)=>{
-    const ch=card.choices[i];
-    if(card.frontLang==='arabic'){
-      btn.style.fontFamily="'Syne',sans-serif"; btn.style.fontSize='14px'; btn.style.direction='ltr';
-      btn.textContent=ch.word.english||'—';
     } else {
-      btn.style.fontFamily="'Scheherazade New',serif"; btn.style.fontSize='26px'; btn.style.direction='rtl';
-      btn.textContent=ch.word.arabic||'—';
+      // 4× — all combos
+      const pairs = [
+        { frontLang: 'arabic',  type: 'fc' },
+        { frontLang: 'english', type: 'fc' },
+        { frontLang: 'arabic',  type: 'qz' },
+        { frontLang: 'english', type: 'qz' },
+      ];
+      pairs.forEach(({ frontLang, type }) => {
+        cards.push({ word, frontLang, type, choices: type === 'qz' ? buildPracChoices(word, frontLang, words) : [] });
+      });
     }
-    btn.className='ans-btn'; btn.disabled=false;
   });
+
+  return shuffle(cards);
 }
 
-/* ─── Infinite flip ─── */
-function infFlip() {
-  playSound('flip');
-  inf.flipped = !inf.flipped;
-  document.getElementById('inf-scene').classList.toggle('flipped', inf.flipped);
-  // Show Know/Don't Know only when showing the answer (back face)
-  const card = inf.deck[inf.index];
-  if (card && card.type === 'fc') {
-    document.getElementById('inf-know-row').style.display = inf.flipped ? 'grid' : 'none';
+function buildPracChoices(correctWord, frontLang, wordPool) {
+  const pool = (wordPool || currentWords).filter(w => w !== correctWord);
+  let distractors = shuffle(pool).slice(0, 3);
+  if (distractors.length < 3) {
+    const extra = shuffle(currentWords.filter(w => w !== correctWord && !distractors.includes(w)));
+    distractors = [...distractors, ...extra].slice(0, 3);
+  }
+  return shuffle([correctWord, ...distractors]).map(w => ({ word: w, isCorrect: w === correctWord }));
+}
+
+/* Rebuild choices for a wrong card so button positions are fresh but
+   frontLang and type are preserved exactly. */
+function refreshCardChoices(card) {
+  if (card.type !== 'qz') return card;
+  return {
+    ...card,
+    choices: buildPracChoices(card.word, card.frontLang, currentWords)
+  };
+}
+
+function initPrac() {
+  const pracEmpty    = document.getElementById('prac-empty');
+  const pracDone     = document.getElementById('prac-done');
+  const pracActive   = document.getElementById('prac-active');
+  const settingsWrap = document.getElementById('prac-settings-wrap');
+  hide(pracDone); pracDone.style.opacity='0'; pracDone.style.transform='translateY(12px)';
+
+  const minWords = pracSettings.cardType !== 'fc' ? 4 : 1;
+  if (currentWords.length < minWords) {
+    show(pracEmpty); hide(pracActive); show(settingsWrap); return;
+  }
+  hide(pracEmpty);
+
+  prac.queue      = buildPracQueue(currentWords);
+  prac.wrongCards = [];   // ← holds card objects, not indices
+  prac.roundNum   = 1;
+  prac.totalCards = prac.queue.length;
+  prac.index      = 0;
+  prac.flipped    = false;
+  prac.answered   = false;
+
+  hide(document.getElementById('prac-wrong-notice'));
+  document.getElementById('prac-round-badge').textContent = 'Round 1';
+  updatePracLeftBadge();
+
+  show(settingsWrap);
+  show(pracActive);
+  renderPracCard();
+}
+
+function updatePracLeftBadge() {
+  const left = prac.queue.length - prac.index;
+  document.getElementById('prac-left-badge').textContent = `${left} left`;
+}
+
+function renderPracCard() {
+  const card = prac.queue[prac.index];
+  document.getElementById('prac-num').textContent = prac.index + 1;
+  document.getElementById('prac-of').textContent  = prac.queue.length;
+  document.getElementById('prac-prog').style.width = (prac.index / prac.queue.length) * 100 + '%';
+  updatePracLeftBadge();
+
+  const pill = document.getElementById('prac-pill');
+  if (card.type === 'fc') {
+    pill.textContent = '⊞ Flashcard';
+    pill.style.color = 'var(--accent)';
+    pill.style.borderColor = 'rgba(160,220,255,0.2)';
+  } else {
+    pill.textContent = '◈ Quiz';
+    pill.style.color = 'var(--accent2)';
+    pill.style.borderColor = 'rgba(126,207,179,0.2)';
+  }
+
+  const fcPanel = document.getElementById('prac-fc');
+  const qzPanel = document.getElementById('prac-qz');
+
+  if (card.type === 'fc') {
+    show(fcPanel); hide(qzPanel);
+    renderPracFC(card);
+  } else {
+    hide(fcPanel); show(qzPanel);
+    renderPracQZ(card);
   }
 }
 
-document.getElementById('inf-scene').addEventListener('click', infFlip);
-document.getElementById('inf-flip').addEventListener('click', e=>{ e.stopPropagation(); infFlip(); });
+function renderPracFC(card) {
+  const inner = document.getElementById('prac-inner');
+  const scene = document.getElementById('prac-scene');
+  inner.style.transition = 'none';
+  scene.classList.remove('flipped');
+  prac.flipped = false;
+  void inner.offsetWidth;
+  inner.style.transition = '';
+  document.getElementById('prac-know-row').style.display = 'none';
 
-/* ─── Know / Don't Know buttons ─── */
-document.getElementById('inf-knowit').addEventListener('click', () => {
-  playSound('correct');
-  inf.correct++;
-  inf.streak++;
-  document.getElementById('inf-c').textContent = inf.correct;
-  document.getElementById('inf-streak').textContent = inf.streak;
-  infAdvance();
-});
-
-document.getElementById('inf-dontknow').addEventListener('click', () => {
-  playSound('wrong');
-  inf.wrong++;
-  inf.streak = 0;
-  document.getElementById('inf-w').textContent = inf.wrong;
-  document.getElementById('inf-streak').textContent = inf.streak;
-  infAdvance();
-});
-
-/* ─── Infinite advance ─── */
-function infAdvance() {
-  inf.index++;
-  if(inf.index>=inf.deck.length) showInfToast(); else renderInfCard();
+  const fl = document.getElementById('prac-front-lbl'), ft = document.getElementById('prac-front-txt');
+  const bl = document.getElementById('prac-back-lbl'),  bt = document.getElementById('prac-back-txt');
+  if (card.frontLang === 'arabic') {
+    fl.textContent = 'Arabic';
+    ft.style.fontFamily = "'Scheherazade New',serif"; ft.style.fontSize = '52px'; ft.style.direction = 'rtl';
+    ft.textContent = card.word.arabic || '—';
+    bl.textContent = 'English';
+    bt.style.fontFamily = "'Syne',sans-serif"; bt.style.fontSize = '22px'; bt.style.direction = 'ltr';
+    bt.textContent = card.word.english || '—';
+  } else {
+    fl.textContent = 'English';
+    ft.style.fontFamily = "'Syne',sans-serif"; ft.style.fontSize = '26px'; ft.style.direction = 'ltr';
+    ft.textContent = card.word.english || '—';
+    bl.textContent = 'Arabic';
+    bt.style.fontFamily = "'Scheherazade New',serif"; bt.style.fontSize = '52px'; bt.style.direction = 'rtl';
+    bt.textContent = card.word.arabic || '—';
+  }
 }
 
-/* ─── Infinite quiz answers ─── */
-document.getElementById('inf-answers').addEventListener('click', e=>{
-  const btn=e.target.closest('.ans-btn');
-  if(!btn||inf.answered) return;
-  inf.answered=true; playSound('click');
-  const card=inf.deck[inf.index], idx=parseInt(btn.dataset.idx), correct=card.choices[idx].isCorrect;
-  document.querySelectorAll('#inf-answers .ans-btn').forEach((b,i)=>{
-    b.disabled=true;
-    if(card.choices[i].isCorrect) b.classList.add('correct');
-    else if(i===idx&&!correct) b.classList.add('wrong');
+function renderPracQZ(card) {
+  prac.answered = false;
+  hide(document.getElementById('prac-feedback'));
+  const lbl    = document.getElementById('prac-qz-lbl');
+  const prompt = document.getElementById('prac-qz-prompt');
+  if (card.frontLang === 'arabic') {
+    lbl.textContent = 'What does this Arabic word mean?';
+    prompt.style.fontFamily = "'Scheherazade New',serif"; prompt.style.fontSize = '56px'; prompt.style.direction = 'rtl';
+    prompt.textContent = card.word.arabic || '—';
+  } else {
+    lbl.textContent = 'Which Arabic word means this?';
+    prompt.style.fontFamily = "'Syne',sans-serif"; prompt.style.fontSize = '28px'; prompt.style.direction = 'ltr';
+    prompt.textContent = card.word.english || '—';
+  }
+  document.querySelectorAll('#prac-answers .ans-btn').forEach((btn, i) => {
+    const ch = card.choices[i];
+    if (card.frontLang === 'arabic') {
+      btn.style.fontFamily = "'Syne',sans-serif"; btn.style.fontSize = '14px'; btn.style.direction = 'ltr';
+      btn.textContent = ch.word.english || '—';
+    } else {
+      btn.style.fontFamily = "'Scheherazade New',serif"; btn.style.fontSize = '26px'; btn.style.direction = 'rtl';
+      btn.textContent = ch.word.arabic || '—';
+    }
+    btn.className = 'ans-btn'; btn.disabled = false;
+  });
+}
+
+function pracFlip() {
+  playSound('flip');
+  prac.flipped = !prac.flipped;
+  document.getElementById('prac-scene').classList.toggle('flipped', prac.flipped);
+  document.getElementById('prac-know-row').style.display = prac.flipped ? 'grid' : 'none';
+}
+
+document.getElementById('prac-scene').addEventListener('click', pracFlip);
+document.getElementById('prac-flip').addEventListener('click', e => { e.stopPropagation(); pracFlip(); });
+
+document.getElementById('prac-knowit').addEventListener('click', () => {
+  playSound('correct');
+  pracAdvance(true);
+});
+
+document.getElementById('prac-dontknow').addEventListener('click', () => {
+  playSound('wrong');
+  // Save the exact card object so round 2 replays same frontLang + type
+  prac.wrongCards.push(refreshCardChoices(prac.queue[prac.index]));
+  pracAdvance(false);
+});
+
+document.getElementById('prac-answers').addEventListener('click', e => {
+  const btn = e.target.closest('.ans-btn');
+  if (!btn || prac.answered) return;
+  prac.answered = true;
+  playSound('click');
+  const card  = prac.queue[prac.index];
+  const idx   = parseInt(btn.dataset.idx);
+  const correct = card.choices[idx].isCorrect;
+
+  document.querySelectorAll('#prac-answers .ans-btn').forEach((b, i) => {
+    b.disabled = true;
+    if (card.choices[i].isCorrect) b.classList.add('correct');
+    else if (i === idx && !correct) b.classList.add('wrong');
     else b.classList.add('dim');
   });
-  const fbBar=document.getElementById('inf-fb-bar');
-  if(correct){
-    inf.correct++; inf.streak++; playSound('correct');
-    fbBar.className='quiz-feedback-bar fb-correct';
-    document.getElementById('inf-fb-text').textContent='✓ Correct!';
-    document.getElementById('inf-fb-ans').textContent=`"${card.word.arabic}" = ${card.word.english}`;
+
+  const fbBar = document.getElementById('prac-fb-bar');
+  if (correct) {
+    playSound('correct');
+    fbBar.className = 'quiz-feedback-bar fb-correct';
+    document.getElementById('prac-fb-text').textContent = '✓ Right!';
+    document.getElementById('prac-fb-ans').textContent  = `"${card.word.arabic}" = ${card.word.english}`;
   } else {
-    inf.wrong++; inf.streak=0; playSound('wrong');
-    fbBar.className='quiz-feedback-bar fb-wrong';
-    document.getElementById('inf-fb-text').textContent='✗ Incorrect';
-    document.getElementById('inf-fb-ans').textContent=`Answer: "${card.word.arabic}" = ${card.word.english}`;
+    playSound('wrong');
+    // Save the exact card object so round 2 replays same frontLang + type
+    prac.wrongCards.push(refreshCardChoices(card));
+    fbBar.className = 'quiz-feedback-bar fb-wrong';
+    document.getElementById('prac-fb-text').textContent = '✗ Wrong';
+    document.getElementById('prac-fb-ans').textContent  = `Answer: "${card.word.arabic}" = ${card.word.english}`;
   }
-  document.getElementById('inf-c').textContent=inf.correct;
-  document.getElementById('inf-w').textContent=inf.wrong;
-  document.getElementById('inf-streak').textContent=inf.streak;
-  show(document.getElementById('inf-feedback'));
+  show(document.getElementById('prac-feedback'));
 });
 
-document.getElementById('inf-qz-next').addEventListener('click', ()=>{ playSound('nav'); infAdvance(); });
+document.getElementById('prac-qz-next').addEventListener('click', () => {
+  playSound('nav');
+  pracAdvance(null);
+});
 
-/* ─── Round toast ─── */
-function showInfToast() {
-  hide(document.getElementById('inf-active'));
-  show(document.getElementById('inf-toast'));
-  const total=inf.correct+inf.wrong, acc=total>0?Math.round((inf.correct/total)*100):0;
-  document.getElementById('inf-toast-emoji').textContent = acc===100?'🏆':acc>=75?'🎉':'🔄';
-  document.getElementById('inf-toast-title').textContent = acc===100?`Round ${inf.round} — Perfect!`:acc>=75?`Round ${inf.round} Complete!`:`Round ${inf.round} Done`;
-  document.getElementById('inf-toast-sub').textContent   = `${acc}% accuracy · ${inf.correct}✓ ${inf.wrong}✗`;
+function pracAdvance(wasCorrect) {
+  prac.index++;
+  if (prac.index >= prac.queue.length) {
+    if (prac.wrongCards.length === 0) {
+      showPracDone();
+    } else {
+      // ── KEY FIX: reuse the exact saved card objects, just shuffle their order ──
+      prac.roundNum++;
+      prac.queue      = shuffle([...prac.wrongCards]);
+      prac.wrongCards = [];
+      prac.index      = 0;
+      prac.flipped    = false;
+      prac.answered   = false;
+
+      document.getElementById('prac-round-badge').textContent = `Round ${prac.roundNum}`;
+      document.getElementById('prac-wrong-notice').style.display = '';
+      updatePracLeftBadge();
+      renderPracCard();
+    }
+  } else {
+    renderPracCard();
+  }
 }
 
-document.getElementById('inf-continue').addEventListener('click', ()=>{
-  playSound('nav');
-  inf.round++; inf.index=0; inf.flipped=false; inf.answered=false;
-  inf.deck=buildInfDeck();
-  hide(document.getElementById('inf-toast'));
-  show(document.getElementById('inf-active'));
-  renderInfCard();
+function showPracDone() {
+  hide(document.getElementById('prac-active'));
+  hide(document.getElementById('prac-settings-wrap'));
+  const doneEl = document.getElementById('prac-done');
+  show(doneEl);
+  document.getElementById('prac-s-rounds').textContent = prac.roundNum;
+  document.getElementById('prac-s-total').textContent  = prac.totalCards;
+  document.getElementById('prac-done-sub').textContent =
+    prac.roundNum === 1
+      ? `You got all ${prac.totalCards} cards right on the first try!`
+      : `Took ${prac.roundNum} rounds to get all ${prac.totalCards} cards right.`;
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    doneEl.style.opacity = '1';
+    doneEl.style.transform = 'translateY(0)';
+  }));
+}
+
+document.getElementById('prac-done-back').addEventListener('click', () => {
+  playSound('click');
+  smDetail.classList.remove('visible');
+  showOnly(smMenu);
 });
 
-/* ════════════════════════════════════════════════
-   KEYBOARD
-════════════════════════════════════════════════ */
-document.addEventListener('keydown', e=>{
-  if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) return;
+document.getElementById('prac-done-retry').addEventListener('click', () => {
+  playSound('click');
+  const doneEl = document.getElementById('prac-done');
+  doneEl.style.opacity = '0'; doneEl.style.transform = 'translateY(12px)';
+  setTimeout(() => { hide(doneEl); initPrac(); }, 300);
+});
 
-  // Regular flashcard keyboard nav
-  if(appTab==='study' && studyMode==='fc') {
-    if(e.key==='ArrowRight'){ e.preventDefault(); fcGoNext(); }
-    if(e.key==='ArrowLeft') { e.preventDefault(); fcGoPrev(); }
-    if(e.key===' ')         { e.preventDefault(); flipFC();   }
+/* ── KEYBOARD ── */
+document.addEventListener('keydown',e=>{
+  if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName))return;
+
+  if(appTab==='study'&&studyMode==='fc'){
+    if(e.key==='ArrowRight'){e.preventDefault();fcGoNext();}
+    if(e.key==='ArrowLeft') {e.preventDefault();fcGoPrev();}
+    if(e.key===' ')         {e.preventDefault();flipFC();}
   }
 
-  // Infinite mode keyboard
-  if(appTab==='study' && studyMode==='inf') {
-    const card = inf.deck[inf.index];
-    if(card && card.type==='fc') {
-      // Space always flips
-      if(e.key===' ') { e.preventDefault(); infFlip(); }
-      // 1 = Don't know, 2 = Know it — only when flipped (answer visible)
-      if(e.key==='1' && inf.flipped) { e.preventDefault(); document.getElementById('inf-dontknow').click(); }
-      if(e.key==='2' && inf.flipped) { e.preventDefault(); document.getElementById('inf-knowit').click(); }
+  if(appTab==='study'&&studyMode==='prac'){
+    const card=prac.queue&&prac.queue[prac.index];
+    if(card&&card.type==='fc'){
+      if(e.key===' '){e.preventDefault();pracFlip();}
+      if(e.key==='1'&&prac.flipped){e.preventDefault();document.getElementById('prac-dontknow').click();}
+      if(e.key==='2'&&prac.flipped){e.preventDefault();document.getElementById('prac-knowit').click();}
     }
   }
 });
