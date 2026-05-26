@@ -389,8 +389,9 @@
       .app-nav-btn { padding:7px 12px; }
     }
 
-    /* ── MOBILE ── */
+    /* ── MOBILE — same layout as desktop, just scaled down ── */
     @media(max-width:600px){
+      /* Tighten all padding */
       header { padding: 12px 14px; }
       .header-meta { display: none; }
       .app-nav-btn { padding: 7px 10px; font-size: 10px; }
@@ -398,47 +399,61 @@
       .page-wrap { padding: 20px 12px 60px; }
       .gallery-heading { font-size: 22px; }
 
+      /* Banner: keep horizontal, just smaller */
       .all-lessons-banner { padding: 14px 14px; gap: 12px; margin-bottom: 16px; }
       .banner-icon { width: 38px; height: 38px; font-size: 18px; }
       .banner-title { font-size: 14px; }
       .banner-sub { font-size: 11px; }
       .banner-arrow { width: 28px; height: 28px; font-size: 13px; }
 
+      /* Lesson grid: 2-col on mobile too */
       .lesson-grid { grid-template-columns: repeat(2,1fr); gap: 8px; }
       .lesson-card { padding: 14px 12px 12px; }
       .card-name { font-size: 11px; margin-bottom: 10px; }
 
+      /* Sub-topbar: keep row but tighter, tabs wrap to next row */
       .sub-topbar { padding: 10px 12px; gap: 6px; flex-wrap: wrap; }
       .topbar-title { font-size: 13px; }
       .mode-tabs { width: 100%; order: 3; gap: 4px; }
       .mode-tab { padding: 7px 0; font-size: 9.5px; flex: 1; text-align: center; }
 
+      /* Vocab */
       .vb-body { padding: 14px 12px 60px; }
       .vocab-item { padding: 11px 12px; gap: 8px; }
       .vocab-arabic { font-size: 20px; }
       .vocab-english { font-size: 11px; }
 
+      /* Study */
       .study-body { padding: 16px 12px 60px; }
       .prog-bar { margin-bottom: 18px; }
 
-      /* Card sizing on mobile */
-      .card-scene { height: 240px; margin-bottom: 18px; }
-      .card-face { padding: 24px 20px; }
-
+      /* Flashcard: shorter but still same layout */
+      .card-scene { height: 200px; margin-bottom: 18px; }
+      .card-face { padding: 20px 16px; }
+      #fc-front-txt   { font-size: 36px !important; }
+      #fc-back-txt    { font-size: 36px !important; }
+      #prac-front-txt { font-size: 36px !important; }
+      #prac-back-txt  { font-size: 36px !important; }
       .fc-btn { padding: 9px 14px; font-size: 10px; }
       .fc-kbd-hint { display: none; }
 
+      /* Quiz: keep 2×2 grid, just smaller text/padding */
       .quiz-prompt-card { padding: 18px 14px; margin-bottom: 12px; }
+      #qz-prompt      { font-size: 36px !important; }
+      #prac-qz-prompt { font-size: 36px !important; }
       .quiz-answers { grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 12px; }
       .ans-btn { padding: 14px 10px; font-size: 12px; border-radius: 10px; }
 
+      /* Practice judge: keep 2-col */
       .inf-judge-row { grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
       .inf-judge-btn { padding: 14px 10px; font-size: 13px; }
 
+      /* Feedback bar */
       .quiz-feedback-bar { padding: 10px 12px; gap: 6px; }
       .fb-text { font-size: 13px; }
       .fb-answer { font-size: 10px; }
 
+      /* Summary: keep 4-col on mobile */
       .summary-header { padding: 20px 14px 14px; }
       .summary-title { font-size: 18px; }
       .summary-stats { grid-template-columns: repeat(4,1fr); }
@@ -447,10 +462,12 @@
       .summary-stat-label { font-size: 8px; }
       .summary-actions { padding: 14px 14px; gap: 8px; }
 
+      /* Practice settings */
       .pset-row { flex-wrap: wrap; }
       .pset-label { width: 60px; font-size: 9px; }
       .pset-chip { padding: 5px 10px; font-size: 9px; }
 
+      /* Score strip */
       .score-badge { padding: 4px 8px; font-size: 10px; }
       .quiz-score-strip { gap: 5px; }
       .quiz-header-bar { margin-bottom: 14px; gap: 6px; }
@@ -797,17 +814,6 @@
 </section>
 
 <script>
-/* ── MOBILE HELPER ── */
-function isMobile() { return window.innerWidth <= 600; }
-
-/* ── FONT SIZE HELPERS ── */
-// Arabic: big on front, smaller on back (back is secondary info)
-// English: clear but not dominating
-function arabicFrontSize()  { return isMobile() ? '40px' : '52px'; }
-function arabicBackSize()   { return isMobile() ? '34px' : '52px'; }
-function englishFrontSize() { return isMobile() ? '20px' : '26px'; }
-function englishBackSize()  { return isMobile() ? '16px' : '22px'; }
-
 /* ── AUDIO ── */
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 let _actx;
@@ -1161,24 +1167,14 @@ function renderFC(){
   const inner=document.getElementById('fc-inner'), scene=document.getElementById('fc-scene');
   inner.style.transition='none';scene.classList.remove('flipped');fc.flipped=false;
   void inner.offsetWidth;inner.style.transition='';
-
-  // Always Arabic on front, English on back for the regular flashcard mode
   document.getElementById('fc-front-lbl').textContent='Arabic';
   const ft=document.getElementById('fc-front-txt');
-  ft.style.fontFamily="'Scheherazade New',serif";
-  ft.style.fontSize=arabicFrontSize();
-  ft.style.direction='rtl';
-  ft.style.lineHeight='1.4';
+  ft.style.fontFamily="'Scheherazade New',serif";ft.style.fontSize='52px';ft.style.direction='rtl';
   ft.textContent=word.arabic||'—';
-
   document.getElementById('fc-back-lbl').textContent='English';
   const bt=document.getElementById('fc-back-txt');
-  bt.style.fontFamily="'Syne',sans-serif";
-  bt.style.fontSize=englishBackSize();
-  bt.style.direction='ltr';
-  bt.style.fontWeight='600';
+  bt.style.fontFamily="'Syne',sans-serif";bt.style.fontSize='22px';bt.style.direction='ltr';
   bt.textContent=word.english||'—';
-
   document.getElementById('fc-cur').textContent=fc.index+1;
   document.getElementById('fc-tot').textContent=currentWords.length;
   document.getElementById('fc-prog').style.width=(currentWords.length>1?(fc.index/(currentWords.length-1))*100:100)+'%';
@@ -1225,28 +1221,17 @@ function renderQZ(){
   const prompt=document.getElementById('qz-prompt'), lbl=document.getElementById('qz-prompt-lbl');
   if(q.frontLang==='arabic'){
     lbl.textContent='What does this Arabic word mean?';
-    prompt.style.fontFamily="'Scheherazade New',serif";
-    prompt.style.fontSize=isMobile()?'44px':'56px';
-    prompt.style.direction='rtl';
+    prompt.style.fontFamily="'Scheherazade New',serif";prompt.style.fontSize='56px';prompt.style.direction='rtl';
     prompt.textContent=q.word.arabic||'—';
   } else {
     lbl.textContent='Which Arabic word means this?';
-    prompt.style.fontFamily="'Syne',sans-serif";
-    prompt.style.fontSize=isMobile()?'22px':'28px';
-    prompt.style.direction='ltr';
+    prompt.style.fontFamily="'Syne',sans-serif";prompt.style.fontSize='28px';prompt.style.direction='ltr';
     prompt.textContent=q.word.english||'—';
   }
   document.querySelectorAll('#qz-answers .ans-btn').forEach((btn,i)=>{
     const ch=q.choices[i];
-    if(q.frontLang==='arabic'){
-      btn.style.fontFamily="'Syne',sans-serif";btn.style.fontSize='14px';btn.style.direction='ltr';
-      btn.textContent=ch.word.english||'—';
-    } else {
-      btn.style.fontFamily="'Scheherazade New',serif";
-      btn.style.fontSize=isMobile()?'22px':'26px';
-      btn.style.direction='rtl';
-      btn.textContent=ch.word.arabic||'—';
-    }
+    if(q.frontLang==='arabic'){btn.style.fontFamily="'Syne',sans-serif";btn.style.fontSize='14px';btn.style.direction='ltr';btn.textContent=ch.word.english||'—';}
+    else{btn.style.fontFamily="'Scheherazade New',serif";btn.style.fontSize='26px';btn.style.direction='rtl';btn.textContent=ch.word.arabic||'—';}
     btn.className='ans-btn';btn.disabled=false;
   });
   hide(document.getElementById('qz-feedback'));
@@ -1432,41 +1417,21 @@ function renderPracFC(card) {
   inner.style.transition = '';
   document.getElementById('prac-know-row').style.display = 'none';
 
-  const fl = document.getElementById('prac-front-lbl');
-  const ft = document.getElementById('prac-front-txt');
-  const bl = document.getElementById('prac-back-lbl');
-  const bt = document.getElementById('prac-back-txt');
-
+  const fl = document.getElementById('prac-front-lbl'), ft = document.getElementById('prac-front-txt');
+  const bl = document.getElementById('prac-back-lbl'),  bt = document.getElementById('prac-back-txt');
   if (card.frontLang === 'arabic') {
-    // Front: Arabic (big)  |  Back: English (smaller, secondary)
     fl.textContent = 'Arabic';
-    ft.style.fontFamily = "'Scheherazade New',serif";
-    ft.style.fontSize   = arabicFrontSize();
-    ft.style.direction  = 'rtl';
-    ft.style.lineHeight = '1.4';
+    ft.style.fontFamily = "'Scheherazade New',serif"; ft.style.fontSize = '52px'; ft.style.direction = 'rtl';
     ft.textContent = card.word.arabic || '—';
-
     bl.textContent = 'English';
-    bt.style.fontFamily = "'Syne',sans-serif";
-    bt.style.fontSize   = englishBackSize();
-    bt.style.direction  = 'ltr';
-    bt.style.fontWeight = '600';
+    bt.style.fontFamily = "'Syne',sans-serif"; bt.style.fontSize = '22px'; bt.style.direction = 'ltr';
     bt.textContent = card.word.english || '—';
   } else {
-    // Front: English (clear but modest)  |  Back: Arabic (prominent)
     fl.textContent = 'English';
-    ft.style.fontFamily = "'Syne',sans-serif";
-    ft.style.fontSize   = englishFrontSize();
-    ft.style.direction  = 'ltr';
-    ft.style.lineHeight = '1.4';
-    ft.style.fontWeight = '600';
+    ft.style.fontFamily = "'Syne',sans-serif"; ft.style.fontSize = '26px'; ft.style.direction = 'ltr';
     ft.textContent = card.word.english || '—';
-
     bl.textContent = 'Arabic';
-    bt.style.fontFamily = "'Scheherazade New',serif";
-    bt.style.fontSize   = arabicBackSize();
-    bt.style.direction  = 'rtl';
-    bt.style.lineHeight = '1.4';
+    bt.style.fontFamily = "'Scheherazade New',serif"; bt.style.fontSize = '52px'; bt.style.direction = 'rtl';
     bt.textContent = card.word.arabic || '—';
   }
 }
@@ -1478,28 +1443,20 @@ function renderPracQZ(card) {
   const prompt = document.getElementById('prac-qz-prompt');
   if (card.frontLang === 'arabic') {
     lbl.textContent = 'What does this Arabic word mean?';
-    prompt.style.fontFamily = "'Scheherazade New',serif";
-    prompt.style.fontSize   = isMobile() ? '44px' : '56px';
-    prompt.style.direction  = 'rtl';
+    prompt.style.fontFamily = "'Scheherazade New',serif"; prompt.style.fontSize = '56px'; prompt.style.direction = 'rtl';
     prompt.textContent = card.word.arabic || '—';
   } else {
     lbl.textContent = 'Which Arabic word means this?';
-    prompt.style.fontFamily = "'Syne',sans-serif";
-    prompt.style.fontSize   = isMobile() ? '22px' : '28px';
-    prompt.style.direction  = 'ltr';
+    prompt.style.fontFamily = "'Syne',sans-serif"; prompt.style.fontSize = '28px'; prompt.style.direction = 'ltr';
     prompt.textContent = card.word.english || '—';
   }
   document.querySelectorAll('#prac-answers .ans-btn').forEach((btn, i) => {
     const ch = card.choices[i];
     if (card.frontLang === 'arabic') {
-      btn.style.fontFamily = "'Syne',sans-serif";
-      btn.style.fontSize   = '14px';
-      btn.style.direction  = 'ltr';
+      btn.style.fontFamily = "'Syne',sans-serif"; btn.style.fontSize = '14px'; btn.style.direction = 'ltr';
       btn.textContent = ch.word.english || '—';
     } else {
-      btn.style.fontFamily = "'Scheherazade New',serif";
-      btn.style.fontSize   = isMobile() ? '22px' : '26px';
-      btn.style.direction  = 'rtl';
+      btn.style.fontFamily = "'Scheherazade New',serif"; btn.style.fontSize = '26px'; btn.style.direction = 'rtl';
       btn.textContent = ch.word.arabic || '—';
     }
     btn.className = 'ans-btn'; btn.disabled = false;
