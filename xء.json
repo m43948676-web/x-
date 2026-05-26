@@ -147,7 +147,7 @@
 
     {
       "lessonNumber": 4, 
-      "inBookWords": [],
+      "inBookWords": [{ "arabic": "خَبَرٌ", "english": "Predicate / Information" }],
       "extraWords": []
     },
 
