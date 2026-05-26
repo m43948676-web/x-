@@ -389,115 +389,88 @@
       .app-nav-btn { padding:7px 12px; }
     }
 
-    /* ── MOBILE ── */
+    /* ── MOBILE — same layout as desktop, just scaled down ── */
     @media(max-width:600px){
-      /* Header: stack vertically so nothing squishes */
-      header {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 12px 16px;
-        gap: 10px;
-      }
-      .header-logo { justify-content: flex-start; }
-      /* Hide the word count meta — saves space */
+      /* Tighten all padding */
+      header { padding: 12px 14px; }
       .header-meta { display: none; }
-      /* Nav pills fill the full width */
-      .app-nav { justify-content: stretch; width: 100%; }
-      .app-nav-btn { flex: 1; text-align: center; padding: 9px 6px; font-size: 11px; }
+      .app-nav-btn { padding: 7px 10px; font-size: 10px; }
 
-      /* Page padding */
-      .page-wrap { padding: 20px 14px 60px; }
+      .page-wrap { padding: 20px 12px 60px; }
       .gallery-heading { font-size: 22px; }
-      .gallery-desc { font-size: 13px; }
 
-      /* All-lessons banner: tighter on mobile */
-      .all-lessons-banner { padding: 16px 14px; gap: 14px; margin-bottom: 16px; }
-      .banner-icon { width: 40px; height: 40px; font-size: 19px; border-radius: 10px; flex-shrink: 0; }
-      .banner-title { font-size: 15px; }
+      /* Banner: keep horizontal, just smaller */
+      .all-lessons-banner { padding: 14px 14px; gap: 12px; margin-bottom: 16px; }
+      .banner-icon { width: 38px; height: 38px; font-size: 18px; }
+      .banner-title { font-size: 14px; }
       .banner-sub { font-size: 11px; }
-      .banner-arrow { width: 30px; height: 30px; font-size: 14px; }
+      .banner-arrow { width: 28px; height: 28px; font-size: 13px; }
 
-      /* Lesson cards: single column */
-      .lesson-grid { grid-template-columns: 1fr; gap: 10px; }
+      /* Lesson grid: 2-col on mobile too */
+      .lesson-grid { grid-template-columns: repeat(2,1fr); gap: 8px; }
+      .lesson-card { padding: 14px 12px 12px; }
+      .card-name { font-size: 11px; margin-bottom: 10px; }
 
-      /* Sub-topbar: wrap mode-tabs to second row */
-      .sub-topbar {
-        padding: 10px 14px;
-        gap: 8px;
-      }
-      .topbar-info { flex: 1 1 auto; min-width: 0; }
-      .topbar-title { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      /* Mode tabs span full width on their own row */
-      .mode-tabs {
-        width: 100%;
-        order: 3;           /* push below back btn + title */
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 4px;
-      }
-      .mode-tab { padding: 9px 4px; font-size: 10px; text-align: center; letter-spacing: 0.04em; }
+      /* Sub-topbar: keep row but tighter, tabs wrap to next row */
+      .sub-topbar { padding: 10px 12px; gap: 6px; flex-wrap: wrap; }
+      .topbar-title { font-size: 13px; }
+      .mode-tabs { width: 100%; order: 3; gap: 4px; }
+      .mode-tab { padding: 7px 0; font-size: 9.5px; flex: 1; text-align: center; }
 
-      /* Vocab detail */
-      .vb-body { padding: 16px 12px 60px; }
-      .vocab-item { padding: 12px 14px; gap: 10px; }
-      .vocab-arabic { font-size: 22px; }
-      .vocab-english { font-size: 12px; }
+      /* Vocab */
+      .vb-body { padding: 14px 12px 60px; }
+      .vocab-item { padding: 11px 12px; gap: 8px; }
+      .vocab-arabic { font-size: 20px; }
+      .vocab-english { font-size: 11px; }
 
-      /* Study body */
-      .study-body { padding: 20px 14px 60px; }
+      /* Study */
+      .study-body { padding: 16px 12px 60px; }
+      .prog-bar { margin-bottom: 18px; }
 
-      /* Progress bar spacing */
-      .prog-bar { margin-bottom: 20px; }
+      /* Flashcard: shorter but still same layout */
+      .card-scene { height: 200px; margin-bottom: 18px; }
+      .card-face { padding: 20px 16px; }
+      #fc-front-txt   { font-size: 36px !important; }
+      #fc-back-txt    { font-size: 16px !important; }
+      #prac-front-txt { font-size: 36px !important; }
+      #prac-back-txt  { font-size: 16px !important; }
+      .fc-btn { padding: 9px 14px; font-size: 10px; }
+      .fc-kbd-hint { display: none; }
 
-      /* Flashcard scene — shorter on small screens */
-      .card-scene { height: 210px; margin-bottom: 20px; }
-      .card-face { padding: 24px 20px; }
-      #fc-front-txt   { font-size: 40px !important; }
-      #fc-back-txt    { font-size: 18px !important; }
-      #prac-front-txt { font-size: 40px !important; }
-      #prac-back-txt  { font-size: 18px !important; }
+      /* Quiz: keep 2×2 grid, just smaller text/padding */
+      .quiz-prompt-card { padding: 18px 14px; margin-bottom: 12px; }
+      #qz-prompt      { font-size: 38px !important; }
+      #prac-qz-prompt { font-size: 38px !important; }
+      .quiz-answers { grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 12px; }
+      .ans-btn { padding: 14px 10px; font-size: 12px; border-radius: 10px; }
 
-      /* FC nav buttons */
-      .fc-nav { gap: 8px; }
-      .fc-btn { padding: 10px 16px; font-size: 10px; gap: 5px; }
-      .fc-kbd-hint { display: none; } /* keyboard hints not useful on mobile */
+      /* Practice judge: keep 2-col */
+      .inf-judge-row { grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+      .inf-judge-btn { padding: 14px 10px; font-size: 13px; }
 
-      /* Quiz prompt */
-      .quiz-prompt-card { padding: 20px 14px; margin-bottom: 14px; }
-      #qz-prompt      { font-size: 42px !important; }
-      #prac-qz-prompt { font-size: 42px !important; }
-
-      /* Answer buttons: single column for easier tapping */
-      .quiz-answers { grid-template-columns: 1fr; gap: 8px; margin-bottom: 12px; }
-      .ans-btn { padding: 16px 14px; font-size: 14px; border-radius: 10px; }
-
-      /* Feedback bar: stack text */
-      .quiz-feedback-bar { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 14px; }
+      /* Feedback bar */
+      .quiz-feedback-bar { padding: 10px 12px; gap: 6px; }
+      .fb-text { font-size: 13px; }
       .fb-answer { font-size: 10px; }
 
-      /* Practice judge buttons: single column, big tap targets */
-      .inf-judge-row { grid-template-columns: 1fr; gap: 8px; margin-top: 12px; }
-      .inf-judge-btn { padding: 16px 14px; font-size: 15px; }
-
-      /* Summary */
-      .summary-header { padding: 22px 16px 16px; }
-      .summary-title { font-size: 20px; }
-      .summary-stats { grid-template-columns: repeat(2, 1fr); }
-      .summary-stat:nth-child(2) { border-right: none; }
-      .summary-stat:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
-      .summary-stat:nth-child(4) { border-top: 1px solid var(--border); }
-      .summary-stat { padding: 18px 10px; }
-      .summary-stat-value { font-size: 26px; }
-      .summary-actions { flex-direction: column; padding: 14px 16px; gap: 8px; }
+      /* Summary: keep 4-col on mobile */
+      .summary-header { padding: 20px 14px 14px; }
+      .summary-title { font-size: 18px; }
+      .summary-stats { grid-template-columns: repeat(4,1fr); }
+      .summary-stat { padding: 14px 6px; }
+      .summary-stat-value { font-size: 20px; }
+      .summary-stat-label { font-size: 8px; }
+      .summary-actions { padding: 14px 14px; gap: 8px; }
 
       /* Practice settings */
-      .pset-row { flex-direction: column; gap: 6px; }
-      .pset-label { width: auto; padding-top: 0; }
+      .pset-row { flex-wrap: wrap; }
+      .pset-label { width: 60px; font-size: 9px; }
+      .pset-chip { padding: 5px 10px; font-size: 9px; }
 
       /* Score strip */
-      .quiz-score-strip { gap: 6px; }
-      .score-badge { padding: 4px 10px; font-size: 10px; }
-      .quiz-header-bar { margin-bottom: 16px; gap: 8px; }
+      .score-badge { padding: 4px 8px; font-size: 10px; }
+      .quiz-score-strip { gap: 5px; }
+      .quiz-header-bar { margin-bottom: 14px; gap: 6px; }
     }
   </style>
 </head>
