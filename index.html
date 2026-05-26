@@ -421,15 +421,14 @@
       .study-body { padding: 16px 12px 60px; }
       .prog-bar { margin-bottom: 18px; }
 
-      /* Flashcard: shorter card, bigger text on BOTH front and back */
-      .card-scene { height: 200px; margin-bottom: 18px; }
-      .card-face { padding: 20px 16px; }
+      /* Flashcard sizing — mobile */
+      .card-scene { height: 240px; margin-bottom: 18px; }
+      .card-face  { padding: 24px 20px; }
 
-      /* THE FIX: override font sizes for both front AND back card text on mobile */
-      #fc-front-txt   { font-size: 38px !important; }
-      #fc-back-txt    { font-size: 38px !important; }
-      #prac-front-txt { font-size: 38px !important; }
-      #prac-back-txt  { font-size: 38px !important; }
+      #fc-front-txt   { font-size: 40px !important; line-height: 1.3 !important; }
+      #fc-back-txt    { font-size: 18px !important; line-height: 1.5 !important; }
+      #prac-front-txt { font-size: 40px !important; line-height: 1.3 !important; }
+      #prac-back-txt  { font-size: 18px !important; line-height: 1.5 !important; }
 
       .fc-btn { padding: 9px 14px; font-size: 10px; }
       .fc-kbd-hint { display: none; }
