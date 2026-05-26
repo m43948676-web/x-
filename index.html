@@ -110,7 +110,7 @@
       display:flex;align-items:center;justify-content:center;
       font-family:'Scheherazade New',serif;font-size:26px;color:var(--accent);
     }
-    .banner-info { flex:1; }
+    .banner-info { flex:1; min-width: 0; }
     .banner-eyebrow { font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:5px; }
     .banner-title { font-size:18px;font-weight:800;color:var(--text);letter-spacing:-0.01em;margin-bottom:4px; }
     .banner-sub   { font-size:13px;color:var(--muted); }
@@ -298,9 +298,7 @@
     .summary-btn.primary:hover { background:rgba(160,220,255,0.15);border-color:rgba(160,220,255,0.4); }
 
     /* PRACTICE SETTINGS */
-    .prac-settings-wrap {
-      margin-bottom: 24px;
-    }
+    .prac-settings-wrap { margin-bottom: 24px; }
     .prac-settings-toggle {
       display:flex;align-items:center;justify-content:space-between;
       background:var(--surface);border:1px solid var(--border);
@@ -379,6 +377,7 @@
     ::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.1);border-radius:4px; }
     ::-webkit-scrollbar-thumb:hover { background:rgba(255,255,255,0.18); }
 
+    /* ── TABLET ── */
     @media(max-width:900px){
       .lesson-grid{grid-template-columns:repeat(2,1fr);}
       header,.page-wrap,.sub-topbar,.vb-body,.study-body{padding-left:20px;padding-right:20px;}
@@ -389,18 +388,116 @@
       .summary-stat:nth-child(4){border-top:1px solid var(--border);}
       .app-nav-btn { padding:7px 12px; }
     }
+
+    /* ── MOBILE ── */
     @media(max-width:600px){
-      .lesson-grid{grid-template-columns:1fr;}
-      .quiz-answers{grid-template-columns:1fr;}
-      .inf-judge-row{grid-template-columns:1fr;}
-      .card-scene{height:240px;}
-      .mode-tabs{gap:4px;}
-      .mode-tab{padding:6px 10px;font-size:10px;}
-      .sub-topbar{padding-left:16px;padding-right:16px;}
-      .study-body{padding:28px 16px 60px;}
-      header{padding:14px 16px;}
-      .pset-row{flex-direction:column;gap:6px;}
-      .pset-label{width:auto;padding-top:0;}
+      /* Header: stack vertically so nothing squishes */
+      header {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px 16px;
+        gap: 10px;
+      }
+      .header-logo { justify-content: flex-start; }
+      /* Hide the word count meta — saves space */
+      .header-meta { display: none; }
+      /* Nav pills fill the full width */
+      .app-nav { justify-content: stretch; width: 100%; }
+      .app-nav-btn { flex: 1; text-align: center; padding: 9px 6px; font-size: 11px; }
+
+      /* Page padding */
+      .page-wrap { padding: 20px 14px 60px; }
+      .gallery-heading { font-size: 22px; }
+      .gallery-desc { font-size: 13px; }
+
+      /* All-lessons banner: tighter on mobile */
+      .all-lessons-banner { padding: 16px 14px; gap: 14px; margin-bottom: 16px; }
+      .banner-icon { width: 40px; height: 40px; font-size: 19px; border-radius: 10px; flex-shrink: 0; }
+      .banner-title { font-size: 15px; }
+      .banner-sub { font-size: 11px; }
+      .banner-arrow { width: 30px; height: 30px; font-size: 14px; }
+
+      /* Lesson cards: single column */
+      .lesson-grid { grid-template-columns: 1fr; gap: 10px; }
+
+      /* Sub-topbar: wrap mode-tabs to second row */
+      .sub-topbar {
+        padding: 10px 14px;
+        gap: 8px;
+      }
+      .topbar-info { flex: 1 1 auto; min-width: 0; }
+      .topbar-title { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      /* Mode tabs span full width on their own row */
+      .mode-tabs {
+        width: 100%;
+        order: 3;           /* push below back btn + title */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4px;
+      }
+      .mode-tab { padding: 9px 4px; font-size: 10px; text-align: center; letter-spacing: 0.04em; }
+
+      /* Vocab detail */
+      .vb-body { padding: 16px 12px 60px; }
+      .vocab-item { padding: 12px 14px; gap: 10px; }
+      .vocab-arabic { font-size: 22px; }
+      .vocab-english { font-size: 12px; }
+
+      /* Study body */
+      .study-body { padding: 20px 14px 60px; }
+
+      /* Progress bar spacing */
+      .prog-bar { margin-bottom: 20px; }
+
+      /* Flashcard scene — shorter on small screens */
+      .card-scene { height: 210px; margin-bottom: 20px; }
+      .card-face { padding: 24px 20px; }
+      #fc-front-txt   { font-size: 40px !important; }
+      #fc-back-txt    { font-size: 18px !important; }
+      #prac-front-txt { font-size: 40px !important; }
+      #prac-back-txt  { font-size: 18px !important; }
+
+      /* FC nav buttons */
+      .fc-nav { gap: 8px; }
+      .fc-btn { padding: 10px 16px; font-size: 10px; gap: 5px; }
+      .fc-kbd-hint { display: none; } /* keyboard hints not useful on mobile */
+
+      /* Quiz prompt */
+      .quiz-prompt-card { padding: 20px 14px; margin-bottom: 14px; }
+      #qz-prompt      { font-size: 42px !important; }
+      #prac-qz-prompt { font-size: 42px !important; }
+
+      /* Answer buttons: single column for easier tapping */
+      .quiz-answers { grid-template-columns: 1fr; gap: 8px; margin-bottom: 12px; }
+      .ans-btn { padding: 16px 14px; font-size: 14px; border-radius: 10px; }
+
+      /* Feedback bar: stack text */
+      .quiz-feedback-bar { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 14px; }
+      .fb-answer { font-size: 10px; }
+
+      /* Practice judge buttons: single column, big tap targets */
+      .inf-judge-row { grid-template-columns: 1fr; gap: 8px; margin-top: 12px; }
+      .inf-judge-btn { padding: 16px 14px; font-size: 15px; }
+
+      /* Summary */
+      .summary-header { padding: 22px 16px 16px; }
+      .summary-title { font-size: 20px; }
+      .summary-stats { grid-template-columns: repeat(2, 1fr); }
+      .summary-stat:nth-child(2) { border-right: none; }
+      .summary-stat:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
+      .summary-stat:nth-child(4) { border-top: 1px solid var(--border); }
+      .summary-stat { padding: 18px 10px; }
+      .summary-stat-value { font-size: 26px; }
+      .summary-actions { flex-direction: column; padding: 14px 16px; gap: 8px; }
+
+      /* Practice settings */
+      .pset-row { flex-direction: column; gap: 6px; }
+      .pset-label { width: auto; padding-top: 0; }
+
+      /* Score strip */
+      .quiz-score-strip { gap: 6px; }
+      .score-badge { padding: 4px 10px; font-size: 10px; }
+      .quiz-header-bar { margin-bottom: 16px; gap: 8px; }
     }
   </style>
 </head>
@@ -419,15 +516,15 @@
   </div>
 
   <nav class="app-nav">
-    <button class="app-nav-btn active" id="nav-vocab">📖 Word List</button>
-    <button class="app-nav-btn"        id="nav-study">✏️ Study</button>
+    <button class="app-nav-btn active" id="nav-study">✏️ Study</button>
+    <button class="app-nav-btn"        id="nav-vocab">📖 Word List</button>
   </nav>
 
   <div class="header-meta" id="header-meta">Loading…</div>
 </header>
 
 <!-- WORD LIST -->
-<section id="vb-menu" class="view">
+<section id="vb-menu" class="view view-hidden">
   <div class="page-wrap">
     <div class="gallery-header">
       <div class="gallery-eyebrow">All Words</div>
@@ -483,7 +580,7 @@
 </section>
 
 <!-- STUDY -->
-<section id="sm-menu" class="view view-hidden">
+<section id="sm-menu" class="view">
   <div class="page-wrap">
     <div class="gallery-header">
       <div class="gallery-eyebrow">Study</div>
@@ -539,12 +636,12 @@
             <div class="card-face card-face-front">
               <div class="card-label" id="fc-front-lbl">Arabic</div>
               <div id="fc-front-txt" style="font-family:'Scheherazade New',serif;font-size:52px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
-              <div class="card-hint">click to flip • space</div>
+              <div class="card-hint">tap to flip</div>
             </div>
             <div class="card-face card-face-back">
               <div class="card-label" id="fc-back-lbl">English</div>
               <div id="fc-back-txt" style="font-size:22px;font-weight:600;color:var(--text);text-align:center;letter-spacing:-0.01em;">—</div>
-              <div class="card-hint">click to flip back • space</div>
+              <div class="card-hint">tap to flip back</div>
             </div>
           </div>
         </div>
@@ -696,7 +793,7 @@
               <div class="card-face card-face-front">
                 <div class="card-label" id="prac-front-lbl">Arabic</div>
                 <div id="prac-front-txt" style="font-family:'Scheherazade New',serif;font-size:52px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
-                <div class="card-hint">click to flip • space</div>
+                <div class="card-hint">tap to flip</div>
               </div>
               <div class="card-face card-face-back">
                 <div class="card-label" id="prac-back-lbl">English</div>
@@ -857,13 +954,13 @@ syncRepChipState();
 updateSettingsSummary();
 
 /* ── STATE ── */
-let allLessons=[], currentWords=[], appTab='vocab', studyMode='fc';
+let allLessons=[], currentWords=[], appTab='study', studyMode='fc';
 const fc={index:0,flipped:false};
 const qz={questions:[],index:0,correct:0,wrong:0,answered:false};
 
 const prac={
   queue:[],
-  wrongCards:[],   // stores the exact card objects that were answered wrong
+  wrongCards:[],
   roundNum:1,
   totalCards:0,
   index:0,
@@ -1217,8 +1314,6 @@ document.getElementById('s-retry').addEventListener('click',()=>{
 
 /* ══════════════════════════════════════════
    PRACTICE MODE
-   wrongCards stores the EXACT card objects that were answered wrong,
-   so the next round replays the same frontLang + type — no re-randomisation.
 ══════════════════════════════════════════ */
 
 function buildPracQueue(words) {
@@ -1226,12 +1321,10 @@ function buildPracQueue(words) {
   const cards = [];
 
   words.forEach(word => {
-
     if (reps === 1) {
       const frontLang = Math.random() < 0.5 ? 'arabic' : 'english';
       const type = cardType === 'both' ? (Math.random() < 0.5 ? 'fc' : 'qz') : cardType;
       cards.push({ word, frontLang, type, choices: type === 'qz' ? buildPracChoices(word, frontLang, words) : [] });
-
     } else if (reps === 2) {
       const langs = shuffle(['arabic', 'english']);
       if (cardType === 'both') {
@@ -1245,9 +1338,7 @@ function buildPracQueue(words) {
           cards.push({ word, frontLang, type: cardType, choices: cardType === 'qz' ? buildPracChoices(word, frontLang, words) : [] });
         });
       }
-
     } else {
-      // 4× — all combos
       const pairs = [
         { frontLang: 'arabic',  type: 'fc' },
         { frontLang: 'english', type: 'fc' },
@@ -1273,14 +1364,9 @@ function buildPracChoices(correctWord, frontLang, wordPool) {
   return shuffle([correctWord, ...distractors]).map(w => ({ word: w, isCorrect: w === correctWord }));
 }
 
-/* Rebuild choices for a wrong card so button positions are fresh but
-   frontLang and type are preserved exactly. */
 function refreshCardChoices(card) {
   if (card.type !== 'qz') return card;
-  return {
-    ...card,
-    choices: buildPracChoices(card.word, card.frontLang, currentWords)
-  };
+  return { ...card, choices: buildPracChoices(card.word, card.frontLang, currentWords) };
 }
 
 function initPrac() {
@@ -1297,7 +1383,7 @@ function initPrac() {
   hide(pracEmpty);
 
   prac.queue      = buildPracQueue(currentWords);
-  prac.wrongCards = [];   // ← holds card objects, not indices
+  prac.wrongCards = [];
   prac.roundNum   = 1;
   prac.totalCards = prac.queue.length;
   prac.index      = 0;
@@ -1421,7 +1507,6 @@ document.getElementById('prac-knowit').addEventListener('click', () => {
 
 document.getElementById('prac-dontknow').addEventListener('click', () => {
   playSound('wrong');
-  // Save the exact card object so round 2 replays same frontLang + type
   prac.wrongCards.push(refreshCardChoices(prac.queue[prac.index]));
   pracAdvance(false);
 });
@@ -1450,7 +1535,6 @@ document.getElementById('prac-answers').addEventListener('click', e => {
     document.getElementById('prac-fb-ans').textContent  = `"${card.word.arabic}" = ${card.word.english}`;
   } else {
     playSound('wrong');
-    // Save the exact card object so round 2 replays same frontLang + type
     prac.wrongCards.push(refreshCardChoices(card));
     fbBar.className = 'quiz-feedback-bar fb-wrong';
     document.getElementById('prac-fb-text').textContent = '✗ Wrong';
@@ -1470,7 +1554,6 @@ function pracAdvance(wasCorrect) {
     if (prac.wrongCards.length === 0) {
       showPracDone();
     } else {
-      // ── KEY FIX: reuse the exact saved card objects, just shuffle their order ──
       prac.roundNum++;
       prac.queue      = shuffle([...prac.wrongCards]);
       prac.wrongCards = [];
