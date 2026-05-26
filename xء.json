@@ -136,10 +136,10 @@
         { "arabic": "نَكِرَةٌ", "english": "Indefinite"}, 
         { "arabic": "أَلْ", "english": "The"},
         { "arabic": "جُمْلَةٌ", "english": "Sentence"},
-        { "arabic": "جُمْلَةٌ اسْمِيَّةٌ", "english": "Nominal Sentence (Sentence dealing with nouns)"},
-        { "arabic": "جُمْلَةٌ فِعْلِيَّةٌ", "english": "Verbal Sentence (Sentence dealing with verbs)"},    
+        { "arabic": "جُمْلَةٌ اسْمِيَّةٌ", "english": "Nominal Sentence"},
+        { "arabic": "جُمْلَةٌ فِعْلِيَّةٌ", "english": "Verbal Sentence"},    
         { "arabic": "مُبْتَدَأٌ", "english": "Subject"},
-        { "arabic": "خَبَرٌ", "english": "Information / Predicate" }]
+        { "arabic": "خَبَرٌ", "english": "Predicate / Information" }]
     },
 
 
@@ -147,12 +147,7 @@
 
     {
       "lessonNumber": 4, 
-      "inBookWords": [
-        { "arabic": "جُمْلَةٌ", "english": "Sentence"},
-        { "arabic": "جُمْلَةٌ اسْمِيَّةٌ", "english": "Nominal Sentence (Sentence dealing with nouns)"},
-        { "arabic": "جُمْلَةٌ فِعْلِيَّةٌ", "english": "Verbal Sentence (Sentence dealing with verbs)"},    
-        { "arabic": "مُبْتَدَأٌ", "english": "Subject"},
-        { "arabic": "خَبَرٌ", "english": "Information / Predicate" }],
+      "inBookWords": [],
       "extraWords": []
     },
 
