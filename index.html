@@ -421,21 +421,14 @@
       .study-body { padding: 16px 12px 60px; }
       .prog-bar { margin-bottom: 18px; }
 
-      /* Flashcard sizing — mobile */
+      /* Card sizing on mobile */
       .card-scene { height: 240px; margin-bottom: 18px; }
-      .card-face  { padding: 24px 20px; }
-
-      #fc-front-txt   { font-size: 40px !important; line-height: 1.3 !important; }
-      #fc-back-txt    { font-size: 18px !important; line-height: 1.5 !important; }
-      #prac-front-txt { font-size: 40px !important; line-height: 1.3 !important; }
-      #prac-back-txt  { font-size: 18px !important; line-height: 1.5 !important; }
+      .card-face { padding: 24px 20px; }
 
       .fc-btn { padding: 9px 14px; font-size: 10px; }
       .fc-kbd-hint { display: none; }
 
       .quiz-prompt-card { padding: 18px 14px; margin-bottom: 12px; }
-      #qz-prompt      { font-size: 38px !important; }
-      #prac-qz-prompt { font-size: 38px !important; }
       .quiz-answers { grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 12px; }
       .ans-btn { padding: 14px 10px; font-size: 12px; border-radius: 10px; }
 
@@ -804,6 +797,17 @@
 </section>
 
 <script>
+/* ── MOBILE HELPER ── */
+function isMobile() { return window.innerWidth <= 600; }
+
+/* ── FONT SIZE HELPERS ── */
+// Arabic: big on front, smaller on back (back is secondary info)
+// English: clear but not dominating
+function arabicFrontSize()  { return isMobile() ? '40px' : '52px'; }
+function arabicBackSize()   { return isMobile() ? '34px' : '52px'; }
+function englishFrontSize() { return isMobile() ? '20px' : '26px'; }
+function englishBackSize()  { return isMobile() ? '16px' : '22px'; }
+
 /* ── AUDIO ── */
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 let _actx;
@@ -1157,14 +1161,24 @@ function renderFC(){
   const inner=document.getElementById('fc-inner'), scene=document.getElementById('fc-scene');
   inner.style.transition='none';scene.classList.remove('flipped');fc.flipped=false;
   void inner.offsetWidth;inner.style.transition='';
+
+  // Always Arabic on front, English on back for the regular flashcard mode
   document.getElementById('fc-front-lbl').textContent='Arabic';
   const ft=document.getElementById('fc-front-txt');
-  ft.style.fontFamily="'Scheherazade New',serif";ft.style.fontSize='52px';ft.style.direction='rtl';
+  ft.style.fontFamily="'Scheherazade New',serif";
+  ft.style.fontSize=arabicFrontSize();
+  ft.style.direction='rtl';
+  ft.style.lineHeight='1.4';
   ft.textContent=word.arabic||'—';
+
   document.getElementById('fc-back-lbl').textContent='English';
   const bt=document.getElementById('fc-back-txt');
-  bt.style.fontFamily="'Syne',sans-serif";bt.style.fontSize='22px';bt.style.direction='ltr';
+  bt.style.fontFamily="'Syne',sans-serif";
+  bt.style.fontSize=englishBackSize();
+  bt.style.direction='ltr';
+  bt.style.fontWeight='600';
   bt.textContent=word.english||'—';
+
   document.getElementById('fc-cur').textContent=fc.index+1;
   document.getElementById('fc-tot').textContent=currentWords.length;
   document.getElementById('fc-prog').style.width=(currentWords.length>1?(fc.index/(currentWords.length-1))*100:100)+'%';
@@ -1211,17 +1225,28 @@ function renderQZ(){
   const prompt=document.getElementById('qz-prompt'), lbl=document.getElementById('qz-prompt-lbl');
   if(q.frontLang==='arabic'){
     lbl.textContent='What does this Arabic word mean?';
-    prompt.style.fontFamily="'Scheherazade New',serif";prompt.style.fontSize='56px';prompt.style.direction='rtl';
+    prompt.style.fontFamily="'Scheherazade New',serif";
+    prompt.style.fontSize=isMobile()?'44px':'56px';
+    prompt.style.direction='rtl';
     prompt.textContent=q.word.arabic||'—';
   } else {
     lbl.textContent='Which Arabic word means this?';
-    prompt.style.fontFamily="'Syne',sans-serif";prompt.style.fontSize='28px';prompt.style.direction='ltr';
+    prompt.style.fontFamily="'Syne',sans-serif";
+    prompt.style.fontSize=isMobile()?'22px':'28px';
+    prompt.style.direction='ltr';
     prompt.textContent=q.word.english||'—';
   }
   document.querySelectorAll('#qz-answers .ans-btn').forEach((btn,i)=>{
     const ch=q.choices[i];
-    if(q.frontLang==='arabic'){btn.style.fontFamily="'Syne',sans-serif";btn.style.fontSize='14px';btn.style.direction='ltr';btn.textContent=ch.word.english||'—';}
-    else{btn.style.fontFamily="'Scheherazade New',serif";btn.style.fontSize='26px';btn.style.direction='rtl';btn.textContent=ch.word.arabic||'—';}
+    if(q.frontLang==='arabic'){
+      btn.style.fontFamily="'Syne',sans-serif";btn.style.fontSize='14px';btn.style.direction='ltr';
+      btn.textContent=ch.word.english||'—';
+    } else {
+      btn.style.fontFamily="'Scheherazade New',serif";
+      btn.style.fontSize=isMobile()?'22px':'26px';
+      btn.style.direction='rtl';
+      btn.textContent=ch.word.arabic||'—';
+    }
     btn.className='ans-btn';btn.disabled=false;
   });
   hide(document.getElementById('qz-feedback'));
@@ -1407,21 +1432,41 @@ function renderPracFC(card) {
   inner.style.transition = '';
   document.getElementById('prac-know-row').style.display = 'none';
 
-  const fl = document.getElementById('prac-front-lbl'), ft = document.getElementById('prac-front-txt');
-  const bl = document.getElementById('prac-back-lbl'),  bt = document.getElementById('prac-back-txt');
+  const fl = document.getElementById('prac-front-lbl');
+  const ft = document.getElementById('prac-front-txt');
+  const bl = document.getElementById('prac-back-lbl');
+  const bt = document.getElementById('prac-back-txt');
+
   if (card.frontLang === 'arabic') {
+    // Front: Arabic (big)  |  Back: English (smaller, secondary)
     fl.textContent = 'Arabic';
-    ft.style.fontFamily = "'Scheherazade New',serif"; ft.style.fontSize = '52px'; ft.style.direction = 'rtl';
+    ft.style.fontFamily = "'Scheherazade New',serif";
+    ft.style.fontSize   = arabicFrontSize();
+    ft.style.direction  = 'rtl';
+    ft.style.lineHeight = '1.4';
     ft.textContent = card.word.arabic || '—';
+
     bl.textContent = 'English';
-    bt.style.fontFamily = "'Syne',sans-serif"; bt.style.fontSize = '22px'; bt.style.direction = 'ltr';
+    bt.style.fontFamily = "'Syne',sans-serif";
+    bt.style.fontSize   = englishBackSize();
+    bt.style.direction  = 'ltr';
+    bt.style.fontWeight = '600';
     bt.textContent = card.word.english || '—';
   } else {
+    // Front: English (clear but modest)  |  Back: Arabic (prominent)
     fl.textContent = 'English';
-    ft.style.fontFamily = "'Syne',sans-serif"; ft.style.fontSize = '26px'; ft.style.direction = 'ltr';
+    ft.style.fontFamily = "'Syne',sans-serif";
+    ft.style.fontSize   = englishFrontSize();
+    ft.style.direction  = 'ltr';
+    ft.style.lineHeight = '1.4';
+    ft.style.fontWeight = '600';
     ft.textContent = card.word.english || '—';
+
     bl.textContent = 'Arabic';
-    bt.style.fontFamily = "'Scheherazade New',serif"; bt.style.fontSize = '52px'; bt.style.direction = 'rtl';
+    bt.style.fontFamily = "'Scheherazade New',serif";
+    bt.style.fontSize   = arabicBackSize();
+    bt.style.direction  = 'rtl';
+    bt.style.lineHeight = '1.4';
     bt.textContent = card.word.arabic || '—';
   }
 }
@@ -1433,20 +1478,28 @@ function renderPracQZ(card) {
   const prompt = document.getElementById('prac-qz-prompt');
   if (card.frontLang === 'arabic') {
     lbl.textContent = 'What does this Arabic word mean?';
-    prompt.style.fontFamily = "'Scheherazade New',serif"; prompt.style.fontSize = '56px'; prompt.style.direction = 'rtl';
+    prompt.style.fontFamily = "'Scheherazade New',serif";
+    prompt.style.fontSize   = isMobile() ? '44px' : '56px';
+    prompt.style.direction  = 'rtl';
     prompt.textContent = card.word.arabic || '—';
   } else {
     lbl.textContent = 'Which Arabic word means this?';
-    prompt.style.fontFamily = "'Syne',sans-serif"; prompt.style.fontSize = '28px'; prompt.style.direction = 'ltr';
+    prompt.style.fontFamily = "'Syne',sans-serif";
+    prompt.style.fontSize   = isMobile() ? '22px' : '28px';
+    prompt.style.direction  = 'ltr';
     prompt.textContent = card.word.english || '—';
   }
   document.querySelectorAll('#prac-answers .ans-btn').forEach((btn, i) => {
     const ch = card.choices[i];
     if (card.frontLang === 'arabic') {
-      btn.style.fontFamily = "'Syne',sans-serif"; btn.style.fontSize = '14px'; btn.style.direction = 'ltr';
+      btn.style.fontFamily = "'Syne',sans-serif";
+      btn.style.fontSize   = '14px';
+      btn.style.direction  = 'ltr';
       btn.textContent = ch.word.english || '—';
     } else {
-      btn.style.fontFamily = "'Scheherazade New',serif"; btn.style.fontSize = '26px'; btn.style.direction = 'rtl';
+      btn.style.fontFamily = "'Scheherazade New',serif";
+      btn.style.fontSize   = isMobile() ? '22px' : '26px';
+      btn.style.direction  = 'rtl';
       btn.textContent = ch.word.arabic || '—';
     }
     btn.className = 'ans-btn'; btn.disabled = false;
