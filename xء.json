@@ -13,7 +13,7 @@
         { "arabic": "مِفْتَاحٌ", "english": "Key"},
         { "arabic": "مَكْتَبٌ", "english": "Desk"},
         { "arabic": "سَرِيرٌ", "english": "Bed"},
-        { "arabic": "كُرْسِيٌّ", "english": "Chair"},
+        { "arabic": "كُرْسِيٌّ", "english": "Chair"},
         { "arabic": "مَا", "english": "What?"},
         { "arabic": "أَ", "english": "Turns statement into a question"},
         { "arabic": "نَعَمْ", "english": "Yes"},
@@ -35,7 +35,7 @@
         { "arabic": "مُدَرِّسٌ", "english": "Teacher"},
         { "arabic": "مِنْدِيلٌ", "english": "Handkerchief"}],
       "extraWords": [
-        { "arabic": "الدَّرْسُ", "english": "The Lesson"},
+        { "arabic": "الدَّرْسُ", "english": "The Lesson"},
         { "arabic": "الأَوَّلُ", "english": "The First"},
         { "arabic": "كَلِمَةٌ", "english": "Word"},
         { "arabic": "اسْمٌ", "english": "Noun"},
@@ -43,7 +43,7 @@
         { "arabic": "حَرْفٌ", "english": "Particle"},
         { "arabic": "جِنْسٌ", "english": "Gender"},
         { "arabic": "مُذَكَّرٌ", "english": "Masculine"},
-        { "arabic": "مُؤَنَّثٌ", "english": "Feminine"},
+        { "arabic": "مُؤَنَّثٌ", "english": "Feminine"},
         { "arabic": "عَدَدٌ", "english": "Number"},
         { "arabic": "مُفْرَدٌ", "english": "Singular"},
         { "arabic": "مُثَنَّى", "english": "Dual"},
@@ -148,9 +148,31 @@
     {
       "lessonNumber": 4, 
       "inBookWords": [
+      {"arabic": "فِي", "english": "In"},
+      {"arabic": "عَلَى", "english": "On"},
+      {"arabic": "أَيْنَ", "english": "Where?"},
+      {"arabic": "هُوَ", "english": "He"},
+      {"arabic": "هِيَ", "english": "She"},
+      {"arabic": "مُحَمَّدٌ", "english": "Muhammad"},
+      {"arabic": "غُرْفَةٌ", "english": "Room"},
+      {"arabic": "يَاسِرٌ", "english": "Yasir"},
+      {"arabic": "حَمَّامٌ", "english": "Bathroom"},
+      {"arabic": "آمِنَةُ", "english": "Amina"},
+      {"arabic": "مَطْبَخٌ", "english": "Kitchen"},
+      {"arabic": "سَاعَةٌ", "english": "Watch"},
+      {"arabic": "مَاذَا", "english": "what?"},
+      {"arabic": "مَدْرَسَةٌ", "english": "School"},
+      {"arabic": "جَامِعَةٌ", "english": "University"},
+      {"arabic": "زَيْنَبُ", "english": "Zaynab"},
+      {"arabic": "فَصْلٌ", "english": "Classroom"},
+      {"arabic": "مِرْحاضٌ", "english": "Toilet"},
+      {"arabic": "سَمَاءٌ", "english": "Sky"}
       
     ],
-      "extraWords": []
+      "extraWords": [
+        {"arabic": "حَرْفُ الْجَرِّ", "english": "Particle Of Pulling"},
+        {"arabic": "اسْمٌ مَجْرُورٌ", "english": "noun that has been pulled"},
+        {"arabic": "ضَمِرٌ", "english": "Pronoun"}]
     },
 
 
