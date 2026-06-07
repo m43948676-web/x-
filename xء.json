@@ -206,7 +206,7 @@
         {"arabic": "ضَمِرٌ", "english": "Pronoun"},
         {"arabic": "عَلَمٌ", "english": "Proper Noun"},
         {"arabic": "مَعْرَبٌ", "english": "Word ending changes"},
-        {"arabic": "مَبْنِيٌّ", "english": "Word ending fixed"},
+        {"arabic": "مَبْنِيٌّ", "english": "Word ending fixed"}
         
       ]
     },
