@@ -299,6 +299,8 @@
 
     /* PRACTICE SETTINGS */
     .prac-settings-wrap { margin-bottom: 24px; }
+
+    /* outer toggle — always visible */
     .prac-settings-toggle {
       display:flex;align-items:center;justify-content:space-between;
       background:var(--surface);border:1px solid var(--border);
@@ -307,37 +309,80 @@
       user-select:none;
     }
     .prac-settings-toggle:hover { border-color:var(--border-glow);background:var(--surface-hover); }
-    .prac-settings-toggle.open  { border-color:rgba(126,207,179,0.3);border-bottom-left-radius:0;border-bottom-right-radius:0; }
+    .prac-settings-toggle.open  {
+      border-color:rgba(126,207,179,0.3);
+      border-bottom-left-radius:0;border-bottom-right-radius:0;
+    }
     .pst-left  { display:flex;align-items:center;gap:10px; }
     .pst-icon  { font-size:13px; }
     .pst-label { font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--muted); }
     .pst-summary { font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent2);letter-spacing:0.06em; }
-    .pst-chevron { font-size:12px;color:var(--muted);transition:transform 0.22s ease; }
+    .pst-chevron { font-size:11px;color:var(--muted);transition:transform 0.22s ease; }
     .prac-settings-toggle.open .pst-chevron { transform:rotate(180deg); }
 
+    /* outer body */
     .prac-settings-body {
-      background:rgba(126,207,179,0.03);border:1px solid rgba(126,207,179,0.15);
-      border-top:none;border-bottom-left-radius:10px;border-bottom-right-radius:10px;
-      padding:20px 18px;display:none;
+      background:rgba(126,207,179,0.025);
+      border:1px solid rgba(126,207,179,0.15);
+      border-top:none;
+      border-bottom-left-radius:10px;border-bottom-right-radius:10px;
+      display:none;overflow:hidden;
     }
     .prac-settings-body.open { display:block; }
 
-    .pset-row { display:flex;gap:10px;margin-bottom:16px; }
-    .pset-row:last-child { margin-bottom:0; }
-    .pset-label {
-      font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
-      color:var(--muted);width:80px;flex-shrink:0;padding-top:9px;
+    /* each sub-row is its own mini accordion */
+    .pset-section { border-bottom:1px solid var(--border); }
+    .pset-section:last-child { border-bottom:none; }
+
+    .pset-section-hd {
+      display:flex;align-items:center;justify-content:space-between;
+      padding:13px 18px;cursor:pointer;
+      transition:background var(--transition);
+      user-select:none;gap:12px;
     }
+    .pset-section-hd:hover { background:rgba(255,255,255,0.03); }
+    .pset-section-hd.open  { background:rgba(255,255,255,0.02); }
+
+    .pset-hd-left { display:flex;align-items:center;gap:10px;min-width:0; }
+    .pset-hd-name {
+      font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;
+      text-transform:uppercase;color:var(--muted);white-space:nowrap;
+    }
+    .pset-hd-val {
+      font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.06em;
+      padding:3px 9px;border-radius:20px;border:1px solid var(--border);
+      color:var(--text);background:rgba(255,255,255,0.04);white-space:nowrap;
+      overflow:hidden;text-overflow:ellipsis;
+    }
+    .pset-hd-val.val-card  { color:var(--accent);border-color:rgba(160,220,255,0.2);background:rgba(160,220,255,0.07); }
+    .pset-hd-val.val-front { color:var(--accent-warn);border-color:rgba(255,184,108,0.2);background:rgba(255,184,108,0.07); }
+    .pset-hd-val.val-rep   { color:var(--accent2);border-color:rgba(126,207,179,0.2);background:rgba(126,207,179,0.07); }
+    .pset-hd-chevron { font-size:10px;color:var(--muted);transition:transform 0.2s ease;flex-shrink:0; }
+    .pset-section-hd.open .pset-hd-chevron { transform:rotate(180deg); }
+
+    .pset-section-bd {
+      padding:12px 18px 16px;display:none;
+      border-top:1px solid rgba(255,255,255,0.04);
+    }
+    .pset-section-bd.open { display:block; }
+
     .pset-chips { display:flex;gap:6px;flex-wrap:wrap; }
     .pset-chip {
-      padding:7px 14px;border-radius:8px;border:1px solid var(--border);background:none;
+      padding:8px 15px;border-radius:8px;border:1px solid var(--border);background:none;
       color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.07em;
       cursor:pointer;transition:all var(--transition);white-space:nowrap;
     }
     .pset-chip:hover { border-color:var(--border-glow);color:var(--text);background:rgba(255,255,255,0.04); }
     .pset-chip.active-card  { background:rgba(160,220,255,0.1);border-color:rgba(160,220,255,0.3);color:var(--accent); }
     .pset-chip.active-rep   { background:rgba(126,207,179,0.1);border-color:rgba(126,207,179,0.3);color:var(--accent2); }
+    .pset-chip.active-front { background:rgba(255,184,108,0.1);border-color:rgba(255,184,108,0.3);color:var(--accent-warn); }
     .pset-chip.disabled-chip { opacity:0.28;cursor:not-allowed;pointer-events:none; }
+
+    .x4-hint {
+      font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);
+      letter-spacing:0.05em;padding-top:8px;display:none;line-height:1.6;
+    }
+    .x4-hint.visible { display:block; }
 
     .prac-wrong-banner {
       background:rgba(255,107,107,0.07);border:1px solid rgba(255,107,107,0.2);
@@ -377,7 +422,6 @@
     ::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.1);border-radius:4px; }
     ::-webkit-scrollbar-thumb:hover { background:rgba(255,255,255,0.18); }
 
-    /* ── TABLET ── */
     @media(max-width:900px){
       .lesson-grid{grid-template-columns:repeat(2,1fr);}
       header,.page-wrap,.sub-topbar,.vb-body,.study-body{padding-left:20px;padding-right:20px;}
@@ -389,45 +433,30 @@
       .app-nav-btn { padding:7px 12px; }
     }
 
-    /* ── MOBILE — same layout as desktop, just scaled down ── */
     @media(max-width:600px){
-      /* Tighten all padding */
       header { padding: 12px 14px; }
       .header-meta { display: none; }
       .app-nav-btn { padding: 7px 10px; font-size: 10px; }
-
       .page-wrap { padding: 20px 12px 60px; }
       .gallery-heading { font-size: 22px; }
-
-      /* Banner: keep horizontal, just smaller */
       .all-lessons-banner { padding: 14px 14px; gap: 12px; margin-bottom: 16px; }
       .banner-icon { width: 38px; height: 38px; font-size: 18px; }
       .banner-title { font-size: 14px; }
       .banner-sub { font-size: 11px; }
       .banner-arrow { width: 28px; height: 28px; font-size: 13px; }
-
-      /* Lesson grid: 2-col on mobile too */
       .lesson-grid { grid-template-columns: repeat(2,1fr); gap: 8px; }
       .lesson-card { padding: 14px 12px 12px; }
       .card-name { font-size: 11px; margin-bottom: 10px; }
-
-      /* Sub-topbar: keep row but tighter, tabs wrap to next row */
       .sub-topbar { padding: 10px 12px; gap: 6px; flex-wrap: wrap; }
       .topbar-title { font-size: 13px; }
       .mode-tabs { width: 100%; order: 3; gap: 4px; }
       .mode-tab { padding: 7px 0; font-size: 9.5px; flex: 1; text-align: center; }
-
-      /* Vocab */
       .vb-body { padding: 14px 12px 60px; }
       .vocab-item { padding: 11px 12px; gap: 8px; }
       .vocab-arabic { font-size: 20px; }
       .vocab-english { font-size: 11px; }
-
-      /* Study */
       .study-body { padding: 16px 12px 60px; }
       .prog-bar { margin-bottom: 18px; }
-
-      /* Flashcard: shorter but still same layout */
       .card-scene { height: 200px; margin-bottom: 18px; }
       .card-face { padding: 20px 16px; }
       #fc-front-txt   { font-size: 36px !important; }
@@ -436,24 +465,16 @@
       #prac-back-txt  { font-size: 36px !important; }
       .fc-btn { padding: 9px 14px; font-size: 10px; }
       .fc-kbd-hint { display: none; }
-
-      /* Quiz: keep 2×2 grid, just smaller text/padding */
       .quiz-prompt-card { padding: 18px 14px; margin-bottom: 12px; }
       #qz-prompt      { font-size: 36px !important; }
       #prac-qz-prompt { font-size: 36px !important; }
       .quiz-answers { grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 12px; }
       .ans-btn { padding: 14px 10px; font-size: 12px; border-radius: 10px; }
-
-      /* Practice judge: keep 2-col */
       .inf-judge-row { grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
       .inf-judge-btn { padding: 14px 10px; font-size: 13px; }
-
-      /* Feedback bar */
       .quiz-feedback-bar { padding: 10px 12px; gap: 6px; }
       .fb-text { font-size: 13px; }
       .fb-answer { font-size: 10px; }
-
-      /* Summary: keep 4-col on mobile */
       .summary-header { padding: 20px 14px 14px; }
       .summary-title { font-size: 18px; }
       .summary-stats { grid-template-columns: repeat(4,1fr); }
@@ -461,13 +482,9 @@
       .summary-stat-value { font-size: 20px; }
       .summary-stat-label { font-size: 8px; }
       .summary-actions { padding: 14px 14px; gap: 8px; }
-
-      /* Practice settings */
-      .pset-row { flex-wrap: wrap; }
-      .pset-label { width: 60px; font-size: 9px; }
-      .pset-chip { padding: 5px 10px; font-size: 9px; }
-
-      /* Score strip */
+      .pset-chip { padding: 6px 11px; font-size: 9px; }
+      .pset-hd-name { font-size: 9px; }
+      .pset-hd-val  { font-size: 9px; padding: 2px 7px; }
       .score-badge { padding: 4px 8px; font-size: 10px; }
       .quiz-score-strip { gap: 5px; }
       .quiz-header-bar { margin-bottom: 14px; gap: 6px; }
@@ -487,12 +504,10 @@
       <div class="logo-sub">BOOK ONE</div>
     </div>
   </div>
-
   <nav class="app-nav">
     <button class="app-nav-btn active" id="nav-study">✏️ Study</button>
     <button class="app-nav-btn"        id="nav-vocab">📖 Word List</button>
   </nav>
-
   <div class="header-meta" id="header-meta">Loading…</div>
 </header>
 
@@ -558,7 +573,7 @@
     <div class="gallery-header">
       <div class="gallery-eyebrow">Study</div>
       <h1 class="gallery-heading">Pick a Lesson</h1>
-      <p class="gallery-desc">Flashcards, Quiz & Practice</p>
+      <p class="gallery-desc">Flashcards, Quiz &amp; Practice</p>
     </div>
     <div class="all-lessons-banner" id="sm-all-btn">
       <div class="banner-icon">∞</div>
@@ -694,33 +709,76 @@
 
       <!-- Settings panel -->
       <div class="prac-settings-wrap" id="prac-settings-wrap">
+        <!-- outer toggle -->
         <div class="prac-settings-toggle" id="prac-settings-toggle">
           <div class="pst-left">
             <span class="pst-icon">⚙</span>
             <span class="pst-label">Practice Settings</span>
           </div>
           <div style="display:flex;align-items:center;gap:12px;">
-            <span class="pst-summary" id="pst-summary">4× · Both</span>
+            <span class="pst-summary" id="pst-summary">2× · Both · Random</span>
             <span class="pst-chevron">▼</span>
           </div>
         </div>
+
+        <!-- outer body — contains three mini-accordions -->
         <div class="prac-settings-body" id="prac-settings-body">
-          <div class="pset-row">
-            <div class="pset-label">Card type</div>
-            <div class="pset-chips" id="pset-type-chips">
-              <button class="pset-chip" data-type="fc">⊞ Flashcard only</button>
-              <button class="pset-chip" data-type="qz">◈ Quiz only</button>
-              <button class="pset-chip active-card" data-type="both">⊞ + ◈ Both</button>
+
+          <!-- Card type -->
+          <div class="pset-section">
+            <div class="pset-section-hd" data-section="type">
+              <div class="pset-hd-left">
+                <span class="pset-hd-name">Card type</span>
+                <span class="pset-hd-val val-card" id="pset-val-type">Both</span>
+              </div>
+              <span class="pset-hd-chevron">▼</span>
+            </div>
+            <div class="pset-section-bd" id="pset-bd-type">
+              <div class="pset-chips" id="pset-type-chips">
+                <button class="pset-chip" data-type="fc">⊞ Flashcard only</button>
+                <button class="pset-chip" data-type="qz">◈ Quiz only</button>
+                <button class="pset-chip active-card" data-type="both">⊞ + ◈ Both</button>
+              </div>
             </div>
           </div>
-          <div class="pset-row">
-            <div class="pset-label">Reps / word</div>
-            <div class="pset-chips" id="pset-rep-chips">
-              <button class="pset-chip" data-rep="1">× 1</button>
-              <button class="pset-chip active-rep" data-rep="2">× 2</button>
-              <button class="pset-chip" data-rep="4">× 4 (both only)</button>
+
+          <!-- Front side -->
+          <div class="pset-section">
+            <div class="pset-section-hd" data-section="front">
+              <div class="pset-hd-left">
+                <span class="pset-hd-name">Front side</span>
+                <span class="pset-hd-val val-front" id="pset-val-front">Random</span>
+              </div>
+              <span class="pset-hd-chevron">▼</span>
+            </div>
+            <div class="pset-section-bd" id="pset-bd-front">
+              <div class="pset-chips" id="pset-front-chips">
+                <button class="pset-chip active-front" data-front="random">🔀 Random</button>
+                <button class="pset-chip" data-front="arabic">ع Arabic → guess English</button>
+                <button class="pset-chip" data-front="english">A English → guess Arabic</button>
+              </div>
             </div>
           </div>
+
+          <!-- Reps / word -->
+          <div class="pset-section">
+            <div class="pset-section-hd" data-section="rep">
+              <div class="pset-hd-left">
+                <span class="pset-hd-name">Reps / word</span>
+                <span class="pset-hd-val val-rep" id="pset-val-rep">× 2</span>
+              </div>
+              <span class="pset-hd-chevron">▼</span>
+            </div>
+            <div class="pset-section-bd" id="pset-bd-rep">
+              <div class="pset-chips" id="pset-rep-chips">
+                <button class="pset-chip" data-rep="1">× 1</button>
+                <button class="pset-chip active-rep" data-rep="2">× 2</button>
+                <button class="pset-chip" data-rep="4">× 4</button>
+              </div>
+              <div class="x4-hint" id="x4-hint"></div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -866,41 +924,100 @@ function fadeIn(el){
 }
 
 /* ── PRACTICE SETTINGS STATE ── */
-const pracSettings = { cardType: 'both', reps: 2 };
+// frontSide: 'random' | 'arabic' | 'english'
+const pracSettings = { cardType: 'both', frontSide: 'random', reps: 2 };
+
+/* ── Max unique cards per word ──
+   fixed front + single type  → 1
+   fixed front + both types   → 2
+   random front + single type → 2
+   random front + both types  → 4  */
+function maxRepsForSettings() {
+  const rand = pracSettings.frontSide === 'random';
+  const both = pracSettings.cardType  === 'both';
+  if (rand && both) return 4;
+  if (rand || both) return 2;
+  return 1;
+}
+
+function typeLabel()  { return pracSettings.cardType  === 'fc' ? 'Flashcard' : pracSettings.cardType === 'qz' ? 'Quiz' : 'Both'; }
+function frontLabel() { return pracSettings.frontSide === 'arabic' ? 'Arabic front' : pracSettings.frontSide === 'english' ? 'English front' : 'Random'; }
+function repLabel()   { return '× ' + pracSettings.reps; }
 
 function updateSettingsSummary() {
-  const typeLabel = pracSettings.cardType === 'fc' ? 'FC only' : pracSettings.cardType === 'qz' ? 'Quiz only' : 'Both';
-  document.getElementById('pst-summary').textContent = pracSettings.reps + '× · ' + typeLabel;
+  document.getElementById('pst-summary').textContent   = pracSettings.reps + '× · ' + typeLabel() + ' · ' + frontLabel();
+  document.getElementById('pset-val-type').textContent  = typeLabel();
+  document.getElementById('pset-val-front').textContent = frontLabel();
+  document.getElementById('pset-val-rep').textContent   = repLabel();
 }
 
 function syncRepChipState() {
-  const x4 = document.querySelector('#pset-rep-chips [data-rep="4"]');
-  const isDisabled = pracSettings.cardType !== 'both';
-  x4.classList.toggle('disabled-chip', isDisabled);
-  if (isDisabled && pracSettings.reps === 4) {
-    pracSettings.reps = 2;
+  const max    = maxRepsForSettings();
+  const x2chip = document.querySelector('#pset-rep-chips [data-rep="2"]');
+  const x4chip = document.querySelector('#pset-rep-chips [data-rep="4"]');
+  const x4hint = document.getElementById('x4-hint');
+
+  x2chip.classList.toggle('disabled-chip', max < 2);
+  x4chip.classList.toggle('disabled-chip', max < 4);
+
+  if (max < 4) {
+    const needs = [];
+    if (pracSettings.cardType  !== 'both')   needs.push('Card type = Both');
+    if (pracSettings.frontSide !== 'random') needs.push('Front side = Random');
+    x4hint.textContent = '× 4 needs: ' + needs.join(' + ');
+    x4hint.classList.add('visible');
+  } else {
+    x4hint.classList.remove('visible');
+  }
+
+  if (pracSettings.reps > max) {
+    pracSettings.reps = max;
     document.querySelectorAll('#pset-rep-chips .pset-chip').forEach(c => c.classList.remove('active-rep'));
-    document.querySelector('#pset-rep-chips [data-rep="2"]').classList.add('active-rep');
+    document.querySelector(`#pset-rep-chips [data-rep="${max}"]`).classList.add('active-rep');
+  }
+  if (max === 1 && pracSettings.reps !== 1) {
+    pracSettings.reps = 1;
+    document.querySelectorAll('#pset-rep-chips .pset-chip').forEach(c => c.classList.remove('active-rep'));
+    document.querySelector('#pset-rep-chips [data-rep="1"]').classList.add('active-rep');
   }
 }
 
 function refreshPracIfRunning() {
   if (studyMode !== 'prac') return;
   const pracDone = document.getElementById('prac-done');
-  if (pracDone.style.display !== '' && pracDone.style.opacity !== '0') return;
+  if (pracDone.style.display !== 'none' && pracDone.style.opacity !== '0') return;
   initPrac();
 }
 
-/* Settings toggle */
+/* ── Sub-section accordion ── */
+document.querySelectorAll('.pset-section-hd').forEach(hd => {
+  hd.addEventListener('click', () => {
+    const section = hd.dataset.section;
+    const bd      = document.getElementById('pset-bd-' + section);
+    const isOpen  = bd.classList.contains('open');
+    // close all
+    document.querySelectorAll('.pset-section-hd').forEach(h => h.classList.remove('open'));
+    document.querySelectorAll('.pset-section-bd').forEach(b => b.classList.remove('open'));
+    // toggle this one
+    if (!isOpen) { hd.classList.add('open'); bd.classList.add('open'); }
+  });
+});
+
+/* ── Outer toggle ── */
 document.getElementById('prac-settings-toggle').addEventListener('click', () => {
   const toggle = document.getElementById('prac-settings-toggle');
   const body   = document.getElementById('prac-settings-body');
   const open   = body.classList.contains('open');
   toggle.classList.toggle('open', !open);
   body.classList.toggle('open', !open);
+  // close all sub-sections when outer closes
+  if (open) {
+    document.querySelectorAll('.pset-section-hd').forEach(h => h.classList.remove('open'));
+    document.querySelectorAll('.pset-section-bd').forEach(b => b.classList.remove('open'));
+  }
 });
 
-/* Card type chips */
+/* ── Card type chips ── */
 document.getElementById('pset-type-chips').addEventListener('click', e => {
   const chip = e.target.closest('.pset-chip');
   if (!chip || chip.classList.contains('disabled-chip')) return;
@@ -912,7 +1029,19 @@ document.getElementById('pset-type-chips').addEventListener('click', e => {
   refreshPracIfRunning();
 });
 
-/* Reps chips */
+/* ── Front side chips ── */
+document.getElementById('pset-front-chips').addEventListener('click', e => {
+  const chip = e.target.closest('.pset-chip');
+  if (!chip || chip.classList.contains('disabled-chip')) return;
+  document.querySelectorAll('#pset-front-chips .pset-chip').forEach(c => c.classList.remove('active-front'));
+  chip.classList.add('active-front');
+  pracSettings.frontSide = chip.dataset.front;
+  syncRepChipState();
+  updateSettingsSummary();
+  refreshPracIfRunning();
+});
+
+/* ── Reps chips ── */
 document.getElementById('pset-rep-chips').addEventListener('click', e => {
   const chip = e.target.closest('.pset-chip');
   if (!chip || chip.classList.contains('disabled-chip')) return;
@@ -930,16 +1059,7 @@ updateSettingsSummary();
 let allLessons=[], currentWords=[], appTab='study', studyMode='fc';
 const fc={index:0,flipped:false};
 const qz={questions:[],index:0,correct:0,wrong:0,answered:false};
-
-const prac={
-  queue:[],
-  wrongCards:[],
-  roundNum:1,
-  totalCards:0,
-  index:0,
-  flipped:false,
-  answered:false
-};
+const prac={queue:[],wrongCards:[],roundNum:1,totalCards:0,index:0,flipped:false,answered:false};
 
 /* ── DOM ── */
 const navVocab=document.getElementById('nav-vocab');
@@ -1289,38 +1409,52 @@ document.getElementById('s-retry').addEventListener('click',()=>{
    PRACTICE MODE
 ══════════════════════════════════════════ */
 
+/**
+ * Determine the front language for a card based on pracSettings.frontSide.
+ * 'random' → coin flip
+ * 'arabic' → always arabic on front
+ * 'english' → always english on front
+ */
+function resolveFrontLang() {
+  if (pracSettings.frontSide === 'arabic')  return 'arabic';
+  if (pracSettings.frontSide === 'english') return 'english';
+  return Math.random() < 0.5 ? 'arabic' : 'english';
+}
+
 function buildPracQueue(words) {
-  const { cardType, reps } = pracSettings;
+  const { cardType, frontSide, reps } = pracSettings;
   const cards = [];
+  const push = (word, frontLang, type) =>
+    cards.push({ word, frontLang, type, choices: type === 'qz' ? buildPracChoices(word, frontLang, words) : [] });
 
   words.forEach(word => {
     if (reps === 1) {
-      const frontLang = Math.random() < 0.5 ? 'arabic' : 'english';
+      const frontLang = resolveFrontLang();
       const type = cardType === 'both' ? (Math.random() < 0.5 ? 'fc' : 'qz') : cardType;
-      cards.push({ word, frontLang, type, choices: type === 'qz' ? buildPracChoices(word, frontLang, words) : [] });
+      push(word, frontLang, type);
+
     } else if (reps === 2) {
-      const langs = shuffle(['arabic', 'english']);
-      if (cardType === 'both') {
-        const types = shuffle(['fc', 'qz']);
-        langs.forEach((frontLang, i) => {
-          const type = types[i];
-          cards.push({ word, frontLang, type, choices: type === 'qz' ? buildPracChoices(word, frontLang, words) : [] });
-        });
+      if (frontSide === 'random') {
+        const langs = shuffle(['arabic', 'english']);
+        if (cardType === 'both') {
+          const types = shuffle(['fc', 'qz']);
+          langs.forEach((lang, i) => push(word, lang, types[i]));
+        } else {
+          langs.forEach(lang => push(word, lang, cardType));
+        }
       } else {
-        langs.forEach(frontLang => {
-          cards.push({ word, frontLang, type: cardType, choices: cardType === 'qz' ? buildPracChoices(word, frontLang, words) : [] });
-        });
+        // Fixed front-lang, vary card-type (only reachable when cardType='both')
+        shuffle(['fc', 'qz']).forEach(type => push(word, frontSide, type));
       }
+
     } else {
-      const pairs = [
+      // x4: all combos — only reachable when cardType='both' AND frontSide='random'
+      shuffle([
         { frontLang: 'arabic',  type: 'fc' },
         { frontLang: 'english', type: 'fc' },
         { frontLang: 'arabic',  type: 'qz' },
         { frontLang: 'english', type: 'qz' },
-      ];
-      pairs.forEach(({ frontLang, type }) => {
-        cards.push({ word, frontLang, type, choices: type === 'qz' ? buildPracChoices(word, frontLang, words) : [] });
-      });
+      ]).forEach(({ frontLang, type }) => push(word, frontLang, type));
     }
   });
 
@@ -1533,7 +1667,6 @@ function pracAdvance(wasCorrect) {
       prac.index      = 0;
       prac.flipped    = false;
       prac.answered   = false;
-
       document.getElementById('prac-round-badge').textContent = `Round ${prac.roundNum}`;
       document.getElementById('prac-wrong-notice').style.display = '';
       updatePracLeftBadge();
