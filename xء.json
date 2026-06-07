@@ -153,26 +153,62 @@
       {"arabic": "أَيْنَ", "english": "Where?"},
       {"arabic": "هُوَ", "english": "He"},
       {"arabic": "هِيَ", "english": "She"},
-      {"arabic": "مُحَمَّدٌ", "english": "Muhammad"},
       {"arabic": "غُرْفَةٌ", "english": "Room"},
       {"arabic": "يَاسِرٌ", "english": "Yasir"},
       {"arabic": "حَمَّامٌ", "english": "Bathroom"},
-      {"arabic": "آمِنَةُ", "english": "Amina"},
       {"arabic": "مَطْبَخٌ", "english": "Kitchen"},
       {"arabic": "سَاعَةٌ", "english": "Watch"},
       {"arabic": "مَاذَا", "english": "what?"},
       {"arabic": "مَدْرَسَةٌ", "english": "School"},
       {"arabic": "جَامِعَةٌ", "english": "University"},
-      {"arabic": "زَيْنَبُ", "english": "Zaynab"},
       {"arabic": "فَصْلٌ", "english": "Classroom"},
       {"arabic": "مِرْحاضٌ", "english": "Toilet"},
-      {"arabic": "سَمَاءٌ", "english": "Sky"}
+      {"arabic": "سَمَاءٌ", "english": "Sky"},
+      {"arabic": "مِنْ", "english": "From"},
+      {"arabic": "إِلَى", "english": "To"},
+      {"arabic": "أَنْتَ", "english": "You"},
+      {"arabic": "أَنَا", "english": "I"},
+      {"arabic": "يَابَانٌ", "english": "Japan"},
+      {"arabic": "صِينٌ", "english": "China"},
+      {"arabic": "هِنْدٌ", "english": "India"},
+      {"arabic": "خَرَجَ", "english": "He left"},
+      {"arabic": "ذَهَبَ", "english": "He went"},
+      {"arabic": "مُدِيرٌ", "english": "Head teacher"},
+      {"arabic": "فِلِبِّينٌ", "english": "Philippines"},
+      {"arabic": "سُوقٌ", "english": "Market"},
+
+      {"arabic": "مُحَمَّدٌ", "english": "Muhammad"},
+      {"arabic": "خَالِدٌ", "english": "Khalid"},
+      {"arabic": "حَامِدٌ", "english": "Hamid"},
+      {"arabic": "عَمَّارٌ", "english": "Omar"},
+      {"arabic": "سَعِيدٌ", "english": "Saeid"},
+      {"arabic": "عَلِيٌ", "english": "Ali"},
+      {"arabic": "عَبَّاسٌ", "english": "Abbas"},
+      
+      
+      {"arabic": "آمِنَةُ", "english": "Amina"},
+      {"arabic": "زَيْنَبُ", "english": "Zaynab"},
+      {"arabic": "فَاطِمَةُ", "english": "Fatima"},
+      {"arabic": "مَرْيَمُ", "english": "Maryam"},
+      {"arabic": "عَائِشَةُ", "english": "Aisha"},
+      {"arabic": "خَدِيجَةُ", "english": "Khadija"},
+      {"arabic": "صَفِيَّةُ", "english": "Safiyya"},
+      {"arabic": "زَيْنَبُ", "english": "Ruqayyah"}
+      
+      
+      
+      
       
     ],
       "extraWords": [
         {"arabic": "حَرْفُ الْجَرِّ", "english": "Particle Of Pulling"},
         {"arabic": "اسْمٌ مَجْرُورٌ", "english": "noun that has been pulled"},
-        {"arabic": "ضَمِرٌ", "english": "Pronoun"}]
+        {"arabic": "ضَمِرٌ", "english": "Pronoun"},
+        {"arabic": "عَلَمٌ", "english": "Proper Noun"},
+        {"arabic": "مَعْرَبٌ", "english": "Word ending changes"},
+        {"arabic": "مَبْنِيٌّ", "english": "Word ending fixed"},
+        
+      ]
     },
 
 
