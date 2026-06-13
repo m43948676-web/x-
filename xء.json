@@ -201,14 +201,25 @@
       
     ],
       "extraWords": [
-        {"arabic": "حَرْفُ الْجَرِّ", "english": "Particle Of Pulling"},
-        {"arabic": "اسْمٌ مَجْرُورٌ", "english": "noun that has been pulled"},
-        {"arabic": "ضَمِرٌ", "english": "Pronoun"},
-        {"arabic": "عَلَمٌ", "english": "Proper Noun"},
-        {"arabic": "مَعْرَبٌ", "english": "Word ending changes"},
-        {"arabic": "مَبْنِيٌّ", "english": "Word ending fixed"}
-        
-      ]
+        {"arabic": "حَرْفُ الْجَرِّ", "english": "Particle of pulling"},
+        {"arabic": "اسْمٌ مَجْرُورٌ", "english": "Noun that has been pulled"},
+        {"arabic": "ضَمِيرٌ", "english": "Pronoun"},
+        {"arabic": "عَلَمٌ", "english": "Proper noun"},
+        {"arabic": "مُعْرَبٌ", "english": "Word whose ending changes"},
+        {"arabic": "مَبْنِيٌّ", "english": "Word whose ending is fixed"},
+        {"arabic": "اِسْمُ الاِسْتِفْهَامِ", "english": "Noun used to ask questions"},
+        {"arabic": "مَرْفُوعٌ", "english": "A noun that is mu‘rab and its ending is ḍamma or ḍamma‑tanwīn"},
+        {"arabic": "مَنْصُوبٌ", "english": "A noun that is mu‘rab and its ending is fatḥa or fatḥa‑tanwīn"},
+        {"arabic": "مَجْرُورٌ", "english": "A noun that is mu‘rab and its ending is kasra or kasra‑tanwīn"},
+        {"arabic": "شِبْهُ جُمْلَةٍ", "english": "Phrase"},
+        {"arabic": "جَارٌّ وَمَجْرُورُ", "english": "Pulling particle and the pulled noun"},
+        {"arabic": "حَرْفُ جَرٍّ وَاسْمٌ مَجْرُورٌ", "english": "Pulling particle and the pulled noun"},
+        {"arabic": "فَاعِلٌ", "english": "Doer"}
+
+
+    
+]
+
     },
 
 
@@ -216,8 +227,19 @@
 
     {
       "lessonNumber": 5,
-      "inBookWords": [],
-      "extraWords": []
+      "inBookWords": [{"arabic": "الدرس الخَامِسُ", "english": "The fith lesson"},
+      {"arabic": "يَا", "english": "O"},
+      {"arabic": "Over there", "english": "هُنَاكَ"},
+      {"arabic": "حَقِيبَةٌ", "english": "Bag"},
+      {"arabic": "تَحْتَ", "english": "Under"}
+      
+    ],
+    "extraWords": [
+      {"arabic": "الاِضَافَةُ", "english": "Linking two nouns (ascribing the first to the second)"},
+      {"arabic": "مُضَافٌ", "english": "Possessed"},
+      {"arabic": "مُضَافٌ إِلَيْهِ", "english": "Possessor"}
+    ]
+
     },
     {
       "lessonNumber": 6,
