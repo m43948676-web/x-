@@ -106,7 +106,7 @@
         { "arabic": "لَحْمٌ", "english": "Meat"},
         { "arabic": "حُلْوٌ", "english": "Sweet"},
         { "arabic": "مَرِيضٌ", "english": "Sick"},
-        { "arabic": "دُكَانٌ", "english": "Shop"},
+        { "arabic": "دُكَّانٌ", "english": "Shop"},
         { "arabic": "غَنِيٌّ", "english": "Rich"},
         { "arabic": "طَوِيلٌ", "english": "Tall"},
         { "arabic": "فَقِيرٌ", "english": "Poor"},
@@ -229,13 +229,26 @@
       "lessonNumber": 5,
       "inBookWords": [{"arabic": "الدرس الخَامِسُ", "english": "The fith lesson"},
       {"arabic": "يَا", "english": "O"},
-      {"arabic": "Over there", "english": "هُنَاكَ"},
+      {"arabic": "هُنَاكَ", "english": "Over there"},
       {"arabic": "حَقِيبَةٌ", "english": "Bag"},
-      {"arabic": "تَحْتَ", "english": "Under"}
-      
+      {"arabic": "تَحْتَ", "english": "Under"},
+      {"arabic": "مُغْلَقٌ", "english": "Closed"},
+      {"arabic": "مُغْلَقٌ", "english": "Closed"},
+      {"arabic": "مُهَنْدِسٌ", "english": "Engineer"},
+      {"arabic": "اسْمٌ", "english": "Name / noun"},
+      {"arabic": "بِنْتُ", "english": "Daughter"},
+      {"arabic": "سَيَّارَةٌ", "english": "Car"},
+      {"arabic": "اِبْنُ", "english": "Son"},
+      {"arabic": "مَدِينَةٌ", "english": "City"},
+      {"arabic": "مُنَوَّرَةٌ", "english": "Radiant / illuminated"},
+      {"arabic": "عَمٌّ", "english": "Paternal uncle"},
+      {"arabic": "خَالٌ", "english": "Maternal uncle"},
+      {"arabic": "شَارِعٌ", "english": "Street"}
+
+
     ],
     "extraWords": [
-      {"arabic": "الاِضَافَةُ", "english": "Linking two nouns (ascribing the first to the second)"},
+      {"arabic": "الْإِضَافَةُ", "english": "Linking two nouns (ascribing the first to the second)"},
       {"arabic": "مُضَافٌ", "english": "Possessed"},
       {"arabic": "مُضَافٌ إِلَيْهِ", "english": "Possessor"}
     ]
