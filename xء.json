@@ -227,30 +227,29 @@
 
     {
       "lessonNumber": 5,
-      "inBookWords": [{"arabic": "الدرس الخَامِسُ", "english": "The fith lesson"},
-      {"arabic": "يَا", "english": "O"},
-      {"arabic": "هُنَاكَ", "english": "Over there"},
-      {"arabic": "حَقِيبَةٌ", "english": "Bag"},
-      {"arabic": "تَحْتَ", "english": "Under"},
-      {"arabic": "مُغْلَقٌ", "english": "Closed"},
-      {"arabic": "مُغْلَقٌ", "english": "Closed"},
-      {"arabic": "مُهَنْدِسٌ", "english": "Engineer"},
-      {"arabic": "اسْمٌ", "english": "Name / noun"},
-      {"arabic": "بِنْتُ", "english": "Daughter"},
-      {"arabic": "سَيَّارَةٌ", "english": "Car"},
-      {"arabic": "اِبْنُ", "english": "Son"},
-      {"arabic": "مَدِينَةٌ", "english": "City"},
-      {"arabic": "مُنَوَّرَةٌ", "english": "Radiant / illuminated"},
-      {"arabic": "عَمٌّ", "english": "Paternal uncle"},
-      {"arabic": "خَالٌ", "english": "Maternal uncle"},
-      {"arabic": "شَارِعٌ", "english": "Street"}
-
-
-    ],
+      "inBookWords": [
+        {"arabic": "الدَّرْسُ الخَامِسُ", "english": "The fifth lesson"},
+        {"arabic": "يَا", "english": "O"},
+        {"arabic": "هُنَاكَ", "english": "Over there"},
+        {"arabic": "حَقِيبَةٌ", "english": "Bag"},
+        {"arabic": "تَحْتَ", "english": "Under"},
+        {"arabic": "مُغْلَقٌ", "english": "Closed"},
+        {"arabic": "مُهَنْدِسٌ", "english": "Engineer"},
+        {"arabic": "اسْمٌ", "english": "Name / noun"},
+        {"arabic": "بِنْتٌ", "english": "Daughter"},
+        {"arabic": "سَيَّارَةٌ", "english": "Car"},
+        {"arabic": "ٱبْنٌ", "english": "Son"},
+        {"arabic": "مَدِينَةٌ", "english": "City"},
+        {"arabic": "مُنَوَّرَةٌ", "english": "Radiant / illuminated"},
+        {"arabic": "عَمٌّ", "english": "Paternal uncle"},
+        {"arabic": "خَالٌ", "english": "Maternal uncle"},
+        {"arabic": "شَارِعٌ", "english": "Street"}
+      ],
     "extraWords": [
       {"arabic": "الْإِضَافَةُ", "english": "Linking two nouns (ascribing the first to the second)"},
       {"arabic": "مُضَافٌ", "english": "Possessed"},
-      {"arabic": "مُضَافٌ إِلَيْهِ", "english": "Possessor"}
+      {"arabic": "مُضَافٌ إِلَيْهِ", "english": "Possessor"},
+      {"arabic": "ظَرْفٌ", "english": "Adverb"},
     ]
 
     },
