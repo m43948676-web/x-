@@ -243,19 +243,34 @@
         {"arabic": "مُنَوَّرَةٌ", "english": "Radiant / illuminated"},
         {"arabic": "عَمٌّ", "english": "Paternal uncle"},
         {"arabic": "خَالٌ", "english": "Maternal uncle"},
-        {"arabic": "شَارِعٌ", "english": "Street"}
+        {"arabic": "شَارِعٌ", "english": "Street"},
+        {"arabic": "أُسْتَاذٌ ", "english": "Teacher"},
+        {"arabic": "دُكْتُورٌ ", "english": "Doctor"},
+        {"arabic": "شَيْخٌ", "english": "Elderly man or religious scholar"},
+        {"arabic": "وَزِيرٌ ", "english": "Minister"},
+        {"arabic": "مَسْعُودٌ", "english": "Mas'ud"},
+        {"arabic": "فَيْصَلٌ ", "english": "Faisal"},
+        {"arabic": " عِرَاقٌ", "english": "Iraq"}
+        
+
+        
+
+      
       ],
     "extraWords": [
       {"arabic": "الْإِضَافَةُ", "english": "Linking two nouns (ascribing the first to the second)"},
       {"arabic": "مُضَافٌ", "english": "Possessed"},
       {"arabic": "مُضَافٌ إِلَيْهِ", "english": "Possessor"},
       {"arabic": "ظَرْفٌ", "english": "Adverb"},
+      {"arabic": "يَا النِّدَاء", "english": "Ya of calling"}
+
+
     ]
 
     },
     {
       "lessonNumber": 6,
-      "inBookWords": [], 
+      "inBookWords": [{"arabic": "السَادِسُ ", "english": "The 6th"}], 
       "extraWords": []
     },
     {
