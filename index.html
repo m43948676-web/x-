@@ -907,7 +907,7 @@ fetch('xء.json')
     renderVBGrid();renderSMGrid();
   })
   .catch(err=>{
-    vbGrid.innerHTML=smGrid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);">⚠ Could not load t.json<br><small style="color:#444">${err.message}</small></div>`;
+    vbGrid.innerHTML=smGrid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);">⚠ Could not load xء.json<br><small style="color:#444">${err.message}</small></div>`;
     headerMeta.textContent='Error';
   });
 
