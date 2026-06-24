@@ -896,7 +896,7 @@ const tabQz=document.getElementById('tab-qz');
 const tabPrac=document.getElementById('tab-prac');
 
 fetch('xء.json')
-  .then(r=>{if(!r.ok)throw new Error('Failed to load t.json');return r.json();})
+  .then(r=>{if(!r.ok)throw new Error('Failed to load xء.json');return r.json();})
   .then(data=>{
     allLessons=data.lessons||[];
     const total=allLessons.reduce((a,l)=>a+(l.inBookWords||[]).length+(l.extraWords||[]).length,0);
