@@ -8,6 +8,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Scheherazade+New:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
+    @font-face {
+      font-family: 'InkBrush';
+      src: url('aaa.otf') format('opentype');
+      font-weight:normal;
+      font-style: normal;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -44,127 +51,71 @@
     .ambient-1 { width:500px;height:500px;background:radial-gradient(circle,rgba(100,190,255,0.06) 0%,transparent 70%);top:-150px;left:-100px; }
     .ambient-2 { width:400px;height:400px;background:radial-gradient(circle,rgba(100,220,180,0.05) 0%,transparent 70%);bottom:-100px;right:-50px; }
 
-    /* ── GENDER SVG ICONS ── */
-    .gender-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .gender-icon svg {
-      display: block;
-      shape-rendering: geometricPrecision;
-    }
-    .gender-icon-f svg { fill: var(--gender-f); }
-    .gender-icon-m svg { fill: var(--gender-m); }
+    .gender-icon { display:inline-flex;align-items:center;justify-content:center;flex-shrink:0; }
+    .gender-icon svg { display:block;shape-rendering:geometricPrecision; }
+    .gender-icon-f svg { fill:var(--gender-f); }
+    .gender-icon-m svg { fill:var(--gender-m); }
+    .gender-icon-lg { width:28px;height:28px; }
+    .gender-icon-lg svg { width:28px;height:28px; }
+    .gender-icon-list { width:22px;height:22px; }
+    .gender-icon-list svg { width:22px;height:22px; }
+    .gender-icon-sm { width:16px;height:16px; }
+    .gender-icon-sm svg { width:16px;height:16px; }
 
-    /* Size variants */
-    .gender-icon-lg { width: 28px; height: 28px; }
-    .gender-icon-lg svg { width: 28px; height: 28px; }
-
-    /* Word list size — bigger & crisp */
-    .gender-icon-list { width: 22px; height: 22px; }
-    .gender-icon-list svg { width: 22px; height: 22px; }
-
-    /* Answer button size */
-    .gender-icon-sm { width: 16px; height: 16px; }
-    .gender-icon-sm svg { width: 16px; height: 16px; }
-
-    /* Card face: gender icon sits in bottom-left corner */
     .card-face {
-      position: absolute; inset: 0; border-radius: var(--card-radius);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      backface-visibility: hidden; -webkit-backface-visibility: hidden;
-      padding: 40px; border: 1px solid var(--border); user-select: none;
+      position:absolute;inset:0;border-radius:var(--card-radius);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      backface-visibility:hidden;-webkit-backface-visibility:hidden;
+      padding:40px;border:1px solid var(--border);user-select:none;
     }
-    .card-gender-corner {
-      position: absolute;
-      bottom: 14px;
-      left: 16px;
-    }
-
-    /* Answer button inner flex wrapper */
-    .ans-btn-inner { display:flex; align-items:center; justify-content:center; gap:7px; flex-wrap:wrap; }
+    .card-gender-corner { position:absolute;bottom:14px;left:16px; }
+    .ans-btn-inner { display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap; }
 
     header {
-      position: sticky; top: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 40px;
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(20px);
-      background: rgba(10,10,10,0.8);
+      position:sticky;top:0;z-index:200;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 40px;
+      border-bottom:1px solid var(--border);
+      backdrop-filter:blur(20px);
+      background:rgba(10,10,10,0.8);
     }
     .header-logo { display:flex;align-items:center;gap:12px;cursor:pointer; }
     .logo-mark {
       width:36px;height:36px;border:1.5px solid var(--border-glow);border-radius:8px;
       display:flex;align-items:center;justify-content:center;
-      font-family:'Scheherazade New',serif;font-size:18px;color:var(--accent);
+      font-family:'InkBrush','Scheherazade New',serif;font-size:18px;color:var(--accent);
       background:rgba(160,220,255,0.05);
     }
     .logo-text { font-size:15px;font-weight:700;letter-spacing:0.04em;color:var(--text); }
     .logo-sub  { font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;margin-top:1px; }
 
-    .app-nav {
-      display: flex; gap: 4px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 4px;
-    }
-    .app-nav-btn {
-      padding: 7px 20px; border-radius: 7px; border: none; background: none;
-      color: var(--muted); font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px; letter-spacing: 0.08em; cursor: pointer;
-      transition: all var(--transition);
-    }
-    .app-nav-btn:hover { color: var(--text); background: rgba(255,255,255,0.04); }
-    .app-nav-btn.active {
-      background: rgba(160,220,255,0.1);
-      color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(160,220,255,0.2);
-    }
-
+    .app-nav { display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:4px; }
+    .app-nav-btn { padding:7px 20px;border-radius:7px;border:none;background:none;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all var(--transition); }
+    .app-nav-btn:hover { color:var(--text);background:rgba(255,255,255,0.04); }
+    .app-nav-btn.active { background:rgba(160,220,255,0.1);color:var(--accent);box-shadow:0 0 0 1px rgba(160,220,255,0.2); }
     .header-meta { font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.06em; }
 
     .view { position:relative;z-index:1; }
     .view-hidden { display:none !important; }
 
     .all-lessons-banner {
-      position:relative; cursor:pointer;
+      position:relative;cursor:pointer;
       background:linear-gradient(135deg,rgba(160,220,255,0.07) 0%,rgba(126,207,179,0.05) 100%);
-      border:1px solid rgba(160,220,255,0.2); border-radius:var(--card-radius);
-      padding:28px 32px; margin-bottom:28px;
-      display:flex; align-items:center; gap:24px;
+      border:1px solid rgba(160,220,255,0.2);border-radius:var(--card-radius);
+      padding:28px 32px;margin-bottom:28px;
+      display:flex;align-items:center;gap:24px;
       transition:background var(--transition),border-color var(--transition),transform var(--transition),box-shadow var(--transition);
       overflow:hidden;
     }
-    .all-lessons-banner:hover {
-      background:linear-gradient(135deg,rgba(160,220,255,0.12) 0%,rgba(126,207,179,0.09) 100%);
-      border-color:rgba(160,220,255,0.38); transform:translateY(-2px);
-      box-shadow:0 12px 40px rgba(0,0,0,0.5),0 0 0 1px rgba(160,220,255,0.1);
-    }
+    .all-lessons-banner:hover { background:linear-gradient(135deg,rgba(160,220,255,0.12) 0%,rgba(126,207,179,0.09) 100%);border-color:rgba(160,220,255,0.38);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.5),0 0 0 1px rgba(160,220,255,0.1); }
     .all-lessons-banner:active { transform:translateY(0); }
-    .all-lessons-banner::after {
-      content:''; position:absolute; top:0;left:0;right:0;height:1px;
-      background:linear-gradient(90deg,transparent,rgba(160,220,255,0.35),transparent);
-    }
-    .banner-icon {
-      width:52px;height:52px;flex-shrink:0;border:1.5px solid rgba(160,220,255,0.25);
-      border-radius:12px;background:rgba(160,220,255,0.07);
-      display:flex;align-items:center;justify-content:center;
-      font-family:'Scheherazade New',serif;font-size:26px;color:var(--accent);
-    }
-    .banner-info { flex:1; min-width: 0; }
+    .all-lessons-banner::after { content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(160,220,255,0.35),transparent); }
+    .banner-icon { width:52px;height:52px;flex-shrink:0;border:1.5px solid rgba(160,220,255,0.25);border-radius:12px;background:rgba(160,220,255,0.07);display:flex;align-items:center;justify-content:center;font-family:'InkBrush','Scheherazade New',serif;font-size:26px;color:var(--accent); }
+    .banner-info { flex:1;min-width:0; }
     .banner-eyebrow { font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:5px; }
     .banner-title { font-size:18px;font-weight:800;color:var(--text);letter-spacing:-0.01em;margin-bottom:4px; }
     .banner-sub   { font-size:13px;color:var(--muted); }
-    .banner-arrow {
-      width:36px;height:36px;border-radius:50%;flex-shrink:0;
-      background:rgba(160,220,255,0.08);border:1px solid rgba(160,220,255,0.2);
-      display:flex;align-items:center;justify-content:center;
-      font-size:16px;color:var(--accent);
-      transition:transform var(--transition),background var(--transition);
-    }
+    .banner-arrow { width:36px;height:36px;border-radius:50%;flex-shrink:0;background:rgba(160,220,255,0.08);border:1px solid rgba(160,220,255,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--accent);transition:transform var(--transition),background var(--transition); }
     .all-lessons-banner:hover .banner-arrow { transform:translateX(3px);background:rgba(160,220,255,0.15); }
 
     .page-wrap { padding:48px 40px 80px;max-width:1100px;margin:0 auto; }
@@ -174,12 +125,7 @@
     .gallery-desc    { margin-top:8px;font-size:14px;color:var(--muted); }
 
     .lesson-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:14px; }
-    .lesson-card {
-      position:relative;background:var(--surface);border:1px solid var(--border);
-      border-radius:var(--card-radius);padding:22px 20px 18px;cursor:pointer;
-      transition:background var(--transition),border-color var(--transition),transform var(--transition),box-shadow var(--transition);
-      overflow:hidden;opacity:0;transform:translateY(16px);animation:cardIn 0.4s ease forwards;
-    }
+    .lesson-card { position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);padding:22px 20px 18px;cursor:pointer;transition:background var(--transition),border-color var(--transition),transform var(--transition),box-shadow var(--transition);overflow:hidden;opacity:0;transform:translateY(16px);animation:cardIn 0.4s ease forwards; }
     .lesson-card:hover { background:var(--surface-hover);border-color:var(--border-glow);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.4); }
     .lesson-card:active { transform:translateY(0); }
     .lesson-card.empty-lesson { opacity:0.45; }
@@ -194,18 +140,8 @@
     .card-arrow  { position:absolute;top:18px;right:18px;width:28px;height:28px;border-radius:50%;background:rgba(160,220,255,0.07);border:1px solid rgba(160,220,255,0.15);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--transition);font-size:12px;color:var(--accent); }
     .lesson-card:hover .card-arrow { opacity:1; }
 
-    .sub-topbar {
-      position:sticky;top:0;z-index:50;
-      display:flex;align-items:center;gap:16px;padding:16px 40px;
-      border-bottom:1px solid var(--border);backdrop-filter:blur(24px);
-      background:rgba(10,10,10,0.85);flex-wrap:wrap;
-    }
-    .back-btn {
-      display:flex;align-items:center;gap:7px;background:none;border:1px solid var(--border);
-      border-radius:8px;color:var(--muted);font-family:'IBM Plex Mono',monospace;
-      font-size:11px;letter-spacing:0.08em;padding:7px 14px;cursor:pointer;
-      transition:border-color var(--transition),color var(--transition),background var(--transition);white-space:nowrap;
-    }
+    .sub-topbar { position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:16px;padding:16px 40px;border-bottom:1px solid var(--border);backdrop-filter:blur(24px);background:rgba(10,10,10,0.85);flex-wrap:wrap; }
+    .back-btn { display:flex;align-items:center;gap:7px;background:none;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;padding:7px 14px;cursor:pointer;transition:border-color var(--transition),color var(--transition),background var(--transition);white-space:nowrap; }
     .back-btn:hover { border-color:var(--border-glow);color:var(--accent);background:rgba(160,220,255,0.05); }
     .back-btn svg { transition:transform var(--transition); }
     .back-btn:hover svg { transform:translateX(-3px); }
@@ -233,31 +169,18 @@
     .col-count  { margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted); }
 
     .vocab-list { list-style:none; }
-    .vocab-item {
-      display:flex;align-items:center;justify-content:space-between;
-      padding:18px 22px;border-bottom:1px solid var(--border);
-      transition:background var(--transition);gap:16px;
-      opacity:0;animation:itemIn 0.35s ease forwards;
-    }
+    .vocab-item { display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--border);transition:background var(--transition);gap:16px;opacity:0;animation:itemIn 0.35s ease forwards; }
     .vocab-item:last-child { border-bottom:none; }
     .vocab-item:hover { background:rgba(255,255,255,0.03); }
     @keyframes itemIn { from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);} }
-    .vocab-arabic  { font-family:'Scheherazade New',serif;font-size:28px;direction:rtl;color:#fff;line-height:1.4;text-align:right;flex:1; }
+    .vocab-arabic  { font-family:'InkBrush','Scheherazade New',serif;font-size:28px;direction:rtl;color:#fff;line-height:1.4;text-align:right;flex:1; }
     .vocab-divider { width:1px;height:28px;background:var(--border);flex-shrink:0; }
     .vocab-english { font-size:13px;color:var(--muted);font-weight:400;text-align:left;flex:1;letter-spacing:0.01em; }
-    .vocab-lesson-tag {
-      font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--muted);
-      background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:4px;
-      padding:2px 7px;white-space:nowrap;flex-shrink:0;
-    }
+    .vocab-lesson-tag { font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:4px;padding:2px 7px;white-space:nowrap;flex-shrink:0; }
     .empty-state { text-align:center;padding:60px 20px;color:var(--muted);font-size:14px;font-family:'IBM Plex Mono',monospace; }
 
     .mode-tabs { display:flex;gap:6px; }
-    .mode-tab {
-      padding:7px 18px;border-radius:8px;border:1px solid var(--border);background:none;
-      color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;
-      cursor:pointer;transition:all var(--transition);
-    }
+    .mode-tab { padding:7px 18px;border-radius:8px;border:1px solid var(--border);background:none;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all var(--transition); }
     .mode-tab:hover          { border-color:var(--border-glow);color:var(--accent);background:rgba(160,220,255,0.04); }
     .mode-tab.active         { background:rgba(160,220,255,0.1);border-color:rgba(160,220,255,0.3);color:var(--accent); }
     .mode-tab.prac-tab:hover  { color:var(--accent2)!important;border-color:rgba(126,207,179,0.25)!important;background:rgba(126,207,179,0.06)!important; }
@@ -305,12 +228,7 @@
     .q-counter { font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em; }
     .quiz-prompt-card { background:var(--surface);border:1px solid rgba(160,220,255,0.1);border-radius:var(--card-radius);padding:36px 40px;text-align:center;margin-bottom:20px;position:relative; }
     .quiz-prompt-label { font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px; }
-    /* Gender icon bottom-left of quiz prompt card */
-    .quiz-gender-corner {
-      position: absolute;
-      bottom: 14px;
-      left: 16px;
-    }
+    .quiz-gender-corner { position:absolute;bottom:14px;left:16px; }
     .quiz-answers { display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px; }
     .ans-btn { padding:22px 20px;border-radius:var(--card-radius);border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:'Syne',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all var(--transition);text-align:center;line-height:1.4; }
     .ans-btn:hover:not(:disabled) { border-color:var(--border-glow);background:var(--surface-hover);transform:translateY(-1px); }
@@ -346,14 +264,8 @@
     .summary-btn.primary { background:rgba(160,220,255,0.08);border-color:rgba(160,220,255,0.25);color:var(--accent); }
     .summary-btn.primary:hover { background:rgba(160,220,255,0.15);border-color:rgba(160,220,255,0.4); }
 
-    /* PRACTICE SETTINGS */
-    .prac-settings-wrap { margin-bottom: 24px; }
-    .prac-settings-toggle {
-      display:flex;align-items:center;justify-content:space-between;
-      background:var(--surface);border:1px solid var(--border);
-      border-radius:10px;padding:12px 18px;cursor:pointer;
-      transition:border-color var(--transition),background var(--transition);user-select:none;
-    }
+    .prac-settings-wrap { margin-bottom:24px; }
+    .prac-settings-toggle { display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 18px;cursor:pointer;transition:border-color var(--transition),background var(--transition);user-select:none; }
     .prac-settings-toggle:hover { border-color:var(--border-glow);background:var(--surface-hover); }
     .prac-settings-toggle.open { border-color:rgba(126,207,179,0.3);border-bottom-left-radius:0;border-bottom-right-radius:0; }
     .pst-left  { display:flex;align-items:center;gap:10px; }
@@ -362,17 +274,11 @@
     .pst-summary { font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent2);letter-spacing:0.06em; }
     .pst-chevron { font-size:11px;color:var(--muted);transition:transform 0.22s ease; }
     .prac-settings-toggle.open .pst-chevron { transform:rotate(180deg); }
-    .prac-settings-body {
-      background:rgba(126,207,179,0.025);border:1px solid rgba(126,207,179,0.15);border-top:none;
-      border-bottom-left-radius:10px;border-bottom-right-radius:10px;display:none;overflow:hidden;
-    }
+    .prac-settings-body { background:rgba(126,207,179,0.025);border:1px solid rgba(126,207,179,0.15);border-top:none;border-bottom-left-radius:10px;border-bottom-right-radius:10px;display:none;overflow:hidden; }
     .prac-settings-body.open { display:block; }
     .pset-section { border-bottom:1px solid var(--border); }
     .pset-section:last-child { border-bottom:none; }
-    .pset-section-hd {
-      display:flex;align-items:center;justify-content:space-between;padding:13px 18px;cursor:pointer;
-      transition:background var(--transition);user-select:none;gap:12px;
-    }
+    .pset-section-hd { display:flex;align-items:center;justify-content:space-between;padding:13px 18px;cursor:pointer;transition:background var(--transition);user-select:none;gap:12px; }
     .pset-section-hd:hover { background:rgba(255,255,255,0.03); }
     .pset-section-hd.open  { background:rgba(255,255,255,0.02); }
     .pset-hd-left { display:flex;align-items:center;gap:10px;min-width:0; }
@@ -421,65 +327,65 @@
       .summary-stat:nth-child(2){border-right:none;}
       .summary-stat:nth-child(3){border-right:1px solid var(--border);border-top:1px solid var(--border);}
       .summary-stat:nth-child(4){border-top:1px solid var(--border);}
-      .app-nav-btn { padding:7px 12px; }
+      .app-nav-btn{padding:7px 12px;}
     }
     @media(max-width:600px){
-      header { padding: 12px 14px; }
-      .header-meta { display: none; }
-      .app-nav-btn { padding: 7px 10px; font-size: 10px; }
-      .page-wrap { padding: 20px 12px 60px; }
-      .gallery-heading { font-size: 22px; }
-      .all-lessons-banner { padding: 14px 14px; gap: 12px; margin-bottom: 16px; }
-      .banner-icon { width: 38px; height: 38px; font-size: 18px; }
-      .banner-title { font-size: 14px; }
-      .banner-sub { font-size: 11px; }
-      .banner-arrow { width: 28px; height: 28px; font-size: 13px; }
-      .lesson-grid { grid-template-columns: repeat(2,1fr); gap: 8px; }
-      .lesson-card { padding: 14px 12px 12px; }
-      .card-name { font-size: 11px; margin-bottom: 10px; }
-      .sub-topbar { padding: 10px 12px; gap: 6px; flex-wrap: wrap; }
-      .topbar-title { font-size: 13px; }
-      .mode-tabs { width: 100%; order: 3; gap: 4px; }
-      .mode-tab { padding: 7px 0; font-size: 9.5px; flex: 1; text-align: center; }
-      .vb-body { padding: 14px 12px 60px; }
-      .vocab-item { padding: 11px 12px; gap: 8px; }
-      .vocab-arabic { font-size: 20px; }
-      .vocab-english { font-size: 11px; }
-      .study-body { padding: 16px 12px 60px; }
-      .prog-bar { margin-bottom: 18px; }
-      .card-scene { height: 200px; margin-bottom: 18px; }
-      .card-face { padding: 20px 16px; }
-      #fc-front-txt   { font-size: 36px !important; }
-      #fc-back-txt    { font-size: 36px !important; }
-      #prac-front-txt { font-size: 36px !important; }
-      #prac-back-txt  { font-size: 36px !important; }
-      .fc-btn { padding: 9px 14px; font-size: 10px; }
-      .fc-kbd-hint { display: none; }
-      .quiz-prompt-card { padding: 18px 14px; margin-bottom: 12px; }
-      #qz-prompt      { font-size: 36px !important; }
-      #prac-qz-prompt { font-size: 36px !important; }
-      .quiz-answers { grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 12px; }
-      .ans-btn { padding: 14px 10px; font-size: 12px; border-radius: 10px; }
-      .inf-judge-row { grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
-      .inf-judge-btn { padding: 14px 10px; font-size: 13px; }
-      .quiz-feedback-bar { padding: 10px 12px; gap: 6px; }
-      .fb-text { font-size: 13px; }
-      .fb-answer { font-size: 10px; }
-      .summary-header { padding: 20px 14px 14px; }
-      .summary-title { font-size: 18px; }
-      .summary-stats { grid-template-columns: repeat(4,1fr); }
-      .summary-stat { padding: 14px 6px; }
-      .summary-stat-value { font-size: 20px; }
-      .summary-stat-label { font-size: 8px; }
-      .summary-actions { padding: 14px 14px; gap: 8px; }
-      .pset-chip { padding: 6px 11px; font-size: 9px; }
-      .pset-hd-name { font-size: 9px; }
-      .pset-hd-val  { font-size: 9px; padding: 2px 7px; }
-      .score-badge { padding: 4px 8px; font-size: 10px; }
-      .quiz-score-strip { gap: 5px; }
-      .quiz-header-bar { margin-bottom: 14px; gap: 6px; }
-      .gender-icon-lg { width: 22px; height: 22px; }
-      .gender-icon-lg svg { width: 22px; height: 22px; }
+      header{padding:12px 14px;}
+      .header-meta{display:none;}
+      .app-nav-btn{padding:7px 10px;font-size:10px;}
+      .page-wrap{padding:20px 12px 60px;}
+      .gallery-heading{font-size:22px;}
+      .all-lessons-banner{padding:14px 14px;gap:12px;margin-bottom:16px;}
+      .banner-icon{width:38px;height:38px;font-size:18px;}
+      .banner-title{font-size:14px;}
+      .banner-sub{font-size:11px;}
+      .banner-arrow{width:28px;height:28px;font-size:13px;}
+      .lesson-grid{grid-template-columns:repeat(2,1fr);gap:8px;}
+      .lesson-card{padding:14px 12px 12px;}
+      .card-name{font-size:11px;margin-bottom:10px;}
+      .sub-topbar{padding:10px 12px;gap:6px;flex-wrap:wrap;}
+      .topbar-title{font-size:13px;}
+      .mode-tabs{width:100%;order:3;gap:4px;}
+      .mode-tab{padding:7px 0;font-size:9.5px;flex:1;text-align:center;}
+      .vb-body{padding:14px 12px 60px;}
+      .vocab-item{padding:11px 12px;gap:8px;}
+      .vocab-arabic{font-size:20px;}
+      .vocab-english{font-size:11px;}
+      .study-body{padding:16px 12px 60px;}
+      .prog-bar{margin-bottom:18px;}
+      .card-scene{height:200px;margin-bottom:18px;}
+      .card-face{padding:20px 16px;}
+      #fc-front-txt{font-size:36px !important;}
+      #fc-back-txt{font-size:36px !important;}
+      #prac-front-txt{font-size:36px !important;}
+      #prac-back-txt{font-size:36px !important;}
+      .fc-btn{padding:9px 14px;font-size:10px;}
+      .fc-kbd-hint{display:none;}
+      .quiz-prompt-card{padding:18px 14px;margin-bottom:12px;}
+      #qz-prompt{font-size:36px !important;}
+      #prac-qz-prompt{font-size:36px !important;}
+      .quiz-answers{grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px;}
+      .ans-btn{padding:14px 10px;font-size:12px;border-radius:10px;}
+      .inf-judge-row{grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;}
+      .inf-judge-btn{padding:14px 10px;font-size:13px;}
+      .quiz-feedback-bar{padding:10px 12px;gap:6px;}
+      .fb-text{font-size:13px;}
+      .fb-answer{font-size:10px;}
+      .summary-header{padding:20px 14px 14px;}
+      .summary-title{font-size:18px;}
+      .summary-stats{grid-template-columns:repeat(4,1fr);}
+      .summary-stat{padding:14px 6px;}
+      .summary-stat-value{font-size:20px;}
+      .summary-stat-label{font-size:8px;}
+      .summary-actions{padding:14px 14px;gap:8px;}
+      .pset-chip{padding:6px 11px;font-size:9px;}
+      .pset-hd-name{font-size:9px;}
+      .pset-hd-val{font-size:9px;padding:2px 7px;}
+      .score-badge{padding:4px 8px;font-size:10px;}
+      .quiz-score-strip{gap:5px;}
+      .quiz-header-bar{margin-bottom:14px;gap:6px;}
+      .gender-icon-lg{width:22px;height:22px;}
+      .gender-icon-lg svg{width:22px;height:22px;}
     }
   </style>
 </head>
@@ -615,9 +521,8 @@
           <div class="card-inner" id="fc-inner">
             <div class="card-face card-face-front">
               <div class="card-label" id="fc-front-lbl">Arabic</div>
-              <div id="fc-front-txt" style="font-family:'Scheherazade New',serif;font-size:52px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+              <div id="fc-front-txt" style="font-family:'InkBrush','Scheherazade New',serif;font-size:52px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
               <div class="card-hint">tap to flip</div>
-              <!-- gender icon bottom-left, only shown on English side -->
               <div class="card-gender-corner" id="fc-front-gender-corner" style="display:none;"></div>
             </div>
             <div class="card-face card-face-back">
@@ -662,7 +567,7 @@
         <div class="prog-bar"><div class="prog-fill" id="qz-prog" style="width:0%"></div></div>
         <div class="quiz-prompt-card">
           <div class="quiz-prompt-label" id="qz-prompt-lbl">What does this mean?</div>
-          <div id="qz-prompt" style="font-family:'Scheherazade New',serif;font-size:56px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+          <div id="qz-prompt" style="font-family:'InkBrush','Scheherazade New',serif;font-size:56px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
           <div class="quiz-gender-corner" id="qz-gender-corner" style="display:none;"></div>
         </div>
         <div class="quiz-answers" id="qz-answers">
@@ -800,13 +705,12 @@
         <div class="prog-bar"><div class="prog-fill" id="prac-prog" style="width:0%"></div></div>
         <div style="text-align:center;margin-bottom:18px;"><span class="prac-pill" id="prac-pill">—</span></div>
 
-        <!-- prac flashcard sub-mode -->
         <div id="prac-fc">
           <div class="card-scene" id="prac-scene">
             <div class="card-inner" id="prac-inner">
               <div class="card-face card-face-front">
                 <div class="card-label" id="prac-front-lbl">Arabic</div>
-                <div id="prac-front-txt" style="font-family:'Scheherazade New',serif;font-size:52px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+                <div id="prac-front-txt" style="font-family:'InkBrush','Scheherazade New',serif;font-size:52px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
                 <div class="card-hint">tap to flip</div>
                 <div class="card-gender-corner" id="prac-front-gender-corner" style="display:none;"></div>
               </div>
@@ -830,11 +734,10 @@
           </div>
         </div>
 
-        <!-- prac quiz sub-mode -->
         <div id="prac-qz" style="display:none;">
           <div class="quiz-prompt-card">
             <div class="quiz-prompt-label" id="prac-qz-lbl">What does this mean?</div>
-            <div id="prac-qz-prompt" style="font-family:'Scheherazade New',serif;font-size:56px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+            <div id="prac-qz-prompt" style="font-family:'InkBrush','Scheherazade New',serif;font-size:56px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
             <div class="quiz-gender-corner" id="prac-qz-gender-corner" style="display:none;"></div>
           </div>
           <div class="quiz-answers" id="prac-answers">
@@ -858,7 +761,6 @@
 </section>
 
 <script>
-/* ── AUDIO ── */
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 let _actx;
 function getACtx(){if(!_actx)_actx=new AudioCtx();return _actx;}
@@ -877,69 +779,47 @@ function playSound(type){
   }catch(e){}
 }
 
-/* ── UTILS ── */
 function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function show(el){el.style.display='';}
 function hide(el){el.style.display='none';}
 function fadeIn(el){el.classList.remove('visible');requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('visible')));}
 
-/* ══════════════════════════════════════════
-   GENDER SVG HELPERS
-   SVG icons — male (arrow) and female (cross+circle)
-   Only shown on the English side.
-   word.gender: 'M' | 'F' | undefined/null
-══════════════════════════════════════════ */
-
 const SVG_MALE = `<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M223.96008,39.20947c-.01117-.11377-.03271-.22412-.04858-.33642-.02069-.146-.038-.29248-.06671-.4375-.026-.13086-.0622-.2583-.09461-.38721-.03106-.124-.05829-.24854-.09546-.37158-.03839-.12647-.08593-.24854-.13037-.37256-.04382-.12256-.08429-.24609-.13427-.3667-.04779-.11523-.104-.22559-.157-.33838-.05835-.124-.11358-.249-.17865-.3706-.05774-.10791-.12359-.21-.186-.315-.07111-.11914-.13873-.24023-.21661-.35644-.07593-.11328-.16059-.22022-.242-.3291-.07464-.1001-.14429-.20264-.22424-.3003-.1521-.185-.31384-.36181-.48175-.53271-.01654-.01709-.0304-.03564-.04712-.05225-.019-.019-.04-.03466-.05908-.05322-.169-.16553-.34357-.32568-.52668-.47607-.09124-.07471-.18744-.14014-.28119-.21-.1156-.08692-.22888-.17627-.34924-.25684-.1076-.07227-.21942-.13428-.32965-.2002-.11407-.06884-.226-.14013-.34369-.20312-.10907-.05811-.22125-.10742-.33233-.16016-.12574-.06006-.24988-.12207-.37915-.17578-.1034-.04248-.20905-.07666-.31373-.11474-.14166-.05176-.28216-.10547-.42742-.14942-.09772-.02978-.197-.05029-.2956-.07617-.15411-.04-.30725-.08252-.46478-.11328-.10382-.02051-.20874-.03174-.31317-.04785-.153-.02393-.30457-.05127-.46027-.06641-.15863-.01562-.31787-.01807-.477-.02441C216.20215,32.01172,216.10254,32,216,32H168a8,8,0,0,0,0,16h28.68591l-42.0578,42.05762a80.00085,80.00085,0,1,0,11.31391,11.314L208,59.314V88a8,8,0,0,0,16,0V40.00244C224.00006,39.73779,223.98608,39.47314,223.96008,39.20947Zm-74.7052,158.04541a63.96974,63.96974,0,1,1,0-90.50976A64.07169,64.07169,0,0,1,149.25488,197.25488Z"/></svg>`;
-
 const SVG_FEMALE = `<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M208,96a80,80,0,1,0-88,79.59912V200H88a8,8,0,0,0,0,16h32v24a8,8,0,0,0,16,0V216h32a8,8,0,0,0,0-16H136V175.59912A80.1104,80.1104,0,0,0,208,96ZM64,96a64,64,0,1,1,64,64A64.07239,64.07239,0,0,1,64,96Z"/></svg>`;
 
-function getGenderInfo(word) {
-  if (!word || !word.gender) return null;
-  const g = word.gender.toUpperCase();
-  if (g === 'F') return { svg: SVG_FEMALE, cls: 'gender-icon-f', label: 'Feminine' };
-  if (g === 'M') return { svg: SVG_MALE,   cls: 'gender-icon-m', label: 'Masculine' };
+function getGenderInfo(word){
+  if(!word||!word.gender)return null;
+  const g=word.gender.toUpperCase();
+  if(g==='F')return{svg:SVG_FEMALE,cls:'gender-icon-f',label:'Feminine'};
+  if(g==='M')return{svg:SVG_MALE,cls:'gender-icon-m',label:'Masculine'};
   return null;
 }
-
-/**
- * Apply gender icon to a corner container element.
- * isEnglishSide: boolean — only show icon when English is displayed
- */
-function applyGenderCorner(el, word, isEnglishSide, sizeClass) {
-  if (!isEnglishSide) { hide(el); el.innerHTML = ''; return; }
-  const info = getGenderInfo(word);
-  if (!info) { hide(el); el.innerHTML = ''; return; }
-  el.innerHTML = `<span class="gender-icon ${info.cls} ${sizeClass}" title="${info.label}">${info.svg}</span>`;
+function applyGenderCorner(el,word,isEnglishSide,sizeClass){
+  if(!isEnglishSide){hide(el);el.innerHTML='';return;}
+  const info=getGenderInfo(word);
+  if(!info){hide(el);el.innerHTML='';return;}
+  el.innerHTML=`<span class="gender-icon ${info.cls} ${sizeClass}" title="${info.label}">${info.svg}</span>`;
   show(el);
 }
-
-/** Build HTML for a quiz/practice answer button.
- *  Answers show the OPPOSITE of the prompt language.
- *  Only add gender icon when the answer text is English. */
-function answerBtnHTML(word, promptLang) {
-  // promptLang is what's shown on the PROMPT — answers show the other side
-  const isEnglishAnswer = (promptLang === 'arabic');
-  const text = isEnglishAnswer ? (word.english || '—') : (word.arabic || '—');
-  const info = isEnglishAnswer ? getGenderInfo(word) : null;
-  if (!info) return text;
-  const iconHTML = `<span class="gender-icon ${info.cls} gender-icon-sm" title="${info.label}">${info.svg}</span>`;
-  return `<span class="ans-btn-inner">${iconHTML}${text}</span>`;
+function answerBtnHTML(word,promptLang){
+  const isEnglishAnswer=(promptLang==='arabic');
+  const text=isEnglishAnswer?(word.english||'—'):(word.arabic||'—');
+  const info=isEnglishAnswer?getGenderInfo(word):null;
+  if(!info)return text;
+  const iconHTML=`<span class="gender-icon ${info.cls} gender-icon-sm" title="${info.label}">${info.svg}</span>`;
+  return`<span class="ans-btn-inner">${iconHTML}${text}</span>`;
+}
+function genderListIconHTML(word){
+  const info=getGenderInfo(word);
+  if(!info)return'';
+  return`<span class="gender-icon ${info.cls} gender-icon-list" title="${info.label}">${info.svg}</span>`;
 }
 
-/** Word list row — icon next to English text (after the English span) */
-function genderListIconHTML(word) {
-  const info = getGenderInfo(word);
-  if (!info) return '';
-  return `<span class="gender-icon ${info.cls} gender-icon-list" title="${info.label}">${info.svg}</span>`;
-}
-
-/* ── PRACTICE SETTINGS ── */
 const pracSettings={cardType:'both',frontSide:'random',reps:2};
 function maxRepsForSettings(){const rand=pracSettings.frontSide==='random';const both=pracSettings.cardType==='both';if(rand&&both)return 4;if(rand||both)return 2;return 1;}
 function typeLabel(){return pracSettings.cardType==='fc'?'Flashcard':pracSettings.cardType==='qz'?'Quiz':'Both';}
 function frontLabel(){return pracSettings.frontSide==='arabic'?'Arabic front':pracSettings.frontSide==='english'?'English front':'Random';}
-function repLabel(){return '× '+pracSettings.reps;}
+function repLabel(){return'× '+pracSettings.reps;}
 function updateSettingsSummary(){
   document.getElementById('pst-summary').textContent=pracSettings.reps+'× · '+typeLabel()+' · '+frontLabel();
   document.getElementById('pset-val-type').textContent=typeLabel();
@@ -993,13 +873,11 @@ document.getElementById('pset-rep-chips').addEventListener('click',e=>{
 });
 syncRepChipState();updateSettingsSummary();
 
-/* ── STATE ── */
 let allLessons=[],currentWords=[],appTab='study',studyMode='fc';
 const fc={index:0,flipped:false};
 const qz={questions:[],index:0,correct:0,wrong:0,answered:false};
 const prac={queue:[],wrongCards:[],roundNum:1,totalCards:0,index:0,flipped:false,answered:false};
 
-/* ── DOM ── */
 const navVocab=document.getElementById('nav-vocab');
 const navStudy=document.getElementById('nav-study');
 const headerLogo=document.getElementById('header-logo');
@@ -1017,8 +895,7 @@ const tabFc=document.getElementById('tab-fc');
 const tabQz=document.getElementById('tab-qz');
 const tabPrac=document.getElementById('tab-prac');
 
-/* ── FETCH ── */
-fetch('t.json')
+fetch('xء.json')
   .then(r=>{if(!r.ok)throw new Error('Failed to load t.json');return r.json();})
   .then(data=>{
     allLessons=data.lessons||[];
@@ -1034,7 +911,6 @@ fetch('t.json')
     headerMeta.textContent='Error';
   });
 
-/* ── APP NAV ── */
 const allPages=[vbMenu,vbDetail,smMenu,smDetail];
 function showOnly(page){allPages.forEach(p=>p.classList.add('view-hidden'));page.classList.remove('view-hidden');window.scrollTo({top:0,behavior:'smooth'});}
 function switchAppTab(tab){
@@ -1047,7 +923,6 @@ navVocab.addEventListener('click',()=>{playSound('click');switchAppTab('vocab');
 navStudy.addEventListener('click',()=>{playSound('click');switchAppTab('study');});
 headerLogo.addEventListener('click',()=>{playSound('click');switchAppTab(appTab);});
 
-/* ── WORD LIST ── */
 function renderVBGrid(){
   vbGrid.innerHTML='';
   allLessons.forEach((lesson,i)=>{
@@ -1108,7 +983,6 @@ function vbRenderList(listId,words){
 
 document.getElementById('vb-back-btn').addEventListener('click',()=>{playSound('click');vbDetail.classList.remove('visible');showOnly(vbMenu);});
 
-/* ── STUDY GRID ── */
 function renderSMGrid(){
   smGrid.innerHTML='';
   allLessons.forEach((lesson,i)=>{
@@ -1142,7 +1016,6 @@ function smOpenSession(title,label,words){
 
 document.getElementById('sm-back-btn').addEventListener('click',()=>{playSound('click');smDetail.classList.remove('visible');showOnly(smMenu);});
 
-/* ── MODE SWITCHING ── */
 function setStudyMode(mode){
   studyMode=mode;
   tabFc.classList.toggle('active',mode==='fc');
@@ -1157,10 +1030,6 @@ tabFc.addEventListener('click',()=>{if(studyMode!=='fc'){playSound('nav');setStu
 tabQz.addEventListener('click',()=>{if(studyMode!=='qz'){playSound('nav');setStudyMode('qz');}});
 tabPrac.addEventListener('click',()=>{if(studyMode!=='prac'){playSound('nav');setStudyMode('prac');}});
 
-/* ── FLASHCARDS ──
-   Default front = Arabic. Gender icon only on English side.
-   frontLang here is always 'arabic' for regular flashcards
-   (the card just flips; front=Arabic, back=English). */
 function initFC(){
   fc.index=0;fc.flipped=false;
   const fcEmpty=document.getElementById('fc-empty'),fcActive=document.getElementById('fc-active');
@@ -1173,19 +1042,14 @@ function renderFC(){
   const inner=document.getElementById('fc-inner'),scene=document.getElementById('fc-scene');
   inner.style.transition='none';scene.classList.remove('flipped');fc.flipped=false;
   void inner.offsetWidth;inner.style.transition='';
-
-  // Front face = Arabic (no gender icon)
   document.getElementById('fc-front-lbl').textContent='Arabic';
   const ft=document.getElementById('fc-front-txt');
-  ft.style.fontFamily="'Scheherazade New',serif";ft.style.fontSize='52px';ft.style.direction='rtl';ft.textContent=word.arabic||'—';
-  applyGenderCorner(document.getElementById('fc-front-gender-corner'), word, false, 'gender-icon-lg');
-
-  // Back face = English (show gender icon)
+  ft.style.fontFamily="'InkBrush','Scheherazade New',serif";ft.style.fontSize='52px';ft.style.direction='rtl';ft.textContent=word.arabic||'—';
+  applyGenderCorner(document.getElementById('fc-front-gender-corner'),word,false,'gender-icon-lg');
   document.getElementById('fc-back-lbl').textContent='English';
   const bt=document.getElementById('fc-back-txt');
   bt.style.fontFamily="'Syne',sans-serif";bt.style.fontSize='22px';bt.style.direction='ltr';bt.textContent=word.english||'—';
-  applyGenderCorner(document.getElementById('fc-back-gender-corner'), word, true, 'gender-icon-lg');
-
+  applyGenderCorner(document.getElementById('fc-back-gender-corner'),word,true,'gender-icon-lg');
   document.getElementById('fc-cur').textContent=fc.index+1;
   document.getElementById('fc-tot').textContent=currentWords.length;
   document.getElementById('fc-prog').style.width=(currentWords.length>1?(fc.index/(currentWords.length-1))*100:100)+'%';
@@ -1201,8 +1065,6 @@ document.getElementById('fc-flip').addEventListener('click',e=>{e.stopPropagatio
 document.getElementById('fc-next').addEventListener('click',fcGoNext);
 document.getElementById('fc-prev').addEventListener('click',fcGoPrev);
 
-/* ── QUIZ ──
-   Each question has a frontLang. Gender icon shown only when English is the PROMPT. */
 function initQZ(){
   document.getElementById('qz-summary').style.display='none';
   const qzEmpty=document.getElementById('qz-empty'),qzActive=document.getElementById('qz-active');
@@ -1228,27 +1090,19 @@ function renderQZ(){
   document.getElementById('qz-t').textContent=qz.index;
   const prompt=document.getElementById('qz-prompt'),lbl=document.getElementById('qz-prompt-lbl');
   const genderCorner=document.getElementById('qz-gender-corner');
-
   if(q.frontLang==='arabic'){
-    // Arabic prompt — no gender icon on prompt (Arabic distinguishes itself)
     lbl.textContent='What does this Arabic word mean?';
-    prompt.style.fontFamily="'Scheherazade New',serif";prompt.style.fontSize='56px';prompt.style.direction='rtl';prompt.textContent=q.word.arabic||'—';
-    applyGenderCorner(genderCorner, q.word, false, 'gender-icon-lg');
+    prompt.style.fontFamily="'InkBrush','Scheherazade New',serif";prompt.style.fontSize='56px';prompt.style.direction='rtl';prompt.textContent=q.word.arabic||'—';
+    applyGenderCorner(genderCorner,q.word,false,'gender-icon-lg');
   }else{
-    // English prompt — show gender icon (English needs it)
     lbl.textContent='Which Arabic word means this?';
     prompt.style.fontFamily="'Syne',sans-serif";prompt.style.fontSize='28px';prompt.style.direction='ltr';prompt.textContent=q.word.english||'—';
-    applyGenderCorner(genderCorner, q.word, true, 'gender-icon-lg');
+    applyGenderCorner(genderCorner,q.word,true,'gender-icon-lg');
   }
-
-  // Answer buttons: gender icon only when the answer text is English (i.e. prompt is Arabic)
   document.querySelectorAll('#qz-answers .ans-btn').forEach((btn,i)=>{
     const ch=q.choices[i];
-    if(q.frontLang==='arabic'){
-      btn.style.fontFamily="'Syne',sans-serif";btn.style.fontSize='14px';btn.style.direction='ltr';
-    }else{
-      btn.style.fontFamily="'Scheherazade New',serif";btn.style.fontSize='26px';btn.style.direction='rtl';
-    }
+    if(q.frontLang==='arabic'){btn.style.fontFamily="'Syne',sans-serif";btn.style.fontSize='14px';btn.style.direction='ltr';}
+    else{btn.style.fontFamily="'InkBrush','Scheherazade New',serif";btn.style.fontSize='26px';btn.style.direction='rtl';}
     btn.innerHTML=answerBtnHTML(ch.word,q.frontLang);
     btn.className='ans-btn';btn.disabled=false;
   });
@@ -1294,31 +1148,18 @@ document.getElementById('s-retry').addEventListener('click',()=>{
   setTimeout(()=>{hide(sumEl);show(document.getElementById('qz-active'));initQZ();},300);
 });
 
-/* ══════════════════════════════════════════
-   PRACTICE MODE
-   card.frontLang tracks which language is on the FRONT.
-   Gender icon shown ONLY when English is displayed.
-══════════════════════════════════════════ */
-function resolveFrontLang(){if(pracSettings.frontSide==='arabic')return 'arabic';if(pracSettings.frontSide==='english')return 'english';return Math.random()<0.5?'arabic':'english';}
+function resolveFrontLang(){if(pracSettings.frontSide==='arabic')return'arabic';if(pracSettings.frontSide==='english')return'english';return Math.random()<0.5?'arabic':'english';}
 
 function buildPracQueue(words){
   const{cardType,frontSide,reps}=pracSettings;
   const cards=[];
   const push=(word,frontLang,type)=>cards.push({word,frontLang,type,choices:type==='qz'?buildPracChoices(word,frontLang,words):[]});
   words.forEach(word=>{
-    if(reps===1){
-      const frontLang=resolveFrontLang();
-      const type=cardType==='both'?(Math.random()<0.5?'fc':'qz'):cardType;
-      push(word,frontLang,type);
-    }else if(reps===2){
-      if(frontSide==='random'){
-        const langs=shuffle(['arabic','english']);
-        if(cardType==='both'){const types=shuffle(['fc','qz']);langs.forEach((lang,i)=>push(word,lang,types[i]));}
-        else{langs.forEach(lang=>push(word,lang,cardType));}
-      }else{shuffle(['fc','qz']).forEach(type=>push(word,frontSide,type));}
-    }else{
-      shuffle([{frontLang:'arabic',type:'fc'},{frontLang:'english',type:'fc'},{frontLang:'arabic',type:'qz'},{frontLang:'english',type:'qz'}]).forEach(({frontLang,type})=>push(word,frontLang,type));
-    }
+    if(reps===1){const frontLang=resolveFrontLang();const type=cardType==='both'?(Math.random()<0.5?'fc':'qz'):cardType;push(word,frontLang,type);}
+    else if(reps===2){
+      if(frontSide==='random'){const langs=shuffle(['arabic','english']);if(cardType==='both'){const types=shuffle(['fc','qz']);langs.forEach((lang,i)=>push(word,lang,types[i]));}else{langs.forEach(lang=>push(word,lang,cardType));}}
+      else{shuffle(['fc','qz']).forEach(type=>push(word,frontSide,type));}
+    }else{shuffle([{frontLang:'arabic',type:'fc'},{frontLang:'english',type:'fc'},{frontLang:'arabic',type:'qz'},{frontLang:'english',type:'qz'}]).forEach(({frontLang,type})=>push(word,frontLang,type));}
   });
   return shuffle(cards);
 }
@@ -1364,30 +1205,24 @@ function renderPracFC(card){
   inner.style.transition='none';scene.classList.remove('flipped');prac.flipped=false;
   void inner.offsetWidth;inner.style.transition='';
   document.getElementById('prac-know-row').style.display='none';
-
   const fl=document.getElementById('prac-front-lbl'),ft=document.getElementById('prac-front-txt');
   const bl=document.getElementById('prac-back-lbl'),bt=document.getElementById('prac-back-txt');
   const frontGender=document.getElementById('prac-front-gender-corner');
   const backGender=document.getElementById('prac-back-gender-corner');
-
   if(card.frontLang==='arabic'){
-    // Front = Arabic (no icon), Back = English (show icon)
     fl.textContent='Arabic';
-    ft.style.fontFamily="'Scheherazade New',serif";ft.style.fontSize='52px';ft.style.direction='rtl';ft.textContent=card.word.arabic||'—';
-    applyGenderCorner(frontGender, card.word, false, 'gender-icon-lg');
-
+    ft.style.fontFamily="'InkBrush','Scheherazade New',serif";ft.style.fontSize='52px';ft.style.direction='rtl';ft.textContent=card.word.arabic||'—';
+    applyGenderCorner(frontGender,card.word,false,'gender-icon-lg');
     bl.textContent='English';
     bt.style.fontFamily="'Syne',sans-serif";bt.style.fontSize='22px';bt.style.direction='ltr';bt.textContent=card.word.english||'—';
-    applyGenderCorner(backGender, card.word, true, 'gender-icon-lg');
+    applyGenderCorner(backGender,card.word,true,'gender-icon-lg');
   }else{
-    // Front = English (show icon), Back = Arabic (no icon)
     fl.textContent='English';
     ft.style.fontFamily="'Syne',sans-serif";ft.style.fontSize='26px';ft.style.direction='ltr';ft.textContent=card.word.english||'—';
-    applyGenderCorner(frontGender, card.word, true, 'gender-icon-lg');
-
+    applyGenderCorner(frontGender,card.word,true,'gender-icon-lg');
     bl.textContent='Arabic';
-    bt.style.fontFamily="'Scheherazade New',serif";bt.style.fontSize='52px';bt.style.direction='rtl';bt.textContent=card.word.arabic||'—';
-    applyGenderCorner(backGender, card.word, false, 'gender-icon-lg');
+    bt.style.fontFamily="'InkBrush','Scheherazade New',serif";bt.style.fontSize='52px';bt.style.direction='rtl';bt.textContent=card.word.arabic||'—';
+    applyGenderCorner(backGender,card.word,false,'gender-icon-lg');
   }
 }
 
@@ -1396,26 +1231,19 @@ function renderPracQZ(card){
   hide(document.getElementById('prac-feedback'));
   const lbl=document.getElementById('prac-qz-lbl'),prompt=document.getElementById('prac-qz-prompt');
   const genderCorner=document.getElementById('prac-qz-gender-corner');
-
   if(card.frontLang==='arabic'){
-    // Arabic prompt — no gender icon
     lbl.textContent='What does this Arabic word mean?';
-    prompt.style.fontFamily="'Scheherazade New',serif";prompt.style.fontSize='56px';prompt.style.direction='rtl';prompt.textContent=card.word.arabic||'—';
-    applyGenderCorner(genderCorner, card.word, false, 'gender-icon-lg');
+    prompt.style.fontFamily="'InkBrush','Scheherazade New',serif";prompt.style.fontSize='56px';prompt.style.direction='rtl';prompt.textContent=card.word.arabic||'—';
+    applyGenderCorner(genderCorner,card.word,false,'gender-icon-lg');
   }else{
-    // English prompt — show gender icon
     lbl.textContent='Which Arabic word means this?';
     prompt.style.fontFamily="'Syne',sans-serif";prompt.style.fontSize='28px';prompt.style.direction='ltr';prompt.textContent=card.word.english||'—';
-    applyGenderCorner(genderCorner, card.word, true, 'gender-icon-lg');
+    applyGenderCorner(genderCorner,card.word,true,'gender-icon-lg');
   }
-
   document.querySelectorAll('#prac-answers .ans-btn').forEach((btn,i)=>{
     const ch=card.choices[i];
-    if(card.frontLang==='arabic'){
-      btn.style.fontFamily="'Syne',sans-serif";btn.style.fontSize='14px';btn.style.direction='ltr';
-    }else{
-      btn.style.fontFamily="'Scheherazade New',serif";btn.style.fontSize='26px';btn.style.direction='rtl';
-    }
+    if(card.frontLang==='arabic'){btn.style.fontFamily="'Syne',sans-serif";btn.style.fontSize='14px';btn.style.direction='ltr';}
+    else{btn.style.fontFamily="'InkBrush','Scheherazade New',serif";btn.style.fontSize='26px';btn.style.direction='rtl';}
     btn.innerHTML=answerBtnHTML(ch.word,card.frontLang);
     btn.className='ans-btn';btn.disabled=false;
   });
@@ -1478,7 +1306,6 @@ document.getElementById('prac-done-retry').addEventListener('click',()=>{
   setTimeout(()=>{hide(doneEl);initPrac();},300);
 });
 
-/* ── KEYBOARD ── */
 document.addEventListener('keydown',e=>{
   if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName))return;
   if(appTab==='study'&&studyMode==='fc'){
