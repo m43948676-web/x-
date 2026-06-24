@@ -32,7 +32,7 @@
         { "arabic": "حِصَانٌ", "english": "Horse", "gender": "m"},
         { "arabic": "جَمَلٌ", "english": "Camel", "gender": "m"},
         { "arabic": "دِيكٌ", "english": "Rooster", "gender": "m"},
-        { "arabic": "مُدَرِّسٌ", "english": "Teacher", "gender": "m"},
+        { "arabic": "مُدَرِّسٌ", "english": "Teacher", "gender": "m"},
         { "arabic": "مِنْدِيلٌ", "english": "Handkerchief", "gender": "m"}
       ],
       "extraWords": [
