@@ -299,7 +299,18 @@
       {"arabic": "حَدِيقَةٌ", "english": "Garden", "gender": "f"},
       {"arabic": "مُؤَذِّنٌ", "english": "Muezzin", "gender": "m"}
     ], "extraWords": [] },
-    { "lessonNumber": 8, "inBookWords": [], "extraWords": [] },
+    { "lessonNumber": 8, "inBookWords": [
+      {"arabic": "أَمَامَ", "english": "In Front Of"},
+      {"arabic": "خَلْفَ", "english": "Behind"},
+      {"arabic": "أَمْرِيكَا", "english": "America"},
+
+    ], "extraWords": [
+      {"arabic": "ظَرْفُ مَكَانٍ", "english": "Adverb Of Place"},
+      {"arabic": "ظَرْفُِ زَمَانٍ", "english": "Adverb Of Time"},
+      {"arabic": "ظَامِرٌ", "english": "Seen"},
+      {"arabic": "مُقَدَّرٌ", "english": "Estimated"}
+      
+    ] },
     { "lessonNumber": 9, "inBookWords": [], "extraWords": [] },
     { "lessonNumber": 10, "inBookWords": [], "extraWords": [] },
     { "lessonNumber": 11, "inBookWords": [], "extraWords": [] },
