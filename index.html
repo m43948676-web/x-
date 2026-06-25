@@ -173,7 +173,7 @@
     .vocab-item:last-child { border-bottom:none; }
     .vocab-item:hover { background:rgba(255,255,255,0.03); }
     @keyframes itemIn { from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);} }
-    .vocab-arabic  { font-family:'InkBrush','Scheherazade New',serif;font-size:28px;direction:rtl;color:#fff;line-height:1.4;text-align:right;flex:1; }
+    .vocab-arabic  { font-family:'InkBrush','Scheherazade New',serif;font-size:28px;direction:rtl;color:#fff;line-height:1.4;text-align:right;flex:1;font-weight:normal; }
     .vocab-divider { width:1px;height:28px;background:var(--border);flex-shrink:0; }
     .vocab-english { font-size:13px;color:var(--muted);font-weight:400;text-align:left;flex:1;letter-spacing:0.01em; }
     .vocab-lesson-tag { font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:4px;padding:2px 7px;white-space:nowrap;flex-shrink:0; }
@@ -521,7 +521,7 @@
           <div class="card-inner" id="fc-inner">
             <div class="card-face card-face-front">
               <div class="card-label" id="fc-front-lbl">Arabic</div>
-              <div id="fc-front-txt" style="font-family:'InkBrush','Scheherazade New',serif;font-size:52px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+              <div id="fc-front-txt" style="font-family:'InkBrush','Scheherazade New',serif;font-size:52px;font-weight:normal;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
               <div class="card-hint">tap to flip</div>
               <div class="card-gender-corner" id="fc-front-gender-corner" style="display:none;"></div>
             </div>
@@ -567,7 +567,7 @@
         <div class="prog-bar"><div class="prog-fill" id="qz-prog" style="width:0%"></div></div>
         <div class="quiz-prompt-card">
           <div class="quiz-prompt-label" id="qz-prompt-lbl">What does this mean?</div>
-          <div id="qz-prompt" style="font-family:'InkBrush','Scheherazade New',serif;font-size:56px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+          <div id="qz-prompt" style="font-family:'InkBrush','Scheherazade New',serif;font-size:56px;font-weight:normal;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
           <div class="quiz-gender-corner" id="qz-gender-corner" style="display:none;"></div>
         </div>
         <div class="quiz-answers" id="qz-answers">
@@ -710,7 +710,7 @@
             <div class="card-inner" id="prac-inner">
               <div class="card-face card-face-front">
                 <div class="card-label" id="prac-front-lbl">Arabic</div>
-                <div id="prac-front-txt" style="font-family:'InkBrush','Scheherazade New',serif;font-size:52px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+                <div id="prac-front-txt" style="font-family:'InkBrush','Scheherazade New',serif;font-size:52px;font-weight:normal;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
                 <div class="card-hint">tap to flip</div>
                 <div class="card-gender-corner" id="prac-front-gender-corner" style="display:none;"></div>
               </div>
@@ -737,7 +737,7 @@
         <div id="prac-qz" style="display:none;">
           <div class="quiz-prompt-card">
             <div class="quiz-prompt-label" id="prac-qz-lbl">What does this mean?</div>
-            <div id="prac-qz-prompt" style="font-family:'InkBrush','Scheherazade New',serif;font-size:56px;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
+            <div id="prac-qz-prompt" style="font-family:'InkBrush','Scheherazade New',serif;font-size:56px;font-weight:normal;color:#fff;direction:rtl;text-align:center;line-height:1.4;">—</div>
             <div class="quiz-gender-corner" id="prac-qz-gender-corner" style="display:none;"></div>
           </div>
           <div class="quiz-answers" id="prac-answers">
@@ -1044,11 +1044,19 @@ function renderFC(){
   void inner.offsetWidth;inner.style.transition='';
   document.getElementById('fc-front-lbl').textContent='Arabic';
   const ft=document.getElementById('fc-front-txt');
-  ft.style.fontFamily="'InkBrush','Scheherazade New',serif";ft.style.fontSize='52px';ft.style.direction='rtl';ft.textContent=word.arabic||'—';
+  ft.style.fontFamily="'InkBrush','Scheherazade New',serif";
+  ft.style.fontSize='52px';
+  ft.style.fontWeight='normal';
+  ft.style.direction='rtl';
+  ft.textContent=word.arabic||'—';
   applyGenderCorner(document.getElementById('fc-front-gender-corner'),word,false,'gender-icon-lg');
   document.getElementById('fc-back-lbl').textContent='English';
   const bt=document.getElementById('fc-back-txt');
-  bt.style.fontFamily="'Syne',sans-serif";bt.style.fontSize='22px';bt.style.direction='ltr';bt.textContent=word.english||'—';
+  bt.style.fontFamily="'Syne',sans-serif";
+  bt.style.fontSize='22px';
+  bt.style.fontWeight='600';
+  bt.style.direction='ltr';
+  bt.textContent=word.english||'—';
   applyGenderCorner(document.getElementById('fc-back-gender-corner'),word,true,'gender-icon-lg');
   document.getElementById('fc-cur').textContent=fc.index+1;
   document.getElementById('fc-tot').textContent=currentWords.length;
@@ -1092,17 +1100,34 @@ function renderQZ(){
   const genderCorner=document.getElementById('qz-gender-corner');
   if(q.frontLang==='arabic'){
     lbl.textContent='What does this Arabic word mean?';
-    prompt.style.fontFamily="'InkBrush','Scheherazade New',serif";prompt.style.fontSize='56px';prompt.style.direction='rtl';prompt.textContent=q.word.arabic||'—';
+    prompt.style.fontFamily="'InkBrush','Scheherazade New',serif";
+    prompt.style.fontSize='56px';
+    prompt.style.fontWeight='normal';
+    prompt.style.direction='rtl';
+    prompt.textContent=q.word.arabic||'—';
     applyGenderCorner(genderCorner,q.word,false,'gender-icon-lg');
   }else{
     lbl.textContent='Which Arabic word means this?';
-    prompt.style.fontFamily="'Syne',sans-serif";prompt.style.fontSize='28px';prompt.style.direction='ltr';prompt.textContent=q.word.english||'—';
+    prompt.style.fontFamily="'Syne',sans-serif";
+    prompt.style.fontSize='28px';
+    prompt.style.fontWeight='600';
+    prompt.style.direction='ltr';
+    prompt.textContent=q.word.english||'—';
     applyGenderCorner(genderCorner,q.word,true,'gender-icon-lg');
   }
   document.querySelectorAll('#qz-answers .ans-btn').forEach((btn,i)=>{
     const ch=q.choices[i];
-    if(q.frontLang==='arabic'){btn.style.fontFamily="'Syne',sans-serif";btn.style.fontSize='14px';btn.style.direction='ltr';}
-    else{btn.style.fontFamily="'InkBrush','Scheherazade New',serif";btn.style.fontSize='26px';btn.style.direction='rtl';}
+    if(q.frontLang==='arabic'){
+      btn.style.fontFamily="'Syne',sans-serif";
+      btn.style.fontSize='14px';
+      btn.style.fontWeight='600';
+      btn.style.direction='ltr';
+    }else{
+      btn.style.fontFamily="'InkBrush','Scheherazade New',serif";
+      btn.style.fontSize='26px';
+      btn.style.fontWeight='normal';
+      btn.style.direction='rtl';
+    }
     btn.innerHTML=answerBtnHTML(ch.word,q.frontLang);
     btn.className='ans-btn';btn.disabled=false;
   });
@@ -1211,17 +1236,33 @@ function renderPracFC(card){
   const backGender=document.getElementById('prac-back-gender-corner');
   if(card.frontLang==='arabic'){
     fl.textContent='Arabic';
-    ft.style.fontFamily="'InkBrush','Scheherazade New',serif";ft.style.fontSize='52px';ft.style.direction='rtl';ft.textContent=card.word.arabic||'—';
+    ft.style.fontFamily="'InkBrush','Scheherazade New',serif";
+    ft.style.fontSize='52px';
+    ft.style.fontWeight='normal';
+    ft.style.direction='rtl';
+    ft.textContent=card.word.arabic||'—';
     applyGenderCorner(frontGender,card.word,false,'gender-icon-lg');
     bl.textContent='English';
-    bt.style.fontFamily="'Syne',sans-serif";bt.style.fontSize='22px';bt.style.direction='ltr';bt.textContent=card.word.english||'—';
+    bt.style.fontFamily="'Syne',sans-serif";
+    bt.style.fontSize='22px';
+    bt.style.fontWeight='600';
+    bt.style.direction='ltr';
+    bt.textContent=card.word.english||'—';
     applyGenderCorner(backGender,card.word,true,'gender-icon-lg');
   }else{
     fl.textContent='English';
-    ft.style.fontFamily="'Syne',sans-serif";ft.style.fontSize='26px';ft.style.direction='ltr';ft.textContent=card.word.english||'—';
+    ft.style.fontFamily="'Syne',sans-serif";
+    ft.style.fontSize='26px';
+    ft.style.fontWeight='600';
+    ft.style.direction='ltr';
+    ft.textContent=card.word.english||'—';
     applyGenderCorner(frontGender,card.word,true,'gender-icon-lg');
     bl.textContent='Arabic';
-    bt.style.fontFamily="'InkBrush','Scheherazade New',serif";bt.style.fontSize='52px';bt.style.direction='rtl';bt.textContent=card.word.arabic||'—';
+    bt.style.fontFamily="'InkBrush','Scheherazade New',serif";
+    bt.style.fontSize='52px';
+    bt.style.fontWeight='normal';
+    bt.style.direction='rtl';
+    bt.textContent=card.word.arabic||'—';
     applyGenderCorner(backGender,card.word,false,'gender-icon-lg');
   }
 }
@@ -1233,17 +1274,34 @@ function renderPracQZ(card){
   const genderCorner=document.getElementById('prac-qz-gender-corner');
   if(card.frontLang==='arabic'){
     lbl.textContent='What does this Arabic word mean?';
-    prompt.style.fontFamily="'InkBrush','Scheherazade New',serif";prompt.style.fontSize='56px';prompt.style.direction='rtl';prompt.textContent=card.word.arabic||'—';
+    prompt.style.fontFamily="'InkBrush','Scheherazade New',serif";
+    prompt.style.fontSize='56px';
+    prompt.style.fontWeight='normal';
+    prompt.style.direction='rtl';
+    prompt.textContent=card.word.arabic||'—';
     applyGenderCorner(genderCorner,card.word,false,'gender-icon-lg');
   }else{
     lbl.textContent='Which Arabic word means this?';
-    prompt.style.fontFamily="'Syne',sans-serif";prompt.style.fontSize='28px';prompt.style.direction='ltr';prompt.textContent=card.word.english||'—';
+    prompt.style.fontFamily="'Syne',sans-serif";
+    prompt.style.fontSize='28px';
+    prompt.style.fontWeight='600';
+    prompt.style.direction='ltr';
+    prompt.textContent=card.word.english||'—';
     applyGenderCorner(genderCorner,card.word,true,'gender-icon-lg');
   }
   document.querySelectorAll('#prac-answers .ans-btn').forEach((btn,i)=>{
     const ch=card.choices[i];
-    if(card.frontLang==='arabic'){btn.style.fontFamily="'Syne',sans-serif";btn.style.fontSize='14px';btn.style.direction='ltr';}
-    else{btn.style.fontFamily="'InkBrush','Scheherazade New',serif";btn.style.fontSize='26px';btn.style.direction='rtl';}
+    if(card.frontLang==='arabic'){
+      btn.style.fontFamily="'Syne',sans-serif";
+      btn.style.fontSize='14px';
+      btn.style.fontWeight='600';
+      btn.style.direction='ltr';
+    }else{
+      btn.style.fontFamily="'InkBrush','Scheherazade New',serif";
+      btn.style.fontSize='26px';
+      btn.style.fontWeight='normal';
+      btn.style.direction='rtl';
+    }
     btn.innerHTML=answerBtnHTML(ch.word,card.frontLang);
     btn.className='ans-btn';btn.disabled=false;
   });
