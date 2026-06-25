@@ -35,7 +35,6 @@
       --gender-f:       #f9a8d4;
       --gender-m:       #93c5fd;
 
-      /* multi-select glow palette */
       --sel-glow:       rgba(160,220,255,0.18);
       --sel-border:     rgba(160,220,255,0.55);
       --sel-bg:         rgba(160,220,255,0.06);
@@ -180,7 +179,6 @@
     }
     .lesson-card.selected .sel-check svg { stroke:#0a0a0a; }
 
-    /* shimmer on selected */
     .lesson-card.selected::after {
       content:'';position:absolute;inset:0;
       background:linear-gradient(135deg,rgba(160,220,255,0.04) 0%,transparent 60%);
@@ -196,6 +194,28 @@
     .dot-extra   { background:var(--accent2); }
     .card-arrow  { position:absolute;top:18px;right:18px;width:28px;height:28px;border-radius:50%;background:rgba(160,220,255,0.07);border:1px solid rgba(160,220,255,0.15);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--transition);font-size:12px;color:var(--accent); }
     .lesson-card:not(.selected):hover .card-arrow { opacity:1; }
+
+    /* ── mobile select-mode toggle button ── */
+    .mobile-sel-toggle {
+      display:none;
+      align-items:center;gap:8px;
+      margin-bottom:12px;
+      font-family:'IBM Plex Mono',monospace;font-size:11px;
+      letter-spacing:0.08em;
+    }
+    .mobile-sel-btn {
+      padding:7px 14px;border-radius:8px;
+      border:1px solid var(--border);background:none;
+      color:var(--muted);font-family:'IBM Plex Mono',monospace;
+      font-size:11px;letter-spacing:0.08em;cursor:pointer;
+      transition:all var(--transition);
+    }
+    .mobile-sel-btn:hover,
+    .mobile-sel-btn.active {
+      border-color:rgba(160,220,255,0.35);
+      color:var(--accent);
+      background:rgba(160,220,255,0.07);
+    }
 
     /* ── select mode hint bar (above grid) ── */
     .select-hint {
@@ -274,6 +294,15 @@
     }
     .sel-bar-study:hover { background:rgba(160,220,255,0.18);border-color:rgba(160,220,255,0.55);box-shadow:0 0 16px rgba(160,220,255,0.12); }
     .sel-bar-study:disabled { opacity:0.4;cursor:not-allowed; }
+    .sel-bar-words {
+      padding:9px 22px;border-radius:8px;
+      border:1px solid rgba(126,207,179,0.35);
+      background:rgba(126,207,179,0.1);
+      color:var(--accent2);font-family:'IBM Plex Mono',monospace;
+      font-size:11px;letter-spacing:0.08em;cursor:pointer;
+      transition:background var(--transition),border-color var(--transition),box-shadow var(--transition);
+    }
+    .sel-bar-words:hover { background:rgba(126,207,179,0.18);border-color:rgba(126,207,179,0.55);box-shadow:0 0 16px rgba(126,207,179,0.12); }
 
     /* ── subtopbar / detail views ── */
     .sub-topbar { position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:16px;padding:16px 40px;border-bottom:1px solid var(--border);backdrop-filter:blur(24px);background:rgba(10,10,10,0.85);flex-wrap:wrap; }
@@ -473,6 +502,13 @@
       .app-nav-btn{padding:7px 12px;}
       .sel-bar{padding:12px 20px;}
     }
+
+    /* mobile: show the select-mode toggle, hide ctrl hint */
+    @media(max-width:768px){
+      .mobile-sel-toggle { display:flex; }
+      .gallery-desc .ctrl-hint { display:none; }
+    }
+
     @media(max-width:600px){
       header{padding:12px 14px;}
       .header-meta{display:none;}
@@ -532,7 +568,7 @@
       .gender-icon-lg svg{width:22px;height:22px;}
       .sel-bar{padding:10px 12px;gap:8px;}
       .sel-bar-chips{display:none;}
-      .sel-bar-study{padding:9px 16px;font-size:10px;}
+      .sel-bar-study,.sel-bar-words{padding:9px 16px;font-size:10px;}
     }
   </style>
 </head>
@@ -564,7 +600,7 @@
     <div class="gallery-header">
       <div class="gallery-eyebrow">All Words</div>
       <h1 class="gallery-heading">Word List</h1>
-      <p class="gallery-desc">Click a lesson to see its words · Shift+click to select multiple</p>
+      <p class="gallery-desc">Click a lesson to see its words · <span class="ctrl-hint">Ctrl+click to select multiple</span></p>
     </div>
     <div class="all-lessons-banner" id="vb-all-btn">
       <div class="banner-icon">م</div>
@@ -575,7 +611,11 @@
       </div>
       <div class="banner-arrow">→</div>
     </div>
-    <!-- select hint bar -->
+    <!-- mobile select toggle -->
+    <div class="mobile-sel-toggle" id="vb-mobile-sel-wrap">
+      <button class="mobile-sel-btn" id="vb-mobile-sel-btn">⊞ Select multiple</button>
+    </div>
+    <!-- select hint bar (desktop ctrl-click mode) -->
     <div class="select-hint" id="vb-select-hint">
       <span class="select-hint-dot"></span>
       <span style="color:var(--accent);font-size:10px;">Selecting lessons</span>
@@ -629,7 +669,7 @@
     <div class="gallery-header">
       <div class="gallery-eyebrow">Study</div>
       <h1 class="gallery-heading">Pick a Lesson</h1>
-      <p class="gallery-desc">Click to study · Shift+click to select multiple lessons</p>
+      <p class="gallery-desc">Click to study · <span class="ctrl-hint">Ctrl+click to select multiple</span></p>
     </div>
     <div class="all-lessons-banner" id="sm-all-btn">
       <div class="banner-icon">∞</div>
@@ -640,7 +680,11 @@
       </div>
       <div class="banner-arrow">→</div>
     </div>
-    <!-- select hint bar -->
+    <!-- mobile select toggle -->
+    <div class="mobile-sel-toggle" id="sm-mobile-sel-wrap">
+      <button class="mobile-sel-btn" id="sm-mobile-sel-btn">⊞ Select multiple</button>
+    </div>
+    <!-- select hint bar (desktop ctrl-click mode) -->
     <div class="select-hint" id="sm-select-hint">
       <span class="select-hint-dot"></span>
       <span style="color:var(--accent);font-size:10px;">Selecting lessons</span>
@@ -933,8 +977,10 @@
   <div class="sel-bar-chips" id="sel-bar-chips"></div>
   <div class="sel-bar-actions">
     <button class="sel-bar-cancel" id="sel-cancel">Cancel</button>
+    <!-- Study tab: show study button only -->
     <button class="sel-bar-study"  id="sel-study-btn">Study selected →</button>
-    <button class="sel-bar-study"  id="sel-words-btn" style="background:rgba(126,207,179,0.1);border-color:rgba(126,207,179,0.35);color:var(--accent2);">Word list →</button>
+    <!-- Vocab tab: show word list button only -->
+    <button class="sel-bar-words"  id="sel-words-btn">View words →</button>
   </div>
 </div>
 
@@ -1058,9 +1104,9 @@ syncRepChipState();updateSettingsSummary();
 
 /* ─────────────────── app state ─────────────────── */
 let allLessons=[],currentWords=[],appTab='study',studyMode='fc';
-let selectingMode=false;         // are we in multi-select?
-let selectContext='study';       // 'study' or 'vocab'
-const selectedLessons=new Set(); // lesson numbers currently selected
+let selectingMode=false;
+let selectContext='study';
+const selectedLessons=new Set();
 
 const fc={index:0,flipped:false};
 const qz={questions:[],index:0,correct:0,wrong:0,answered:false};
@@ -1123,20 +1169,26 @@ function enterSelectMode(context){
   selectingMode=true;
   selectContext=context;
   document.body.classList.add('selecting-mode');
-  // show the inline hint bar for whichever grid is active
-  if(context==='study')document.getElementById('sm-select-hint').style.height='';
-  else document.getElementById('vb-select-hint').style.height='';
+  // update mobile toggle button states
+  if(context==='study'){
+    document.getElementById('sm-mobile-sel-btn').classList.add('active');
+    document.getElementById('sm-mobile-sel-btn').textContent='✕ Done selecting';
+  } else {
+    document.getElementById('vb-mobile-sel-btn').classList.add('active');
+    document.getElementById('vb-mobile-sel-btn').textContent='✕ Done selecting';
+  }
 }
 
 function exitSelectMode(){
   selectingMode=false;
   selectedLessons.clear();
   document.body.classList.remove('selecting-mode');
-  // deselect all cards across both grids
   document.querySelectorAll('.lesson-card.selected').forEach(c=>c.classList.remove('selected'));
-  // hide hint bars
-  document.getElementById('sm-select-hint').style.height='0';
-  document.getElementById('vb-select-hint').style.height='0';
+  // reset mobile toggle buttons
+  document.getElementById('sm-mobile-sel-btn').classList.remove('active');
+  document.getElementById('sm-mobile-sel-btn').textContent='⊞ Select multiple';
+  document.getElementById('vb-mobile-sel-btn').classList.remove('active');
+  document.getElementById('vb-mobile-sel-btn').textContent='⊞ Select multiple';
   updateSelBar();
 }
 
@@ -1166,7 +1218,6 @@ function updateSelBar(){
     chip.innerHTML=`L${String(n).padStart(2,'0')} <span class="sel-chip-rm">×</span>`;
     chip.addEventListener('click',()=>{
       selectedLessons.delete(n);
-      // deselect card in whichever grid
       document.querySelectorAll(`.lesson-card[data-lesson="${n}"]`).forEach(c=>c.classList.remove('selected'));
       if(selectedLessons.size===0)exitSelectMode();
       else updateSelBar();
@@ -1174,14 +1225,37 @@ function updateSelBar(){
     });
     selBarChips.appendChild(chip);
   });
-  // hide/show word list btn depending on context
-  document.getElementById('sel-words-btn').style.display=selectContext==='study'?'':'none';
-  document.getElementById('sel-study-btn').style.display=selectContext==='vocab'?'none':'';
+  // show context-appropriate action button only
+  const studyBtn=document.getElementById('sel-study-btn');
+  const wordsBtn=document.getElementById('sel-words-btn');
+  if(selectContext==='vocab'){
+    hide(studyBtn);
+    show(wordsBtn);
+  } else {
+    show(studyBtn);
+    hide(wordsBtn);
+  }
 }
 
 document.getElementById('sel-cancel').addEventListener('click',()=>{playSound('click');exitSelectMode();});
 document.getElementById('vb-exit-sel').addEventListener('click',()=>{playSound('click');exitSelectMode();});
 document.getElementById('sm-exit-sel').addEventListener('click',()=>{playSound('click');exitSelectMode();});
+
+// mobile select toggle buttons
+document.getElementById('sm-mobile-sel-btn').addEventListener('click',()=>{
+  if(selectingMode&&selectContext==='study'){
+    playSound('click');exitSelectMode();
+  } else {
+    playSound('select');enterSelectMode('study');
+  }
+});
+document.getElementById('vb-mobile-sel-btn').addEventListener('click',()=>{
+  if(selectingMode&&selectContext==='vocab'){
+    playSound('click');exitSelectMode();
+  } else {
+    playSound('select');enterSelectMode('vocab');
+  }
+});
 
 document.getElementById('sel-study-btn').addEventListener('click',()=>{
   if(!selectedLessons.size)return;
@@ -1209,7 +1283,6 @@ document.getElementById('sel-words-btn').addEventListener('click',()=>{
   const label=nums.length===1?`Lesson ${nums[0]}`:`Lessons ${nums.join(', ')}`;
   const detailLabel=nums.length===1?`LESSON ${String(nums[0]).padStart(3,'0')}`:`${nums.length} LESSONS`;
   exitSelectMode();
-  // open word list detail
   document.getElementById('vb-detail-label').textContent=detailLabel;
   document.getElementById('vb-detail-title').textContent=label;
   vbPanel.classList.add('single-col');hide(vbColExtra);
@@ -1245,7 +1318,8 @@ function renderVBGrid(){
       </div>
       <div class="card-arrow">→</div>`;
     card.addEventListener('click',e=>{
-      if(e.shiftKey||selectingMode){
+      // Ctrl+click (desktop) or selectingMode (mobile toggle) → multi-select
+      if(e.ctrlKey||e.metaKey||selectingMode){
         if(!selectingMode)enterSelectMode('vocab');
         toggleLessonSelect(lesson.lessonNumber,card);
       } else {
@@ -1331,7 +1405,8 @@ function renderSMGrid(){
         </div>
         <div class="card-arrow">→</div>`;
     card.addEventListener('click',e=>{
-      if(e.shiftKey||selectingMode){
+      // Ctrl+click (desktop) or selectingMode (mobile toggle) → multi-select
+      if(e.ctrlKey||e.metaKey||selectingMode){
         if(!selectingMode)enterSelectMode('study');
         toggleLessonSelect(lesson.lessonNumber,card);
       } else {
