@@ -302,7 +302,7 @@
     { "lessonNumber": 8, "inBookWords": [
       {"arabic": "أَمَامَ", "english": "In Front Of"},
       {"arabic": "خَلْفَ", "english": "Behind"},
-      {"arabic": "أَمْرِيكَا", "english": "America"},
+      {"arabic": "أَمْرِيكَا", "english": "America"}
 
     ], "extraWords": [
       {"arabic": "ظَرْفُ مَكَانٍ", "english": "Adverb Of Place"},
