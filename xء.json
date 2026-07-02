@@ -299,16 +299,37 @@
       {"arabic": "حَدِيقَةٌ", "english": "Garden", "gender": "f"},
       {"arabic": "مُؤَذِّنٌ", "english": "Muezzin", "gender": "m"}
     ], "extraWords": [] },
+    
+    
+    
     { "lessonNumber": 8, "inBookWords": [
       {"arabic": "أَمَامَ", "english": "In Front Of"},
       {"arabic": "خَلْفَ", "english": "Behind"},
-      {"arabic": "أَمْرِيكَا", "english": "America"}
+      {"arabic": "أَمْرِيكَا", "english": "America"},
+      {"arabic": "أَلْمَانِيا", "english": "Germany"},
+      {"arabic": "إِنْكَلْتَرَّا", "english": "England"},
+      {"arabic": "سِكِّينٌ", "english": "Knife"},
+      {"arabic": "سُوِيسْرَا", "english": "Switzerland"},
+      {"arabic": "مُسْتَشْفَا", "english": "Hospital"},
+      {"arabic": "فَرَنْسَا", "english": "France"},
+      {"arabic": "ٱلْآنَ", "english": "Right now"},
+      {"arabic": "عِيسَى", "english": "Isa"},
+      {"arabic": "عَبْدُ اللَّهِ", "english": "Abdullah"}, 
+      {"arabic": "مُوسَى", "english": "Musa"}, 
+      {"arabic": "سَبُّورَةٌ", "english": "Blackboard"}, 
+      {"arabic": "جَلَسَ", "english": "To sit"}, 
+      {"arabic": "مِحْرَابٌ", "english": "The front part of the masjid"}
+      
 
     ], "extraWords": [
       {"arabic": "ظَرْفُ مَكَانٍ", "english": "Adverb Of Place"},
       {"arabic": "ظَرْفُِ زَمَانٍ", "english": "Adverb Of Time"},
       {"arabic": "ظَامِرٌ", "english": "Seen"},
-      {"arabic": "مُقَدَّرٌ", "english": "Estimated"}
+      {"arabic": "مُقَدَّرٌ", "english": "Estimated"},
+      {"arabic": "ضَمَائِرٌ", "english": "Pronouns"},
+      {"arabic": "أَسْمَاءُ لْإِشَارِةِ", "english": "Demonstrative Pronouns"},
+
+      
       
     ] },
     { "lessonNumber": 9, "inBookWords": [], "extraWords": [] },
