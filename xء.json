@@ -327,12 +327,34 @@
       {"arabic": "ظَامِرٌ", "english": "Seen"},
       {"arabic": "مُقَدَّرٌ", "english": "Estimated"},
       {"arabic": "ضَمَائِرٌ", "english": "Pronouns"},
-      {"arabic": "أَسْمَاءُ لْإِشَارِةِ", "english": "Demonstrative Pronouns"}
+      {"arabic": "أَسْمَاءُ الإِشَارَةِ", "english": "Demonstrative Pronouns"}
 
       
       
     ] },
-    { "lessonNumber": 9, "inBookWords": [], "extraWords": [] },
+    { "lessonNumber": 9, "inBookWords": [
+      {"arabic": "", "english": ""}, 
+      {"arabic": "التَاسِعُ", "english": "the 9th"},
+      {"arabic": "مَنْعُوتٌ", "english": "thing being described"}, 
+      {"arabic": "نَعْتٌ", "english": "description "}, 
+      {"arabic": "فَاكِهَةٌ", "english": "Fruit"}, 
+      {"arabic": "عُصْفُورٌ", "english": "Sparrow"}, 
+      {"arabic": "طَائِرٌ", "english": "Bird"}, 
+      {"arabic": "عَرَبِيَّةٌ", "english": "Arabic"}, 
+      {"arabic": "سَهْلَةٌ", "english": "Easy"}, 
+      {"arabic": "لُغَةٌ", "english": "Language"},
+      {"arabic": "مُجْتَهِدٌ", "english": "Hard working"}, 
+      {"arabic": "كَسْلَانُ", "english": " Very Lazy"},
+      {"arabic": "جَوْعَانُ", "english": "Very Hungry"}, 
+      {"arabic": "عَطْشَانُ", "english": "Very Thirsty"},
+      {"arabic": "غَضْبَانُ", "english": "Very Angry"},
+      {"arabic": "مَلْآنُ", "english": "Very Full"},
+      {"arabic": "كُوبٌ", "english": "Cup"},
+      {"arabic": "شَهِيرٌ", "english": "Famous"},
+      {"arabic": "يَومٌ", "english": "Day"}
+      
+
+    ], "extraWords": [] },
     { "lessonNumber": 10, "inBookWords": [], "extraWords": [] },
     { "lessonNumber": 11, "inBookWords": [], "extraWords": [] },
     { "lessonNumber": 12, "inBookWords": [], "extraWords": [] },
