@@ -365,7 +365,7 @@
       {"arabic": "مُسْتَوْصَفٌ", "english": "Clinic"},
       {"arabic": "حَادٌّ", "english": "Sharp"},
       {"arabic": "المَدْرَسَةُ الثَّانَوِيَّةُ", "english": "Secondary School"},
-      {"arabic": "إِنْدُونِيسِيَا", "english": "Indonesia"},
+      {"arabic": "إِنْدُونِيسِيَا", "english": "Indonesia"}
     
 
       
@@ -377,8 +377,8 @@
     ], "extraWords": [
       {"arabic": "اسْمُ الْمَوْصُولِ", "english": "Relative Pronoun"},
       {"arabic": "ٱسم صِفَةٍ", "english": "Adjective"}, 
-      {"arabic": "صِلَةُ الْمَوْصُولِ", "english": "Clause that completes the relative pronoun"}
-      {"arabic": "حَرْف نَفْيٍ", "english": "negation particle"},
+      {"arabic": "صِلَةُ الْمَوْصُولِ", "english": "Clause that completes the relative pronoun"},
+      {"arabic": "حَرْف نَفْيٍ", "english": "negation particle"}
       
     ] },
 
