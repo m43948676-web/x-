@@ -136,12 +136,12 @@
         { "arabic": "عِشَاءٌ", "english": "Night Prayer", "gender": "m"}
       ],
       "extraWords": [
-        { "arabic": "الثَّالِثُ", "english": "The Third"},
+        { "arabic": "ٱلثَّالِثُ", "english": "The Third"},
         { "arabic": "مَعْرِفَةٌ", "english": "Definite"},
         { "arabic": "نَكِرَةٌ", "english": "Indefinite"},
         { "arabic": "أَلْ", "english": "The"},
         { "arabic": "جُمْلَةٌ", "english": "Sentence", "gender": "f"},
-        { "arabic": "جُمْلَةٌ اسْمِيَّةٌ", "english": "Nominal Sentence"},
+        { "arabic": "جُمْلَةٌ ٱسْمِيَّةٌ", "english": "Nominal Sentence"},
         { "arabic": "جُمْلَةٌ فِعْلِيَّةٌ", "english": "Verbal Sentence"},
         { "arabic": "مُبْتَدَأٌ", "english": "Subject", "gender": "m"},
         { "arabic": "خَبَرٌ", "english": "Predicate / Information", "gender": "m"}
@@ -196,12 +196,12 @@
       ],
       "extraWords": [
         {"arabic": "حَرْفُ الْجَرِّ", "english": "Particle of pulling"},
-        {"arabic": "اسْمٌ مَجْرُورٌ", "english": "Noun that has been pulled"},
+        {"arabic": "ٱسْمٌ مَجْرُورٌ", "english": "Noun that has been pulled"},
         {"arabic": "ضَمِيرٌ", "english": "Pronoun", "gender": "m"},
         {"arabic": "عَلَمٌ", "english": "Proper noun", "gender": "m"},
         {"arabic": "مُعْرَبٌ", "english": "Word whose ending changes"},
         {"arabic": "مَبْنِيٌّ", "english": "Word whose ending is fixed"},
-        {"arabic": "اِسْمُ الاِسْتِفْهَامِ", "english": "Noun used to ask questions"},
+        {"arabic": "اِسْمُ ٱلاِسْتِفْهَامِ", "english": "Noun used to ask questions"},
         {"arabic": "مَرْفُوعٌ", "english": "A noun that is mu'rab and its ending is ḍamma or ḍamma‑tanwīn"},
         {"arabic": "مَنْصُوبٌ", "english": "A noun that is mu'rab and its ending is fatḥa or fatḥa‑tanwīn"},
         {"arabic": "مَجْرُورٌ", "english": "A noun that is mu'rab and its ending is kasra or kasra‑tanwīn"},
@@ -214,7 +214,7 @@
     {
       "lessonNumber": 5,
       "inBookWords": [
-        {"arabic": "الخَامِسُ", "english": "The Fifth"},
+        {"arabic": "ٱلخَامِسُ", "english": "The Fifth"},
         {"arabic": "يَا", "english": "O"},
         {"arabic": "هُنَاكَ", "english": "Over there"},
         {"arabic": "حَقِيبَةٌ", "english": "Bag", "gender": "f"},
@@ -239,7 +239,7 @@
         {"arabic": "عِرَاقٌ", "english": "Iraq"}
       ],
       "extraWords": [
-        {"arabic": "الْإِضَافَةُ", "english": "Linking two nouns (ascribing the first to the second)"},
+        {"arabic": "ٱلْإِضَافَةُ", "english": "Linking two nouns (ascribing the first to the second)"},
         {"arabic": "مُضَافٌ", "english": "Possessed", "gender": "m"},
         {"arabic": "مُضَافٌ إِلَيْهِ", "english": "Possessor"},
         {"arabic": "ظَرْفٌ", "english": "Adverb", "gender": "m"},
@@ -249,7 +249,7 @@
     {
       "lessonNumber": 6,
       "inBookWords": [
-        {"arabic": "السَادِسُ", "english": "The Sixth"},
+        {"arabic": "ٱلسَادِسُ", "english": "The Sixth"},
         {"arabic": "هَذِهِ", "english": "This", "gender": "f"},
         {"arabic": "وَاقِفَةٌ", "english": "Standing", "gender": "f"},
         {"arabic": "اُخْتٌ", "english": "Sister", "gender": "f"},
@@ -288,7 +288,7 @@
       "extraWords": []
     },
     { "lessonNumber": 7, "inBookWords": [
-      {"arabic": "السَّابِعُ", "english": "the 7th"},
+      {"arabic": "ٱلسَّابِعُ", "english": "the 7th"},
       {"arabic": "تِلْكَ", "english": "That", "gender": "f"},
       {"arabic": "مُمَرِّضَةٌ", "english": "Nurse", "gender": "f"},
       {"arabic": "طَوِيلَةٌ", "english": "Tall", "gender": "f"},
@@ -298,6 +298,7 @@
       {"arabic": "نَاقَةٌ", "english": "Shecamel", "gender": "f"},
       {"arabic": "حَدِيقَةٌ", "english": "Garden", "gender": "f"},
       {"arabic": "مُؤَذِّنٌ", "english": "Muezzin", "gender": "m"}
+      
     ], "extraWords": [] },
     
     
@@ -310,11 +311,11 @@
       {"arabic": "إِنْكَلْتَرَّا", "english": "England"},
       {"arabic": "سِكِّينٌ", "english": "Knife"},
       {"arabic": "سُوِيسْرَا", "english": "Switzerland"},
-      {"arabic": "مُسْتَشْفَا", "english": "Hospital"},
+      {"arabic": "مُسْتَشْفَى", "english": "Hospital"},
       {"arabic": "فَرَنْسَا", "english": "France"},
       {"arabic": "ٱلْآنَ", "english": "Right now"},
       {"arabic": "عِيسَى", "english": "Isa"},
-      {"arabic": "عَبْدُ اللَّهِ", "english": "Abdullah"}, 
+      {"arabic": "عَبْدُ ٱللَّهِ", "english": "Abdullah"}, 
       {"arabic": "مُوسَى", "english": "Musa"}, 
       {"arabic": "سَبُّورَةٌ", "english": "Blackboard"}, 
       {"arabic": "جَلَسَ", "english": "To sit"}, 
@@ -327,14 +328,13 @@
       {"arabic": "ظَامِرٌ", "english": "Seen"},
       {"arabic": "مُقَدَّرٌ", "english": "Estimated"},
       {"arabic": "ضَمَائِرٌ", "english": "Pronouns"},
-      {"arabic": "أَسْمَاءُ الإِشَارَةِ", "english": "Demonstrative Pronouns"}
+      {"arabic": "أَسْمَاءُ ٱلإِشَارَةِ", "english": "Demonstrative Pronouns"}
 
       
       
     ] },
     { "lessonNumber": 9, "inBookWords": [
-      {"arabic": "", "english": ""}, 
-      {"arabic": "التَاسِعُ", "english": "the 9th"},
+      {"arabic": "ٱلتَاسِعُ", "english": "the 9th"},
       {"arabic": "مَنْعُوتٌ", "english": "thing being described"}, 
       {"arabic": "نَعْتٌ", "english": "description "}, 
       {"arabic": "فَاكِهَةٌ", "english": "Fruit"}, 
@@ -351,11 +351,75 @@
       {"arabic": "مَلْآنُ", "english": "Very Full"},
       {"arabic": "كُوبٌ", "english": "Cup"},
       {"arabic": "شَهِيرٌ", "english": "Famous"},
-      {"arabic": "يَومٌ", "english": "Day"}
+      {"arabic": "يَومٌ", "english": "Day"},
+      {"arabic": "بَلَالٌ", "english": "Bilal"},
+      {"arabic": "ٱلْإِنْكِلِيزِيَّةُ", "english": "English"},
+      {"arabic": "صَعْبَةٌ", "english": "Difficult"},
+      {"arabic": "ٱلقَاهِرَةُ", "english": "Cairo"},
+      {"arabic": "لِمَاذَا", "english": "Why"},
+      {"arabic": "عِنْدَ", "english": "With / By / At"},
+      {"arabic": "مَكْتَبِةٌ", "english": "libary"},
+      {"arabic": "ٱلَّذِي", "english": "Who / Which"},
+      {"arabic": "مُدِيرٌ", "english": "Manager"},
+      {"arabic": "مِرْوَحَةٌ", "english": "Fan"},
+      {"arabic": "مُسْتَوْصَفٌ", "english": "Clinic"},
+      {"arabic": "حَادٌّ", "english": "Sharp"},
+      {"arabic": "المَدْرَسَةُ الثَّانَوِيَّةُ", "english": "Secondary School"},
+      {"arabic": "إِنْدُونِيسِيَا", "english": "Indonesia"},
+    
+
+      
+      
       
 
-    ], "extraWords": [] },
-    { "lessonNumber": 10, "inBookWords": [], "extraWords": [] },
+      
+
+    ], "extraWords": [
+      {"arabic": "اسْمُ الْمَوْصُولِ", "english": "Relative Pronoun"},
+      {"arabic": "ٱسم صِفَةٍ", "english": "Adjective"}, 
+      {"arabic": "صِلَةُ الْمَوْصُولِ", "english": "Clause that completes the relative pronoun"}
+      {"arabic": "حَرْف نَفْيٍ", "english": "negation particle"},
+      
+    ] },
+
+
+    { "lessonNumber": 10,
+      "inBookWords": [
+        {"arabic": "العَاشَرُ", "english": "the 10th"},
+        {"arabic": "ِب", "english": "In / At"},
+        {"arabic": "كَ", "english": "you"},
+        {"arabic": "هُ", "english": "He"},
+        {"arabic": "هَا", "english": "She"},
+        {"arabic": "يْ", "english": "I"},
+        {"arabic": "ٱِسْمُكَ", "english": "Your name"},
+        {"arabic": "فَتَى", "english": "Young Boy"},
+        {"arabic": "مَعَكَ", "english": "With you"},
+        {"arabic": "زَمِيلٌ", "english": "Colleague"},
+        {"arabic": "حَمْزَةُ", "english": "Colleague"},
+        {"arabic": "الأُرْدِيَّة", "english": "Urdu"},
+        {"arabic": "ٱلْيَابَانِيَّةُ", "english": "the Japanese language"},
+        {"arabic": "الكُوَيْت", "english": "Kuwait"},
+        {"arabic": "أُمُّ", "english": "Mother"},
+        {"arabic": "مَعَ", "english": "With"},
+        {"arabic": "تَ", "english": "You"},
+        {"arabic": "وَاحِدٌ", "english": "One"},
+        {"arabic": "اسَّامَةُ", "english": "Osama"},
+        {"arabic": "هُنَا", "english": "Over Here"},
+        {"arabic": "زَوْجٌ", "english": "Spouse"}, 
+        {"arabic": "طِفْلٌ", "english": "Child"},
+        
+        
+    ],
+      "extraWords": [
+        {"arabic": "", "english": ""},
+        {"arabic": "ٱلضَّمَائِرُ ٱلْمُنْفَصِلةُ ", "english": "Detached Pronouns"},
+        {"arabic": "ٱلضَّمَائِرُ ٱلْمُتَّصِلَةُ", "english": "Attached Pronouns"}
+        
+        ]},
+
+
+
+
     { "lessonNumber": 11, "inBookWords": [], "extraWords": [] },
     { "lessonNumber": 12, "inBookWords": [], "extraWords": [] },
     { "lessonNumber": 13, "inBookWords": [], "extraWords": [] },
